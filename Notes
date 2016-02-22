@@ -1,0 +1,12 @@
+Répartition des tâches:
+
+    --------------------------------------------------------------------------------------
+    |                Tâche                    |       Logins        |      Dossier       |
+    --------------------------------------------------------------------------------------
+    | - Parseur/compilateur de fichiers asm   | grange_c            | asm/               |
+    | - Interpréteur de champions compilés    | kellen_j            | corewar/           |
+    |    -> Mémoire = tableau de structures   |                     |                    |
+    | - Bonus: Interface graphique (OpenGL)   | bazin_q & huot_b    | bonus/             |
+    | - Bonus: Launcher (Qt)                  | bazin_q & huot_b    | bonus/             |
+    --------------------------------------------------------------------------------------
+
