@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 17:18:32 2016 Benjamin Grange
-** Last update Tue Feb 23 19:48:54 2016 Benjamin Grange
+** Last update Tue Feb 23 22:10:21 2016 Benjamin Grange
 */
 
 #ifndef TOKEN_H_
@@ -38,5 +38,11 @@ typedef struct			s_asm_token
   char				*content_string;
   t_asm_token_content		content;
 }				t_asm_token;
+
+typedef struct			s_asm_token_list
+{
+  t_asm_token			token;
+  struct s_asm_token_list	*next;
+}				t_asm_token_list;
 
 #endif /* !TOKEN_H_ */
