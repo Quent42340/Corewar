@@ -20,6 +20,6 @@ fclean:
 	@for dir in $(SUBDIRS); do echo "Cleaning $$dir..."; make --no-print-directory -C $$dir fclean; [ $$dir != "corewar" ] && echo || echo -n; done
 
 re:
-	@for dir in $(SUBDIRS); do echo "Compiling $$dir..."; make --no-print-directory -C $$dir fclean all; [ $$dir != "corewar" ] && echo || echo -n; done
+	@for dir in $(SUBDIRS); do echo "Compiling $$dir..."; make --no-print-directory -C $$dir re; [ $$dir != "corewar" ] && echo || echo -n; done
 
 .PHONY: all clean fclean re
