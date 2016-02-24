@@ -5,15 +5,35 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:17:17 2016 Benjamin Grange
-** Last update Tue Feb 23 22:22:39 2016 Benjamin Grange
+** Last update Wed Feb 24 14:23:30 2016 Benjamin Grange
 */
 
 #include "asm.h"
 
-t_asm_file_reader	string_reader_create(t_asm_program_file *file,
+char			string_reader_next(t_file_reader *reader)
+{
+  char			c;
+
+  c = reader->file->content[reader->cursor.index++];
+  if (c == '\n')
+    {
+      reader->cursor.line++;
+      reader->cursor.column = 0;
+    }
+  else
+    reader->cursor.column = 0;
+  return (c);
+}
+
+t_bool			string_reader_has_more(t_file_reader *reader)
+{
+  return (reader->cursor.index < reader->file->file_size);
+}
+
+t_file_reader		string_reader_create(t_program_file *file,
 					     const char *file_content)
 {
-  t_asm_file_reader	file_reader;
+  t_file_reader	file_reader;
 
   if (file_content != NULL)
     {

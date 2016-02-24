@@ -5,23 +5,27 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:13:52 2016 Benjamin Grange
-** Last update Tue Feb 23 23:30:25 2016 Benjamin Grange
+** Last update Wed Feb 24 13:10:58 2016 Benjamin Grange
 */
 
 #include "asm.h"
+#include "lexer.h"
+#include "parser.h"
+#include "compiler.h"
 
 void			compile_file(char *path)
 {
-  t_asm_program_file	file;
-  t_asm_token_list	*token_list;
+  t_program_file	file;
+  t_token_list		*token_list;
   t_byte		*compiled_file;
 
+  printf("Compiling file [%s]\n", path);
   file = program_file_create(path);
   if (file.content)
     {
       token_list = lexer(&file);
       compiled_file = parser(token_list);
-      if (!compile_file)
-	compile(compile_file);
+      if (!compiled_file)
+	compile(compiled_file);
     }
 }

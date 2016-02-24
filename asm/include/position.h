@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 19:27:55 2016 Benjamin Grange
-** Last update Tue Feb 23 19:33:40 2016 Benjamin Grange
+** Last update Wed Feb 24 13:09:24 2016 Benjamin Grange
 */
 
 #ifndef POSITION_H_
@@ -13,12 +13,12 @@
 
 # include "file.h"
 
-typedef struct		s_asm_position
+typedef struct		s_position
 {
-  t_asm_program_file	*file;
+  t_program_file	*file;
   unsigned int		index;
   int			line;
   int			column;
-}			t_asm_position;
+}			t_position;
 
 #endif /* !POSITION_H_ */

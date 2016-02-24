@@ -5,13 +5,13 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:35:39 2016 Benjamin Grange
-** Last update Tue Feb 23 22:59:49 2016 Benjamin Grange
+** Last update Wed Feb 24 14:40:18 2016 Benjamin Grange
 */
 
 #ifndef BASIC_H_
 # define BASIC_H_
 
-# include "asm.h"
+# include <unistd.h>
 
 # define TRUE 1
 # define FALSE 0
@@ -24,7 +24,9 @@ typedef unsigned char		t_bool;
 ssize_t		my_putchar(char);
 ssize_t		my_putstr(char *);
 ssize_t		my_strlen(char *);
+char		*my_strchr(char *s, char c);
 char		*my_strdup(char *);
+char		*my_strndup(char *, size_t);
 void		*xmalloc(size_t);
 void		*xrealloc(void *, size_t);
 void		xfree(void *);

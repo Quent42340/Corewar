@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:37:15 2016 Benjamin Grange
-** Last update Tue Feb 23 22:50:19 2016 Benjamin Grange
+** Last update Wed Feb 24 14:38:25 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -35,4 +35,34 @@ char		*my_strdup(char *str)
       return (result);
     }
   return (NULL);
+}
+
+char		*my_strndup(char *str, size_t n)
+{
+  char		*result;
+  size_t	size;
+
+  size = my_strlen(str);
+  if (n < size)
+    size = n;
+  result = xmalloc(sizeof(char) * (size + 1));
+  if (!result)
+    return (NULL);
+  *(result + size) = '\0';
+  my_memcpy(result, str, size);
+  return (result);
+}
+
+char		*my_strchr(char *s, char c)
+{
+  char		ch;
+
+  ch = c;
+  while (*s != ch)
+    {
+      if (*s == '\0')
+	return (0);
+      s++;
+    }
+  return (s);
 }

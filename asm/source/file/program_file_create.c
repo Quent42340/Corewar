@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:26:50 2016 Benjamin Grange
-** Last update Tue Feb 23 23:04:57 2016 Benjamin Grange
+** Last update Wed Feb 24 13:11:07 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -71,12 +71,13 @@ static char		*get_file_name(char *path)
   return (path);
 }
 
-t_asm_program_file	program_file_create(char *path)
+t_program_file		program_file_create(char *path)
 {
-  t_asm_program_file	file;
+  t_program_file	file;
 
   file.path = path;
   file.name = get_file_name(path);
   file.content = open_and_read_file_content(path);
+  file.file_size = my_strlen(path);
   return (file);
 }

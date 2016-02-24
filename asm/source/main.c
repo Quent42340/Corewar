@@ -5,12 +5,20 @@
 ** Login   <bazin_q@epitech.net>
 **
 ** Started on  Tue Feb 23 15:02:59 2016 Quentin Bazin
-** Last update Tue Feb 23 19:27:43 2016 Benjamin Grange
+** Last update Wed Feb 24 01:03:54 2016 Benjamin Grange
 */
+
+#include "asm.h"
 
 int		main(int argc, char *argv[])
 {
-  (void)argc;
-  (void)argv;
+  if (argc >= 2)
+    {
+      argv++;
+      while (*argv)
+	compile_file(*(argv++));
+    }
+  else
+    my_putstr("Usage: ./asm file_name[.s] ....\n");
   return (0);
 }

@@ -5,12 +5,13 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 17:14:54 2016 Benjamin Grange
-** Last update Tue Feb 23 23:20:48 2016 Benjamin Grange
+** Last update Wed Feb 24 14:39:04 2016 Benjamin Grange
 */
 
 #ifndef ASM_H_
 # define ASM_H_
 
+# include <stdio.h> /* FIXME */
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
@@ -21,8 +22,6 @@
 # include "position.h"
 # include "token.h"
 
-void				init_asm();
-void				run_asm();
-void				free_asm();
+void		compile_file(char *);
 
 #endif /* !ASM_H_ */

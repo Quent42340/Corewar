@@ -5,18 +5,24 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 19:45:48 2016 Benjamin Grange
-** Last update Tue Feb 23 23:34:30 2016 Benjamin Grange
+** Last update Wed Feb 24 14:39:35 2016 Benjamin Grange
 */
 
 #ifndef FILE_READER_H_
 # define FILE_READER_H_
 
 # include "position.h"
+# include "basic.h"
 
-typedef struct			s_asm_file_reader
+typedef struct			s_file_reader
 {
-  t_asm_position		cursor;
-  t_asm_program_file		*file;
-}				t_asm_file_reader;
+  t_position			cursor;
+  t_program_file		*file;
+}				t_file_reader;
+
+int			string_reader_skip(t_file_reader *, char *);
+char			string_reader_next(t_file_reader *);
+t_bool			string_reader_has_more(t_file_reader *);
+t_file_reader		string_reader_create(t_program_file *, const char *);
 
 #endif /* !FILE_READER_H_ */
