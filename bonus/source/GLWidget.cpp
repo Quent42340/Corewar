@@ -34,12 +34,9 @@ void GLWidget::initializeGL() {
 	m_vao.bind();
 	
 	float points[] = {
-        // -0.5, -0.5, 0, 1,
-        //  0.5, -0.5, 0, 1,
-        //  0.0,  0.5, 0, 1
 		100.0f, 20.0f, 0.0f, 1.0f,
-		75.0f, 50.0f, 0.0f, 1.0f,
-		125.0f, 50.0f, 0.0f, 1.0f
+		75.0f, 75.0f, 0.0f, 1.0f,
+		125.0f, 75.0f, 0.0f, 1.0f
 	};
 	
 	m_vertexBuffer.create();
@@ -54,7 +51,7 @@ void GLWidget::initializeGL() {
 	m_shader.setAttributeBuffer("vertex", GL_FLOAT, 0, 4);
 	m_shader.enableAttributeArray("vertex");
 	
-	m_projMatrix.ortho(0.0f, 640.0f, 480.0f, 0.0f, -1.0f, 1.0f);
+	m_projMatrix.ortho(0.0f, width(), height(), 0.0f, -1.0f, 1.0f);
 }
 
 void GLWidget::resizeGL(int width, int height) {
@@ -76,15 +73,15 @@ bool GLWidget::prepareShaderProgram(const QString &vertexShaderPath, const QStri
 	bool result = m_shader.addShaderFromSourceFile(QOpenGLShader::Vertex, vertexShaderPath);
 	if (!result)
 		qWarning() << "Warning: " << m_shader.log();
-
+	
 	result = m_shader.addShaderFromSourceFile(QOpenGLShader::Fragment, fragmentShaderPath);
 	if (!result)
 		qWarning() << "Warning: " << m_shader.log();
-
+	
 	result = m_shader.link();
 	if (!result)
 		qWarning() << "Warning: Could not link shader program:" << m_shader.log();
-
+	
 	return result;
 }
 
