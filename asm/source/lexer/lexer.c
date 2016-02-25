@@ -5,37 +5,42 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:25:28 2016 Benjamin Grange
-** Last update Thu Feb 25 15:06:13 2016 Benjamin Grange
+** Last update Thu Feb 25 16:53:20 2016 Benjamin Grange
 */
 
 #include "asm.h"
 #include "lexer.h"
 
-t_result		lex_token(t_file_reader *file)
+t_file_reader		generate_file_reader(t_program_file *file)
 {
-  t_result		r;
+  t_file_reader		file_reader;
 
-  (void)file;
-  return (r);
+  file_reader.cursor.file = file;
+  file_reader.cursor.index = 0;
+  file_reader.cursor.line = 0;
+  file_reader.cursor.column = 0;
+  file_reader.file = file;
+  return (file_reader);
 }
 
-t_token_list		*lexer(t_file_reader *file)
+t_token_list		*lexer(t_program_file *file)
 {
   t_token_list		*list;
   t_result		result;
+  t_file_reader		file_reader;
 
   list = NULL;
-  while (string_reader_has_more(file))
+  if (file == NULL)
+    return (NULL);
+  file_reader = generate_file_reader(file);
+  while (string_reader_has_more(&file_reader))
     {
-      string_reader_skip_whitespace(file);
-      if (!string_reader_has_more(file))
+      string_reader_skip_whitespace(&file_reader);
+      if (!string_reader_has_more(&file_reader))
 	break;
-      result = lex_token(file);
+      result = lex_token(&file_reader);
       if (result.type == RESULT_ERROR)
-	{
-	  my_putstr(result.syntax_error.error);
-	  return (NULL);
-	}
+	return (print_syntax_error(&result));
     }
   return (list);
 }

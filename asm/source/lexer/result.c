@@ -1,11 +1,11 @@
 /*
-** lexer_result.c for asm in /home/grange_c/rendu/cpe/CPE_2015_corewar/asm/source/lexer/
+** result.c for asm in /home/grange_c/rendu/cpe/CPE_2015_corewar/asm/source/lexer/
 **
 ** Made by Benjamin Grange
 ** Login   <grange_c@epitech.net>
 **
-** Started on  Thu Feb 25 11:50:36 2016 Benjamin Grange
-** Last update Thu Feb 25 15:05:05 2016 Benjamin Grange
+** Started on  Thu Feb 25 15:27:01 2016 Benjamin Grange
+** Last update Thu Feb 25 15:27:03 2016 Benjamin Grange
 */
 
 #include "lexer.h"

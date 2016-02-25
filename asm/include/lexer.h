@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:19 2016 Benjamin Grange
-** Last update Thu Feb 25 14:46:17 2016 Benjamin Grange
+** Last update Thu Feb 25 16:03:31 2016 Benjamin Grange
 */
 
 #ifndef LEXER_H_
@@ -29,6 +29,7 @@ typedef struct		s_result
   t_syntax_error	syntax_error;
 }			t_result;
 
-t_token_list	*lexer(t_file_reader *file);
+t_token_list	*lexer(t_program_file *);
+t_result	lex_token(t_file_reader *);
 
 #endif /* !LEXER_H_ */

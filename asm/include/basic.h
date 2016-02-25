@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:35:39 2016 Benjamin Grange
-** Last update Wed Feb 24 14:40:18 2016 Benjamin Grange
+** Last update Thu Feb 25 15:52:26 2016 Benjamin Grange
 */
 
 #ifndef BASIC_H_
@@ -16,6 +16,15 @@
 # define TRUE 1
 # define FALSE 0
 
+/*
+** Colors
+*/
+# define WHITE	"\033[00;0m"
+# define GREEN	"\033[0;32;1m"
+# define RED "\033[0;31;1m"
+# define CYAN "\033[0;36;1m"
+# define YELLOW "\033[0;33;1m"
+
 typedef unsigned char		t_byte;
 typedef unsigned int		t_uint;
 typedef unsigned long		t_ulong;
@@ -23,6 +32,9 @@ typedef unsigned char		t_bool;
 
 ssize_t		my_putchar(char);
 ssize_t		my_putstr(char *);
+ssize_t		my_putnbr_error(int);
+ssize_t		my_putchar_error(char);
+ssize_t		my_puterror(char *);
 ssize_t		my_strlen(char *);
 char		*my_strchr(char *s, char c);
 char		*my_strdup(char *);
