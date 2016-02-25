@@ -35,13 +35,18 @@ Panel::Panel() {
 	m_vertexBuffer.bind();
 	m_vertexBuffer.allocate(points, 2 * 6 * 3 * sizeof(GLfloat));
 	m_vertexBuffer.write(6 * 3 * sizeof(GLfloat), colors, 6 * 3 * sizeof(GLfloat));
+	
+	m_modelMatrix.translate(m_x, m_y, 0.0f);
 }
 
 void Panel::draw(QOpenGLShaderProgram &shader) {
+	// FIXME: Maybe I should use an IBO here
 	GLubyte indices[] = {
 		0, 1, 2,
 		2, 1, 3
 	};
+	
+	shader.setUniformValue("u_modelMatrix", m_modelMatrix);
 	
 	shader.setAttributeBuffer("vertex", GL_FLOAT, 0, 3);
 	shader.setAttributeBuffer("color", GL_FLOAT, 6 * 3 * sizeof(GLfloat), 3);

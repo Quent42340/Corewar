@@ -83,6 +83,8 @@ endif
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
 	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+	@[ -e TODO ] && echo "Don't forget to read the TODO file." || echo -n
+	@fixmes="$(shell cat $(shell find . -name "*.cpp" -or -name "*.hpp") | grep FIXME | wc -l)" && [ "$$fixmes" != "0" ] && echo $$fixmes "fixme(s) remaining." || echo -n
 
 run:
 	@./$(TARGET) $(RUN_ARGS)

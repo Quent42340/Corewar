@@ -36,6 +36,7 @@ void GLWidget::initializeGL() {
 	m_renderer.reset(new CorewarRenderer);
 	
 	m_projMatrix.ortho(0.0f, width(), height(), 0.0f, -1.0f, 1.0f);
+	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 }
 
 void GLWidget::resizeGL(int width, int height) {
@@ -43,12 +44,11 @@ void GLWidget::resizeGL(int width, int height) {
 	
 	m_projMatrix.setToIdentity();
 	m_projMatrix.ortho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
+	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 }
 
 void GLWidget::paintGL() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 	
 	m_renderer->draw(m_shader);
 }
