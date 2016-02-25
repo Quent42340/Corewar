@@ -14,10 +14,17 @@
 
 #include "CorewarRenderer.hpp"
 
+CorewarRenderer::CorewarRenderer() {
+	for (int x = 0 ; x < 5 ; ++x) {
+		for (int y = 0 ; y < 5 ; ++y) {
+			m_panels.emplace_back(x, y);
+		}
+	}
+}
+
 void CorewarRenderer::draw(QOpenGLShaderProgram &shader) {
-	m_panel1.draw(shader);
-	m_panel2.draw(shader);
-	m_panel3.draw(shader);
-	m_panel4.draw(shader);
+	for (Panel &panel : m_panels) {
+		panel.draw(shader);
+	}
 }
 

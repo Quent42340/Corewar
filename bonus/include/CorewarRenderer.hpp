@@ -14,17 +14,18 @@
 #ifndef COREWARRENDERER_HPP_
 #define COREWARRENDERER_HPP_
 
+#include <array>
+
 #include "Panel.hpp"
 
 class CorewarRenderer {
 	public:
+		CorewarRenderer();
+		
 		void draw(QOpenGLShaderProgram &shader);
 		
 	private:
-		Panel m_panel1{0, 0};
-		Panel m_panel2{1, 0};
-		Panel m_panel3{0, 1};
-		Panel m_panel4{1, 1};
+		std::vector<Panel> m_panels;
 };
 
 #endif // COREWARRENDERER_HPP_
