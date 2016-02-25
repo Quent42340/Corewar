@@ -21,7 +21,7 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLWidget>
 
-#include "CorewarRenderer.hpp"
+class CorewarRenderer;
 
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 	Q_OBJECT
@@ -41,7 +41,7 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 		QOpenGLVertexArrayObject m_vao;
 		QOpenGLShaderProgram m_shader;
 		QMatrix4x4 m_projMatrix;
-		std::unique_ptr<CorewarRenderer> m_renderer{nullptr};
+		std::shared_ptr<CorewarRenderer> m_renderer{nullptr};
 };
 
 #endif // GLWIDGET_HPP_

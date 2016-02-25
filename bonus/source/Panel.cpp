@@ -15,7 +15,7 @@
 
 #include "Panel.hpp"
 
-Panel::Panel() {
+Panel::Panel(unsigned int x, unsigned int y) {
 	GLfloat points[] = {
 		0.0f,  0.0f,   0.0f,
 		width, 0.0f,   0.0f,
@@ -30,13 +30,16 @@ Panel::Panel() {
 		0.0f, 1.0f, 1.0f
 	};
 	
+	m_x = x;
+	m_y = y;
+	
 	m_vertexBuffer.create();
 	m_vertexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
 	m_vertexBuffer.bind();
 	m_vertexBuffer.allocate(points, 2 * 6 * 3 * sizeof(GLfloat));
 	m_vertexBuffer.write(6 * 3 * sizeof(GLfloat), colors, 6 * 3 * sizeof(GLfloat));
 	
-	m_modelMatrix.translate(m_x, m_y, 0.0f);
+	m_modelMatrix.translate(m_x * (width + 2), m_y * (height + 2), 0.0f);
 }
 
 void Panel::draw(QOpenGLShaderProgram &shader) {

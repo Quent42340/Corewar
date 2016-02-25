@@ -13,6 +13,7 @@
  */
 #include <QKeyEvent>
 
+#include "GLWidget.hpp"
 #include "MainWindow.hpp"
 
 MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {

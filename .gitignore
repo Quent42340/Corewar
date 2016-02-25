@@ -4,6 +4,7 @@
 *.o
 *.a
 TODO
+Notes
 a.out
 asm/asm
 corewar/corewar

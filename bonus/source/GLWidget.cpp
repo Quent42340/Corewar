@@ -11,6 +11,7 @@
  *
  * =====================================================================================
  */
+#include "CorewarRenderer.hpp"
 #include "GLWidget.hpp"
 
 void GLWidget::initializeGL() {

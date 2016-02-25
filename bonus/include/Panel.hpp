@@ -19,7 +19,7 @@
 
 class Panel {
 	public:
-		Panel();
+		Panel(unsigned int x, unsigned int y);
 		
 		void draw(QOpenGLShaderProgram &shader);
 		
@@ -30,8 +30,8 @@ class Panel {
 		QOpenGLBuffer m_vertexBuffer{QOpenGLBuffer::VertexBuffer};
 		QMatrix4x4 m_modelMatrix;
 		
-		GLfloat m_x = 50.0f;
-		GLfloat m_y = 50.0f;
+		unsigned int m_x;
+		unsigned int m_y;
 };
 
-#endif /* PANEL_HPP_ */
+#endif // PANEL_HPP_

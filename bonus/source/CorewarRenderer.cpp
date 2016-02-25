@@ -15,6 +15,9 @@
 #include "CorewarRenderer.hpp"
 
 void CorewarRenderer::draw(QOpenGLShaderProgram &shader) {
-	m_panel.draw(shader);
+	m_panel1.draw(shader);
+	m_panel2.draw(shader);
+	m_panel3.draw(shader);
+	m_panel4.draw(shader);
 }
 

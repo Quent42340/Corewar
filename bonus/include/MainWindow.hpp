@@ -16,7 +16,7 @@
 
 #include <QMainWindow>
 
-#include "GLWidget.hpp"
+class GLWidget;
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
