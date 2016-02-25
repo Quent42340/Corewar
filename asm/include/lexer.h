@@ -5,26 +5,30 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:19 2016 Benjamin Grange
-** Last update Wed Feb 24 16:48:48 2016 Benjamin Grange
+** Last update Thu Feb 25 14:46:17 2016 Benjamin Grange
 */
 
 #ifndef LEXER_H_
 # define LEXER_H_
 
 # include "asm.h"
+# include "operator.h"
+# include "syntax_error.h"
 
 typedef enum		e_result_type
 {
-  result_token,
-  result_null,
-  result_error
+  RESULT_TOKEN,
+  RESULT_NULL,
+  RESULT_ERROR
 }			t_result_type;
 
-typedef union		s_result
+typedef struct		s_result
 {
   t_result_type		type;
+  t_token		token;
+  t_syntax_error	syntax_error;
 }			t_result;
 
-t_token_list	*lexer(t_program_file *file);
+t_token_list	*lexer(t_file_reader *file);
 
 #endif /* !LEXER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:13:52 2016 Benjamin Grange
-** Last update Wed Feb 24 13:10:58 2016 Benjamin Grange
+** Last update Thu Feb 25 01:45:39 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -28,4 +28,5 @@ void			compile_file(char *path)
       if (!compiled_file)
 	compile(compiled_file);
     }
+  return ;
 }

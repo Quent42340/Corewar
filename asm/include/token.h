@@ -5,31 +5,33 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 17:18:32 2016 Benjamin Grange
-** Last update Wed Feb 24 16:19:51 2016 Benjamin Grange
+** Last update Thu Feb 25 13:37:38 2016 Benjamin Grange
 */
 
 #ifndef TOKEN_H_
 # define TOKEN_H_
 
 # include "position.h"
+# include "file_reader.h"
 
 typedef enum			e_token_type
 {
-  asm_token_type_instruction,
-  asm_token_type_register,
-  asm_token_type_direct_value,
-  asm_token_type_integer,
-  asm_token_type_label,
-  asm_token_type_identifier,
-  asm_token_type_separator,
-  asm_token_type_string,
-  asm_token_type_comment
+  TOKEN_TYPE_INSTRUCTION,
+  TOKEN_TYPE_REGISTER,
+  TOKEN_TYPE_DIRECTVALUE,
+  TOKEN_TYPE_INTEGER,
+  TOKEN_TYPE_LABEL,
+  TOKEN_TYPE_IDENTIFIER,
+  TOKEN_TYPE_OPERATOR,
+  TOKEN_TYPE_STRING,
+  TOKEN_TYPE_COMMENT
 }				t_token_type;
 
 typedef union			u_token_content
 {
   char				*string_value;
   int				int_value;
+  int				operator;
 }				t_token_content;
 
 typedef struct			s_token
@@ -46,5 +48,9 @@ typedef struct			s_token_list
   t_token			token;
   struct s_token_list		*next;
 }				t_token_list;
+
+t_token				create_token(t_file_reader *,
+					     t_position,
+					     t_token_type);
 
 #endif /* !TOKEN_H_ */
