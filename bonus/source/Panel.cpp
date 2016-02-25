@@ -16,24 +16,42 @@
 #include "Panel.hpp"
 
 Panel::Panel() {
-	float points[] = {
-		100.0f, 20.0f, 0.0f, 1.0f,
-		75.0f, 75.0f, 0.0f, 1.0f,
-		125.0f, 75.0f, 0.0f, 1.0f
+	GLfloat points[] = {
+		0.0f,  0.0f,   0.0f,
+		width, 0.0f,   0.0f,
+		0.0f,  height, 0.0f,
+		width, height, 0.0f,
+	};
+	
+	GLfloat colors[] = {
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 1.0f
 	};
 	
 	m_vertexBuffer.create();
 	m_vertexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
 	m_vertexBuffer.bind();
-	m_vertexBuffer.allocate(points, 3 * 4 * sizeof(float));
+	m_vertexBuffer.allocate(points, 2 * 6 * 3 * sizeof(GLfloat));
+	m_vertexBuffer.write(6 * 3 * sizeof(GLfloat), colors, 6 * 3 * sizeof(GLfloat));
 }
 
 void Panel::draw(QOpenGLShaderProgram &shader) {
-	shader.setAttributeBuffer("vertex", GL_FLOAT, 0, 4);
+	GLubyte indices[] = {
+		0, 1, 2,
+		2, 1, 3
+	};
+	
+	shader.setAttributeBuffer("vertex", GL_FLOAT, 0, 3);
+	shader.setAttributeBuffer("color", GL_FLOAT, 6 * 3 * sizeof(GLfloat), 3);
+	
 	shader.enableAttributeArray("vertex");
+	shader.enableAttributeArray("color");
 	
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, indices);
 	
+	shader.disableAttributeArray("color");
 	shader.disableAttributeArray("vertex");
 }
 

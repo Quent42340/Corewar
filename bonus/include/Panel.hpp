@@ -23,6 +23,9 @@ class Panel {
 		
 		void draw(QOpenGLShaderProgram &shader);
 		
+		static constexpr GLfloat width = 50;
+		static constexpr GLfloat height = 50;
+		
 	private:
 		QOpenGLBuffer m_vertexBuffer{QOpenGLBuffer::VertexBuffer};
 };
