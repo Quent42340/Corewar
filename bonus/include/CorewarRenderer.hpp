@@ -1,30 +1,27 @@
 /*
  * =====================================================================================
  *
- *       Filename:  Panel.hpp
+ *       Filename:  CorewarRenderer.hpp
  *
  *    Description:  
  *
- *        Created:  24/02/2016 14:17:52
+ *        Created:  25/02/2016 15:32:16
  *
  *         Author:  Quentin Bazin, <quent42340@gmail.com>
  *
  * =====================================================================================
  */
-#ifndef PANEL_HPP_
-#define PANEL_HPP_
+#ifndef COREWARRENDERER_H_
+# define COREWARRENDERER_H_
 
-#include <QOpenGLBuffer>
-#include <QOpenGLShader>
+# include "Panel.hpp"
 
-class Panel {
+class CorewarRenderer {
 	public:
-		Panel();
-		
 		void draw(QOpenGLShaderProgram &shader);
 		
 	private:
-		QOpenGLBuffer m_vertexBuffer{QOpenGLBuffer::VertexBuffer};
+		Panel m_panel;
 };
 
-#endif /* PANEL_HPP_ */
+#endif /* !COREWARRENDERER_H_ */

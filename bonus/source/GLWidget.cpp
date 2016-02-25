@@ -33,23 +33,7 @@ void GLWidget::initializeGL() {
 	m_vao.create();
 	m_vao.bind();
 	
-	float points[] = {
-		100.0f, 20.0f, 0.0f, 1.0f,
-		75.0f, 75.0f, 0.0f, 1.0f,
-		125.0f, 75.0f, 0.0f, 1.0f
-	};
-	
-	m_vertexBuffer.create();
-	m_vertexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-	if (!m_vertexBuffer.bind()) {
-		qWarning() << "Warning: Could not bind vertex buffer to the context";
-		return;
-	}
-	
-	m_vertexBuffer.allocate(points, 3 * 4 * sizeof(float));
-	
-	m_shader.setAttributeBuffer("vertex", GL_FLOAT, 0, 4);
-	m_shader.enableAttributeArray("vertex");
+	m_renderer.reset(new CorewarRenderer);
 	
 	m_projMatrix.ortho(0.0f, width(), height(), 0.0f, -1.0f, 1.0f);
 }
@@ -66,7 +50,7 @@ void GLWidget::paintGL() {
 	
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 	
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	m_renderer->draw(m_shader);
 }
 
 bool GLWidget::prepareShaderProgram(const QString &vertexShaderPath, const QString &fragmentShaderPath) {
