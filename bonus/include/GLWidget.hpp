@@ -21,8 +21,6 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLWidget>
 
-#include <QTimer>
-
 #include "Camera.hpp"
 
 class CorewarRenderer;
@@ -34,8 +32,7 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 		GLWidget(QWidget *parent = nullptr)
 			: QOpenGLWidget(parent) {}
 		
-	public slots:
-		void process();
+		void timerEvent(QTimerEvent *event);
 		
 	protected:
 		virtual void initializeGL();
@@ -49,8 +46,6 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 		
 		QOpenGLVertexArrayObject m_vao;
 		QOpenGLShaderProgram m_shader;
-		
-		QTimer m_timer;
 		
 		Camera m_camera;
 		std::shared_ptr<CorewarRenderer> m_renderer{nullptr};
