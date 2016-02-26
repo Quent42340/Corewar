@@ -17,10 +17,10 @@
 
 Panel::Panel(unsigned int x, unsigned int y) {
 	GLfloat points[] = {
-		0.0f,  0.0f,   0.0f,
-		width, 0.0f,   0.0f,
-		0.0f,  height, 0.0f,
-		width, height, 0.0f,
+		0.0f,  0.0f, 0.0f,
+		width, 0.0f, 0.0f,
+		0.0f,  0.0f, height,
+		width, 0.0f, height,
 	};
 	
 	GLfloat colors[] = {
@@ -39,7 +39,7 @@ Panel::Panel(unsigned int x, unsigned int y) {
 	m_vertexBuffer.allocate(points, 2 * 6 * 3 * sizeof(GLfloat));
 	m_vertexBuffer.write(6 * 3 * sizeof(GLfloat), colors, 6 * 3 * sizeof(GLfloat));
 	
-	m_modelMatrix.translate(m_x * (width + 2), m_y * (height + 2), 0.0f);
+	m_modelMatrix.translate(m_x * (width + 2), 0.0f, m_y * (height + 2));
 }
 
 #include <cmath>
@@ -51,9 +51,9 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 		2, 1, 3
 	};
 	
-	m_modelMatrix.rotate(rand() % 4, 0, 0, 1);
-	m_modelMatrix.translate(rand() % 2, rand() % 2, 0);
-	m_modelMatrix.translate(-(rand() % 2), -(rand() % 2), 0);
+	// m_modelMatrix.rotate(rand() % 4, 0, 1, 0);
+	// m_modelMatrix.translate(rand() % 2, 0, rand() % 2);
+	// m_modelMatrix.translate(-(rand() % 2), 0, -(rand() % 2));
 	
 	shader.setUniformValue("u_modelMatrix", m_modelMatrix);
 	

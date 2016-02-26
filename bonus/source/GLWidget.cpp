@@ -23,7 +23,9 @@ void GLWidget::initializeGL() {
 	glEnable(GL_TEXTURE_2D);
 	
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	// glEnable(GL_CULL_FACE);
+	
+	glHint(GL_GENERATE_MIPMAP_HINT, GL_NICEST);
 	
 	// glClearColor(0.196078, 0.6, 0.8, 1.0); // Skyblue
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -44,7 +46,7 @@ void GLWidget::initializeGL() {
 	m_renderer.reset(new CorewarRenderer);
 	
 	// m_projMatrix.ortho(0.0f, width(), height(), 0.0f, -1.0f, 1.0f);
-	m_projMatrix.perspective(45.0f, 640.0f / 480.0f, 0.1f, 1000.0f);
+	m_projMatrix.perspective(45.0f, 640.0f / 480.0f, 0.1f, 3000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 
 	startTimer(1000 / 60);
@@ -61,7 +63,7 @@ void GLWidget::resizeGL(int width, int height) {
 	
 	m_projMatrix.setToIdentity();
 	// m_projMatrix.ortho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
-	m_projMatrix.perspective(45.0f, 640.0f / 480.0f, 0.1f, 1000.0f);
+	m_projMatrix.perspective(45.0f, 640.0f / 480.0f, 0.1f, 3000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 }
 
