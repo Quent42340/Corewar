@@ -17,8 +17,15 @@
 void GLWidget::initializeGL() {
 	initializeOpenGLFunctions();
 	
-	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
+	glEnable(GL_TEXTURE_2D);
+	
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	
+	// glClearColor(0.196078, 0.6, 0.8, 1.0); // Skyblue
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	
 	if (!prepareShaderProgram("shaders/core.v.glsl", "shaders/core.f.glsl")) {
@@ -36,13 +43,14 @@ void GLWidget::initializeGL() {
 	
 	m_renderer.reset(new CorewarRenderer);
 	
-	m_projMatrix.ortho(0.0f, width(), height(), 0.0f, -1.0f, 1.0f);
+	// m_projMatrix.ortho(0.0f, width(), height(), 0.0f, -1.0f, 1.0f);
+	m_projMatrix.perspective(45.0f, 640.0f / 480.0f, 0.1f, 1000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 
 	startTimer(1000 / 60);
 }
 
-void GLWidget::timerEvent(QTimerEvent *event) {
+void GLWidget::timerEvent(QTimerEvent *) {
 	m_camera.update();
 	
 	update();
@@ -52,7 +60,8 @@ void GLWidget::resizeGL(int width, int height) {
 	glViewport(0, 0, width, height);
 	
 	m_projMatrix.setToIdentity();
-	m_projMatrix.ortho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
+	// m_projMatrix.ortho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
+	m_projMatrix.perspective(45.0f, 640.0f / 480.0f, 0.1f, 1000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 }
 

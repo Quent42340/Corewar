@@ -18,17 +18,28 @@ Camera::Camera() {
 }
 
 void Camera::update() {
-	if (Keyboard::isKeyPressed(Qt::Key_Up)) {
-		m_viewMatrix.translate(0, -1);
+	float direction = -1;
+	
+	if (Keyboard::isKeyPressed(Qt::Key_Up))    m_angleV += 0.001f;
+	if (Keyboard::isKeyPressed(Qt::Key_Down))  m_angleV -= 0.001f;
+	if (Keyboard::isKeyPressed(Qt::Key_Left))  m_angleH -= 0.001f;
+	if (Keyboard::isKeyPressed(Qt::Key_Right)) m_angleH += 0.001f;
+	if (Keyboard::isKeyPressed(Qt::Key_Z))     direction = 0.0f;
+	if (Keyboard::isKeyPressed(Qt::Key_S))     direction = 180.0f;
+	if (Keyboard::isKeyPressed(Qt::Key_Q))     direction = 90.0f;
+	if (Keyboard::isKeyPressed(Qt::Key_D))     direction = -90.0f;
+	if (Keyboard::isKeyPressed(Qt::Key_R))     m_v.setY(1);
+	if (Keyboard::isKeyPressed(Qt::Key_F))     m_v.setY(-1);
+	
+	if (direction != -1) {
+		m_v.setX(cos((direction + m_angleH) * 180.0 / M_PI));
+		m_v.setZ(sin((direction + m_angleH) * 180.0 / M_PI));
 	}
-	if (Keyboard::isKeyPressed(Qt::Key_Down)) {
-		m_viewMatrix.translate(0, 1);
-	}
-	if (Keyboard::isKeyPressed(Qt::Key_Left)) {
-		m_viewMatrix.translate(-1, 0);
-	}
-	if (Keyboard::isKeyPressed(Qt::Key_Right)) {
-		m_viewMatrix.translate(1, 0);
-	}
+	
+	m_pos += m_v;
+	m_v = QVector3D(0, 0, 0);
+	
+	m_viewMatrix.setToIdentity();
+	m_viewMatrix.lookAt(m_pos, QVector3D(pointTargetedX(), pointTargetedY(), pointTargetedZ()), QVector3D(0, 1, 0));
 }
 
