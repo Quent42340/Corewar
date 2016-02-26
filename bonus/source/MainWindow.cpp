@@ -14,6 +14,7 @@
 #include <QKeyEvent>
 
 #include "GLWidget.hpp"
+#include "Keyboard.hpp"
 #include "MainWindow.hpp"
 
 MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
@@ -26,13 +27,21 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	format.setVersion(3, 3);
 	format.setProfile(QSurfaceFormat::CoreProfile);
 	
-	widget = new GLWidget(this);
-	widget->setFormat(format);
-	widget->resize(640, 480);
+	m_widget = new GLWidget(this);
+	m_widget->setFormat(format);
+	m_widget->resize(640, 480);
+	
+	Keyboard::setKeyMap(&m_keys);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
+	Keyboard::onKeyPressed(event->key());
 	if (event->key() == Qt::Key_Escape) {
 		close();
 	}
 }
+
+void MainWindow::keyReleaseEvent(QKeyEvent *event) {
+	Keyboard::onKeyReleased(event->key());
+}
+

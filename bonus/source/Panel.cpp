@@ -42,12 +42,18 @@ Panel::Panel(unsigned int x, unsigned int y) {
 	m_modelMatrix.translate(m_x * (width + 2), m_y * (height + 2), 0.0f);
 }
 
+#include <cmath>
+
 void Panel::draw(QOpenGLShaderProgram &shader) {
 	// FIXME: Maybe I should use an IBO here
 	GLubyte indices[] = {
 		0, 1, 2,
 		2, 1, 3
 	};
+	
+	m_modelMatrix.rotate(rand() % 4, 0, 0, 1);
+	m_modelMatrix.translate(rand() % 2, rand() % 2, 0);
+	m_modelMatrix.translate(-(rand() % 2), -(rand() % 2), 0);
 	
 	shader.setUniformValue("u_modelMatrix", m_modelMatrix);
 	

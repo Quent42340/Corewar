@@ -14,6 +14,12 @@
 #include "CorewarRenderer.hpp"
 #include "GLWidget.hpp"
 
+void GLWidget::process() {
+	m_camera.update();
+	
+	update();
+}
+
 void GLWidget::initializeGL() {
 	initializeOpenGLFunctions();
 	
@@ -38,6 +44,9 @@ void GLWidget::initializeGL() {
 	
 	m_projMatrix.ortho(0.0f, width(), height(), 0.0f, -1.0f, 1.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
+
+	QObject::connect(&m_timer, SIGNAL(timeout()), this, SLOT(process()));
+	m_timer.start(16.66666);
 }
 
 void GLWidget::resizeGL(int width, int height) {
@@ -51,7 +60,7 @@ void GLWidget::resizeGL(int width, int height) {
 void GLWidget::paintGL() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	m_renderer->draw(m_shader);
+	m_renderer->draw(m_shader, m_camera);
 }
 
 bool GLWidget::prepareShaderProgram(const QString &vertexShaderPath, const QString &fragmentShaderPath) {

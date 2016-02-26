@@ -11,18 +11,20 @@
  *
  * =====================================================================================
  */
-
+#include "Camera.hpp"
 #include "CorewarRenderer.hpp"
 
 CorewarRenderer::CorewarRenderer() {
-	for (int x = 0 ; x < 5 ; ++x) {
-		for (int y = 0 ; y < 5 ; ++y) {
+	for (int x = 0 ; x < 20 ; ++x) {
+		for (int y = 0 ; y < 10 ; ++y) {
 			m_panels.emplace_back(x, y);
 		}
 	}
 }
 
-void CorewarRenderer::draw(QOpenGLShaderProgram &shader) {
+void CorewarRenderer::draw(QOpenGLShaderProgram &shader, Camera &camera) {
+	shader.setUniformValue("u_viewMatrix", camera.viewMatrix());
+	
 	for (Panel &panel : m_panels) {
 		panel.draw(shader);
 	}

@@ -18,11 +18,13 @@
 
 #include "Panel.hpp"
 
+class Camera;
+
 class CorewarRenderer {
 	public:
 		CorewarRenderer();
 		
-		void draw(QOpenGLShaderProgram &shader);
+		void draw(QOpenGLShaderProgram &shader, Camera &camera);
 		
 	private:
 		std::vector<Panel> m_panels;

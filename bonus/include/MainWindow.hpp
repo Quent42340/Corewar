@@ -15,6 +15,7 @@
 #define MAINWINDOW_HPP_
 
 #include <QMainWindow>
+#include <QMap>
 
 class GLWidget;
 
@@ -25,9 +26,12 @@ class MainWindow : public QMainWindow {
 		MainWindow();
 		
 		void keyPressEvent(QKeyEvent *event);
+		void keyReleaseEvent(QKeyEvent *event);
 		
 	private:
-		GLWidget *widget;
+		GLWidget *m_widget;
+		
+		QMap<int, bool> m_keys;
 };
 
 #endif // MAINWINDOW_HPP_
