@@ -28,8 +28,8 @@ void Camera::update() {
 	if (Keyboard::isKeyPressed(Qt::Key_S))     direction = 180.0f;
 	if (Keyboard::isKeyPressed(Qt::Key_Q))     direction = -90.0f;
 	if (Keyboard::isKeyPressed(Qt::Key_D))     direction = 90.0f;
-	if (Keyboard::isKeyPressed(Qt::Key_R))     m_v.setY(1);
-	if (Keyboard::isKeyPressed(Qt::Key_F))     m_v.setY(-1);
+	if (Keyboard::isKeyPressed(Qt::Key_R))     m_v.setY(1.5);
+	if (Keyboard::isKeyPressed(Qt::Key_F))     m_v.setY(-1.5);
 	
 	while(m_angleH >= 180.0) {
 		m_angleH -= 360.0;
