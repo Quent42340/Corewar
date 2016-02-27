@@ -28,6 +28,9 @@ class MainWindow : public QMainWindow {
 		void keyPressEvent(QKeyEvent *event);
 		void keyReleaseEvent(QKeyEvent *event);
 		
+		static const unsigned int width = 640;
+		static const unsigned int height = 480;
+		
 	private:
 		GLWidget *m_widget;
 		

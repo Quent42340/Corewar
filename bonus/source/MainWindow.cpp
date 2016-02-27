@@ -19,7 +19,7 @@
 
 MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	setWindowTitle("Corewar launcher");
-	resize(640, 480);
+	resize(width, height);
 	
 	QSurfaceFormat format;
 	format.setDepthBufferSize(24);
@@ -28,8 +28,8 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	format.setProfile(QSurfaceFormat::CoreProfile);
 	
 	m_widget = new GLWidget(this);
+	m_widget->resize(width, height);
 	m_widget->setFormat(format);
-	m_widget->resize(640, 480);
 	
 	Keyboard::setKeyMap(&m_keys);
 }
