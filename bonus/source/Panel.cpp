@@ -11,6 +11,8 @@
  *
  * =====================================================================================
  */
+#include <cmath>
+
 #include <QDebug>
 
 #include "Panel.hpp"
@@ -28,18 +30,6 @@ Panel::Panel(unsigned int x, unsigned int y) {
 		width, 0.0f, depth,
 	};
 	
-	GLfloat colors[] = {
-		1.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 1.0f, 1.0f,
-		
-		1.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		0.0f, 0.0f, 1.0f,
-		0.0f, 1.0f, 1.0f
-	};
-	
 	m_x = x;
 	m_y = y;
 	
@@ -47,15 +37,42 @@ Panel::Panel(unsigned int x, unsigned int y) {
 	m_vertexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
 	m_vertexBuffer.bind();
 	m_vertexBuffer.allocate(points, 4 * 6 * 3 * sizeof(GLfloat));
-	m_vertexBuffer.write(2 * 6 * 3 * sizeof(GLfloat), colors, 2 * 6 * 3 * sizeof(GLfloat));
+	
+	updateColor();
 	
 	m_modelMatrix.translate(m_x * (width + 10), 0.0f, m_y * (depth + 10));
 }
 
-#include <cmath>
+void Panel::updateColor() {
+	float offset = 0.2f;
+	
+	GLfloat colors[] = {
+		m_color.r - offset, m_color.g, m_color.b - offset,
+		m_color.r, m_color.g, m_color.b,
+		m_color.r, m_color.g, m_color.b,
+		m_color.r + offset, m_color.g + offset, m_color.b + offset,
+		
+		m_color.r - offset, m_color.g - offset, m_color.b - offset,
+		m_color.r, m_color.g, m_color.b,
+		m_color.r, m_color.g, m_color.b,
+		m_color.r + offset, m_color.g + offset, m_color.b + offset,
+		
+		// 1.0f, 0.0f, 0.0f,
+		// 0.0f, 1.0f, 0.0f,
+		// 0.0f, 0.0f, 1.0f,
+		// 0.0f, 1.0f, 1.0f,
+		//
+		// 1.0f, 0.0f, 0.0f,
+		// 0.0f, 1.0f, 0.0f,
+		// 0.0f, 0.0f, 1.0f,
+		// 0.0f, 1.0f, 1.0f
+	};
+	
+	m_vertexBuffer.write(2 * 6 * 3 * sizeof(GLfloat), colors, 2 * 6 * 3 * sizeof(GLfloat));
+}
 
 void Panel::draw(QOpenGLShaderProgram &shader) {
-	// FIXME: Maybe I should use an IBO here
+	// FIXME: Maybe I should use an IBO here, or a geometry shader
 	GLubyte indices[] = {
 		// y > 0
 		2, 1, 0,
@@ -85,6 +102,16 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 	// m_modelMatrix.rotate(rand() % 4, 0, 0, 1);
 	// m_modelMatrix.translate(rand() % 2, 0, rand() % 2);
 	// m_modelMatrix.translate(-(rand() % 2), 0, -(rand() % 2));
+	// m_modelMatrix.translate(0, rand() % 2, 0);
+	
+	m_vertexBuffer.bind();
+	
+	Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};
+	int n = rand() % 100;
+	if (n < 5) {
+		m_color = colors[n];
+		updateColor();
+	}
 	
 	shader.setUniformValue("u_modelMatrix", m_modelMatrix);
 	

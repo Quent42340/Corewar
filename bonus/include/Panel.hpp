@@ -17,9 +17,13 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLShader>
 
+#include "Color.hpp"
+
 class Panel {
 	public:
 		Panel(unsigned int x, unsigned int y);
+		
+		void updateColor();
 		
 		void draw(QOpenGLShaderProgram &shader);
 		
@@ -32,6 +36,8 @@ class Panel {
 		
 		unsigned int m_x;
 		unsigned int m_y;
+		
+		Color m_color{Color::red};
 };
 
 #endif // PANEL_HPP_
