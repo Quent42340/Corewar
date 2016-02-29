@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Thu Feb 25 16:26:41 2016 Benjamin Grange
+## Last update Mon Feb 29 23:36:58 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -25,11 +25,15 @@ SOURCES		= source/main.c \
 		  source/file/file_reader_string.c \
 		  source/file/file_reader.c \
 		  source/file/program_file_create.c \
+		  source/lexer/lex_config.c \
+		  source/lexer/lex_string.c \
 		  source/lexer/lex_token.c \
 		  source/lexer/lexer.c \
 		  source/lexer/result.c \
+		  source/lexer/result_2.c \
 		  source/lexer/syntax_error.c \
 		  source/lexer/token.c \
 		  source/parser/parser.c \
+		  source/op.c
 
 include ../Makefile.common

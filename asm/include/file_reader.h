@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 19:45:48 2016 Benjamin Grange
-** Last update Thu Feb 25 14:29:13 2016 Benjamin Grange
+** Last update Thu Feb 25 17:43:59 2016 Benjamin Grange
 */
 
 #ifndef FILE_READER_H_
@@ -25,5 +25,7 @@ int			string_reader_skip_whitespace(t_file_reader *);
 char			string_reader_next(t_file_reader *);
 t_bool			string_reader_has_more(t_file_reader *);
 t_file_reader		string_reader_create(t_program_file *, const char *);
+t_bool			file_reader_read_string(t_file_reader *file_reader,
+						char *string);
 
 #endif /* !FILE_READER_H_ */

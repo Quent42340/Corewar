@@ -5,10 +5,32 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Feb 24 13:33:25 2016 Benjamin Grange
-** Last update Wed Feb 24 14:41:41 2016 Benjamin Grange
+** Last update Mon Feb 29 16:23:06 2016 Benjamin Grange
 */
 
 #include "asm.h"
+
+void		print_token(t_token t)
+{
+  char		*message[TOKEN_TYPE_COUNT];
+
+  message[0] = "INSTRUCTION";
+  message[1] = "REGISTER";
+  message[2] = "DIRECT VALUE";
+  message[3] = "INTEGER";
+  message[4] = "OPERATOR";
+  message[5] = "STRING";
+  message[6] = "CONFIG";
+  message[7] = "COMMENT";
+  my_putstr(DARKGREY);
+  my_putstr("{");
+  my_putstr(message[t.type]);
+  my_putstr(" : [");
+  my_putstr(t.content_string);
+  my_putstr("]}");
+  my_putstr(WHITE);
+  my_putchar(' ');
+}
 
 t_token		create_token(t_file_reader *reader,
 			     t_position begin,
@@ -24,6 +46,8 @@ t_token		create_token(t_file_reader *reader,
   token.content_string = my_strndup(reader->file->content + begin.index,
 				    length);
   my_memset(&token.content, 0, sizeof(t_token_content));
+  if (DEBUG)
+    print_token(token);
   return (token);
 }
 

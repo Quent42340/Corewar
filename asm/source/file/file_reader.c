@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:17:17 2016 Benjamin Grange
-** Last update Thu Feb 25 16:54:08 2016 Benjamin Grange
+** Last update Thu Feb 25 18:37:54 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -21,7 +21,7 @@ char			string_reader_next(t_file_reader *reader)
       reader->cursor.column = 0;
     }
   else
-    reader->cursor.column = 0;
+    reader->cursor.column++;
   return (c);
 }
 

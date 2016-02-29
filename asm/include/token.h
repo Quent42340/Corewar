@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 17:18:32 2016 Benjamin Grange
-** Last update Thu Feb 25 13:37:38 2016 Benjamin Grange
+** Last update Thu Feb 25 20:03:18 2016 Benjamin Grange
 */
 
 #ifndef TOKEN_H_
@@ -13,6 +13,8 @@
 
 # include "position.h"
 # include "file_reader.h"
+# include "operator.h"
+# include "config.h"
 
 typedef enum			e_token_type
 {
@@ -20,18 +22,19 @@ typedef enum			e_token_type
   TOKEN_TYPE_REGISTER,
   TOKEN_TYPE_DIRECTVALUE,
   TOKEN_TYPE_INTEGER,
-  TOKEN_TYPE_LABEL,
-  TOKEN_TYPE_IDENTIFIER,
   TOKEN_TYPE_OPERATOR,
   TOKEN_TYPE_STRING,
-  TOKEN_TYPE_COMMENT
+  TOKEN_TYPE_CONFIG,
+  TOKEN_TYPE_COMMENT,
+  TOKEN_TYPE_COUNT
 }				t_token_type;
 
 typedef union			u_token_content
 {
   char				*string_value;
   int				int_value;
-  int				operator;
+  t_operator_enum		operator;
+  t_config_enum			config;
 }				t_token_content;
 
 typedef struct			s_token

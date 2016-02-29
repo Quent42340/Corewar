@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:35:39 2016 Benjamin Grange
-** Last update Thu Feb 25 15:52:26 2016 Benjamin Grange
+** Last update Fri Feb 26 14:07:35 2016 Benjamin Grange
 */
 
 #ifndef BASIC_H_
@@ -20,6 +20,7 @@
 ** Colors
 */
 # define WHITE	"\033[00;0m"
+# define DARKGREY "\033[0;90;1m"
 # define GREEN	"\033[0;32;1m"
 # define RED "\033[0;31;1m"
 # define CYAN "\033[0;36;1m"
@@ -36,7 +37,8 @@ ssize_t		my_putnbr_error(int);
 ssize_t		my_putchar_error(char);
 ssize_t		my_puterror(char *);
 ssize_t		my_strlen(char *);
-char		*my_strchr(char *s, char c);
+t_bool		is_char_printable(char);
+char		*my_strchr(char *, char);
 char		*my_strdup(char *);
 char		*my_strndup(char *, size_t);
 void		*xmalloc(size_t);

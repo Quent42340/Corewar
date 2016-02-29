@@ -5,13 +5,12 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 15:27:01 2016 Benjamin Grange
-** Last update Thu Feb 25 15:27:03 2016 Benjamin Grange
+** Last update Mon Feb 29 16:01:19 2016 Benjamin Grange
 */
 
 #include "lexer.h"
 
-t_result	create_result_from_syntax_error(t_position pos,
-						char *error)
+t_result	create_result_from_se(t_position pos, char *error)
 {
   t_result	res;
 
@@ -49,5 +48,16 @@ t_result	create_result_from_op_token(t_file_reader *file,
 
   token = create_token(file, pos, TOKEN_TYPE_OPERATOR);
   token.content.operator = operator;
+  return (create_result_from_token(token));
+}
+
+t_result	create_result_from_config_token(t_file_reader *file,
+						t_position pos,
+						t_config_enum config)
+{
+  t_token	token;
+
+  token = create_token(file, pos, TOKEN_TYPE_CONFIG);
+  token.content.config = config;
   return (create_result_from_token(token));
 }

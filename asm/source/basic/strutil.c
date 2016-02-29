@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:37:15 2016 Benjamin Grange
-** Last update Wed Feb 24 14:38:25 2016 Benjamin Grange
+** Last update Fri Feb 26 14:07:44 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -65,4 +65,13 @@ char		*my_strchr(char *s, char c)
       s++;
     }
   return (s);
+}
+
+t_bool		is_char_printable(char c)
+{
+  if (c < 32)
+    return (c == '\t');
+  else if (c >= 127)
+    return (FALSE);
+  return (TRUE);
 }

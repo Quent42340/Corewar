@@ -7,3 +7,5 @@ TODO
 a.out
 asm/asm
 corewar/corewar
+*.cor
+asm/test.sh
