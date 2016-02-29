@@ -23,11 +23,13 @@ class Panel {
 	public:
 		Panel(unsigned int x, unsigned int y);
 		
+		void updateVertices();
 		void updateColor();
 		
 		void draw(QOpenGLShaderProgram &shader);
 		
 		static constexpr GLfloat width = 25.0f;
+		static constexpr GLfloat height = 10.0f;
 		static constexpr GLfloat depth = 35.0f;
 		
 	private:
@@ -37,7 +39,9 @@ class Panel {
 		unsigned int m_x;
 		unsigned int m_y;
 		
-		Color m_color{Color::red};
+		Color m_color{Color::blue};
+		
+		float m_scale = 1.0f;
 };
 
 #endif // PANEL_HPP_

@@ -26,6 +26,10 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	format.setStencilBufferSize(8);
 	format.setVersion(3, 3);
 	format.setProfile(QSurfaceFormat::CoreProfile);
+	format.setSwapBehavior(QSurfaceFormat::SingleBuffer);
+	
+	if (format.swapInterval() != 1)
+		qWarning() << "Warning: Unable to enable VSync";
 	
 	m_widget = new GLWidget(this);
 	m_widget->resize(width, height);

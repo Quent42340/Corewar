@@ -11,6 +11,7 @@
  *
  * =====================================================================================
  */
+#include "AppClock.hpp"
 #include "CorewarRenderer.hpp"
 #include "GLWidget.hpp"
 
@@ -45,23 +46,28 @@ void GLWidget::initializeGL() {
 	
 	m_renderer.reset(new CorewarRenderer);
 	
-	m_projMatrix.perspective(45.0f, float(width()) / float(height()), 0.1f, 3000.0f);
+	m_projMatrix.perspective(45.0f, width() / float(height()), 0.01f, 3000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
-
-	startTimer(1000 / 60);
+	
+	m_timer.start();
+	connect(&m_timer, SIGNAL(timeout()), this, SLOT(process()));
 }
 
-void GLWidget::timerEvent(QTimerEvent *) {
-	m_camera.update();
+void GLWidget::process() {
+	m_clock.update([&] {
+		m_camera.update();
+	});
 	
-	update();
+	m_clock.draw([&] {
+		update();
+	});
 }
 
 void GLWidget::resizeGL(int width, int height) {
 	glViewport(0, 0, width, height);
 	
 	m_projMatrix.setToIdentity();
-	m_projMatrix.perspective(45.0f, float(width) / float(height), 0.1f, 3000.0f);
+	m_projMatrix.perspective(45.0f, width / float(height), 0.01f, 3000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 }
 

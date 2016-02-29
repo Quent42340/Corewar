@@ -18,11 +18,26 @@
 #include "Panel.hpp"
 
 Panel::Panel(unsigned int x, unsigned int y) {
+	m_x = x;
+	m_y = y;
+	
+	m_vertexBuffer.create();
+	m_vertexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
+	m_vertexBuffer.bind();
+	m_vertexBuffer.allocate(4 * 6 * 3 * sizeof(GLfloat));
+	
+	updateVertices();
+	updateColor();
+	
+	m_modelMatrix.translate(m_x * (width + 10), 0.0f, m_y * (depth + 10));
+}
+
+void Panel::updateVertices() {
 	GLfloat points[] = {
-		0.0f,  10.0f, 0.0f,
-		width, 10.0f, 0.0f,
-		0.0f,  10.0f, depth,
-		width, 10.0f, depth,
+		0.0f,  height, 0.0f,
+		width, height, 0.0f,
+		0.0f,  height, depth,
+		width, height, depth,
 		
 		0.0f,  0.0f, 0.0f,
 		width, 0.0f, 0.0f,
@@ -30,21 +45,12 @@ Panel::Panel(unsigned int x, unsigned int y) {
 		width, 0.0f, depth,
 	};
 	
-	m_x = x;
-	m_y = y;
+	m_vertexBuffer.write(0, points, 2 * 6 * 3 * sizeof(GLfloat));
 	
-	m_vertexBuffer.create();
-	m_vertexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-	m_vertexBuffer.bind();
-	m_vertexBuffer.allocate(points, 4 * 6 * 3 * sizeof(GLfloat));
-	
-	updateColor();
-	
-	m_modelMatrix.translate(m_x * (width + 10), 0.0f, m_y * (depth + 10));
 }
 
 void Panel::updateColor() {
-	float offset = 0.2f;
+	GLfloat offset = 0.2f;
 	
 	GLfloat colors[] = {
 		m_color.r - offset, m_color.g, m_color.b - offset,
@@ -104,10 +110,19 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 	// m_modelMatrix.translate(-(rand() % 2), 0, -(rand() % 2));
 	// m_modelMatrix.translate(0, rand() % 2, 0);
 	
+	// m_scale += (rand() % 50 - 25.0f) / 100.0f;
+	// if (m_scale < 1.0f)
+	// 	m_scale = 1.0f;
+	// if (m_scale > 50.0f)
+	// 	m_scale = 50.0f;
+	// m_modelMatrix.setToIdentity();
+	// m_modelMatrix.translate(m_x * (width + 10), 0.0f, m_y * (depth + 10));
+	// m_modelMatrix.scale(1.0f, m_scale, 1.0f);
+	
 	m_vertexBuffer.bind();
 	
 	Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};
-	int n = rand() % 100;
+	int n = rand() % 200;
 	if (n < 5) {
 		m_color = colors[n];
 		updateColor();

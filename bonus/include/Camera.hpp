@@ -29,12 +29,12 @@ class Camera {
 		const QMatrix4x4 &viewMatrix() const { return m_viewMatrix; }
 		
 	private:
-		QVector3D m_pos{320, 500, 960};
-		QVector3D m_v{0, 0, 0};
-		
+		QVector3D m_pos{320.0f, 500.0f, 960.0f};
+		QVector3D m_v{0.0f, 0.0f, 0.0f};
+
 		float m_angleH = -90.0f;
 		float m_angleV = -30.0f;
-		
+
 		QMatrix4x4 m_viewMatrix;
 };
 

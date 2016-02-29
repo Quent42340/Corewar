@@ -20,7 +20,7 @@ CXXFLAGS	=	$(CFLAGS) -std=c++11 -static-libstdc++ -MD -fPIC $(DEFINES)
 #---------------------------------------------------------------------------------
 # Libraries
 #---------------------------------------------------------------------------------
-LIBS		=	-lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGLU -lGL
+LIBS		=	-lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL
 
 #---------------------------------------------------------------------------------
 # Source folders

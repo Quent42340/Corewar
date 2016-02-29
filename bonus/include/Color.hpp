@@ -14,12 +14,14 @@
 #ifndef COLOR_HPP_
 #define COLOR_HPP_
 
-#include <cinttypes>
+#include <GL/gl.h>
+
+#include "IntTypes.hpp"
 
 class Color {
 	public:
 		Color() = default;
-		Color(uint8_t _r, uint8_t g, uint8_t _b, uint8_t _a = 255);
+		Color(u8 _r, u8 g, u8 _b, u8 _a = 255);
 		
 		Color operator-(const Color &color);
 		
@@ -31,10 +33,10 @@ class Color {
 			return !(*this == color);
 		}
 		
-		float r = 1.0f;
-		float g = 1.0f;
-		float b = 1.0f;
-		float a = 1.0f;
+		GLfloat r = 1.0f;
+		GLfloat g = 1.0f;
+		GLfloat b = 1.0f;
+		GLfloat a = 1.0f;
 		
 		static Color black;
 		static Color white;
