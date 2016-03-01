@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:19 2016 Benjamin Grange
-** Last update Mon Feb 29 16:02:46 2016 Benjamin Grange
+** Last update Tue Mar  1 02:44:40 2016 Benjamin Grange
 */
 
 #ifndef LEXER_H_
@@ -30,15 +30,17 @@ typedef struct		s_result
 }			t_result;
 
 typedef t_result	(*LexerFunction)(t_file_reader *);
+typedef t_result	(*KeywordFunc)(t_file_reader *, t_position, char *);
 
 /*
 ** Lexing functions
 */
 t_token_list	*lexer(t_program_file *);
 t_result	lex_token(t_file_reader *);
-t_result	lex_config(t_file_reader *);
+t_result	lex_keyword(t_file_reader *, t_position, char *);
+t_result	lex_config(t_file_reader *, t_position, char *);
 t_result	lex_string(t_file_reader *);
-
+t_result	lex_identifiers(t_file_reader *);
 /*
 ** Result functions
 */

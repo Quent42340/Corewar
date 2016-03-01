@@ -9,3 +9,4 @@ asm/asm
 corewar/corewar
 *.cor
 asm/test.sh
+asm/asm_reference

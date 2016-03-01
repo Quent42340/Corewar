@@ -1,1 +1,1 @@
-.name "ok"
+.namo"o"

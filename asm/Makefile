@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Mon Feb 29 23:36:58 2016 Benjamin Grange
+## Last update Tue Mar  1 02:33:32 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -19,6 +19,7 @@ SOURCES		= source/main.c \
 		  source/basic/memory.c \
 		  source/basic/putnbr.c \
 		  source/basic/putstr.c \
+		  source/basic/str_adv.c \
 		  source/basic/strutil.c \
 		  source/compiler/compile.c \
 		  source/file/file_reader_skip.c \
@@ -26,12 +27,15 @@ SOURCES		= source/main.c \
 		  source/file/file_reader.c \
 		  source/file/program_file_create.c \
 		  source/lexer/lex_config.c \
+		  source/lexer/lex_identifiers.c \
+		  source/lexer/lex_keyword.c \
 		  source/lexer/lex_string.c \
 		  source/lexer/lex_token.c \
 		  source/lexer/lexer.c \
 		  source/lexer/result.c \
 		  source/lexer/result_2.c \
 		  source/lexer/syntax_error.c \
+		  source/lexer/token_list.c \
 		  source/lexer/token.c \
 		  source/parser/parser.c \
 		  source/op.c

@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Feb 24 16:49:14 2016 Benjamin Grange
-** Last update Thu Feb 25 18:54:10 2016 Benjamin Grange
+** Last update Tue Mar  1 03:03:26 2016 Benjamin Grange
 */
 
 #ifndef SYNTAX_ERROR_H_
@@ -19,7 +19,9 @@ typedef struct		s_syntax_error
   char			*error;
 }			t_syntax_error;
 
-void			*print_syntax_error(t_file_reader *, void *);
+void			*print_syntax_error(t_file_reader *, void *, void *);
+void			*print_unexpected_char_error(t_file_reader *reader,
+						     void *);
 t_syntax_error		generate_syntax_error(t_position, char *);
 
 #endif /* !SYNTAX_ERROR_H_ */

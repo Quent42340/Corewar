@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:17:17 2016 Benjamin Grange
-** Last update Thu Feb 25 18:37:54 2016 Benjamin Grange
+** Last update Tue Mar  1 01:13:04 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -43,5 +43,17 @@ t_file_reader		string_reader_create(t_program_file *file,
       file_reader.cursor.file = file;
       file_reader.file = file;
     }
+  return (file_reader);
+}
+
+t_file_reader		generate_file_reader(t_program_file *file)
+{
+  t_file_reader		file_reader;
+
+  file_reader.cursor.file = file;
+  file_reader.cursor.index = 0;
+  file_reader.cursor.line = 0;
+  file_reader.cursor.column = 0;
+  file_reader.file = file;
   return (file_reader);
 }

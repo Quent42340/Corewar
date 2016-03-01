@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:13:52 2016 Benjamin Grange
-** Last update Mon Feb 29 22:11:05 2016 Benjamin Grange
+** Last update Tue Mar  1 01:46:37 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -26,6 +26,7 @@ void			compile_file(char *path)
   t_token_list		*token_list;
   t_byte		*compiled_file;
 
+  token_list = NULL;
   print_comiling_message(path);
   file = program_file_create(path);
   if (file.content)
@@ -35,6 +36,7 @@ void			compile_file(char *path)
       if (!compiled_file)
 	compile(compiled_file);
       xfree(file.content);
+      free_token_list(token_list);
     }
   my_putstr("Compilation terminated !\n");
 }

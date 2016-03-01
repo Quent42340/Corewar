@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 17:18:32 2016 Benjamin Grange
-** Last update Thu Feb 25 20:03:18 2016 Benjamin Grange
+** Last update Tue Mar  1 01:33:26 2016 Benjamin Grange
 */
 
 #ifndef TOKEN_H_
@@ -55,5 +55,8 @@ typedef struct			s_token_list
 t_token				create_token(t_file_reader *,
 					     t_position,
 					     t_token_type);
+int				add_token_to_list(t_token_list **,
+						  t_token);
+void				free_token_list(t_token_list *);
 
 #endif /* !TOKEN_H_ */

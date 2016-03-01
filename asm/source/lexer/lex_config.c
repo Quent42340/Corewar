@@ -5,20 +5,18 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 17:10:04 2016 Benjamin Grange
-** Last update Mon Feb 29 23:39:18 2016 Benjamin Grange
+** Last update Tue Mar  1 02:45:03 2016 Benjamin Grange
 */
 
 #include "lexer.h"
 
-t_result		lex_config(t_file_reader *reader)
+t_result		lex_config(t_file_reader *reader,
+				   t_position begin,
+				   char *string)
 {
-  t_position		begin;
-
-  begin = reader->cursor;
-  if (file_reader_read_string(reader, NAME_CMD_STRING))
+  if (my_strcmp(string, NAME_CMD_STRING))
     return (create_result_from_config_token(reader, begin, CONFIG_NAME));
-  if (file_reader_read_string(reader, COMMENT_CMD_STRING))
+  if (my_strcmp(string, COMMENT_CMD_STRING))
     return (create_result_from_config_token(reader, begin, CONFIG_COMMENT));
-  reader->cursor = begin;
   return (get_null_result());
 }

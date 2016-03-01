@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 15:27:01 2016 Benjamin Grange
-** Last update Mon Feb 29 16:01:19 2016 Benjamin Grange
+** Last update Tue Mar  1 03:05:12 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -16,7 +16,7 @@ t_result	create_result_from_se(t_position pos, char *error)
 
   res.type = RESULT_ERROR;
   res.syntax_error.position = pos;
-  res.syntax_error.error = error;
+  res.syntax_error.error = my_strdup(error);
   return (res);
 }
 

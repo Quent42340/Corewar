@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 19:45:48 2016 Benjamin Grange
-** Last update Thu Feb 25 17:43:59 2016 Benjamin Grange
+** Last update Tue Mar  1 01:14:13 2016 Benjamin Grange
 */
 
 #ifndef FILE_READER_H_
@@ -20,6 +20,7 @@ typedef struct			s_file_reader
   t_program_file		*file;
 }				t_file_reader;
 
+t_file_reader		generate_file_reader(t_program_file *);
 int			string_reader_skip(t_file_reader *, char *);
 int			string_reader_skip_whitespace(t_file_reader *);
 char			string_reader_next(t_file_reader *);

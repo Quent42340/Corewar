@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:35:39 2016 Benjamin Grange
-** Last update Fri Feb 26 14:07:35 2016 Benjamin Grange
+** Last update Tue Mar  1 02:52:40 2016 Benjamin Grange
 */
 
 #ifndef BASIC_H_
@@ -36,6 +36,10 @@ ssize_t		my_putstr(char *);
 ssize_t		my_putnbr_error(int);
 ssize_t		my_putchar_error(char);
 ssize_t		my_puterror(char *);
+int		my_strcmp(char *, char *);
+void		my_cpystr(char *, char *);
+void		*print_error_n(char *);
+int		print_error_i(char *, int);
 ssize_t		my_strlen(char *);
 t_bool		is_char_printable(char);
 char		*my_strchr(char *, char);
