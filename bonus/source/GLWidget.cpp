@@ -46,7 +46,7 @@ void GLWidget::initializeGL() {
 	
 	m_renderer.reset(new CorewarRenderer);
 	
-	m_projMatrix.perspective(45.0f, width() / float(height()), 0.01f, 3000.0f);
+	m_projMatrix.perspective(45.0f, width() / float(height()), 0.01f, 1000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 	
 	m_timer.start();
@@ -67,7 +67,7 @@ void GLWidget::resizeGL(int width, int height) {
 	glViewport(0, 0, width, height);
 	
 	m_projMatrix.setToIdentity();
-	m_projMatrix.perspective(45.0f, width / float(height), 0.01f, 3000.0f);
+	m_projMatrix.perspective(45.0f, width / float(height), 0.01f, 1000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);
 }
 

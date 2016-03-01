@@ -29,7 +29,7 @@ Panel::Panel(unsigned int x, unsigned int y) {
 	updateVertices();
 	updateColor();
 	
-	m_modelMatrix.translate(m_x * (width + 10), 0.0f, m_y * (depth + 10));
+	m_modelMatrix.translate(m_x * (width + height), 0.0f, m_y * (depth + height));
 }
 
 void Panel::updateVertices() {
