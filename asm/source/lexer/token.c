@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Feb 24 13:33:25 2016 Benjamin Grange
-** Last update Mon Feb 29 16:23:06 2016 Benjamin Grange
+** Last update Tue Mar  1 17:15:32 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -29,7 +29,7 @@ void		print_token(t_token t)
   my_putstr(t.content_string);
   my_putstr("]}");
   my_putstr(WHITE);
-  my_putchar(' ');
+  my_putchar('\n');
 }
 
 t_token		create_token(t_file_reader *reader,

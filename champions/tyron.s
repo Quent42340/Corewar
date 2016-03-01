@@ -1,2 +1,4 @@
-  .name "ok"
+  .name "ok" #Mdr ok
   .comment "ok"
+
+  .sti

@@ -5,14 +5,15 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 17:18:32 2016 Benjamin Grange
-** Last update Tue Mar  1 01:33:26 2016 Benjamin Grange
+** Last update Tue Mar  1 17:25:57 2016 Benjamin Grange
 */
 
 #ifndef TOKEN_H_
 # define TOKEN_H_
 
-# include "position.h"
+# include "instruction.h"
 # include "file_reader.h"
+# include "position.h"
 # include "operator.h"
 # include "config.h"
 
@@ -35,6 +36,7 @@ typedef union			u_token_content
   int				int_value;
   t_operator_enum		operator;
   t_config_enum			config;
+  t_instruction_type		instruction;
 }				t_token_content;
 
 typedef struct			s_token
