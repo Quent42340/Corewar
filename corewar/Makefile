@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ## 
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Mon Dec 14 13:18:25 2015 Quentin Bazin
+## Last update Tue Mar  1 12:47:53 2016 Jakob Kellendonk
 ##
 
 NAME		= corewar
@@ -13,6 +13,8 @@ NAME		= corewar
 INC_DIRS	= include
 
 SOURCES		= source/application.c \
-			  source/main.c
+		  source/flag_handler.c \
+		  source/flag_handler2.c \
+		  source/main.c
 
 include ../Makefile.common
