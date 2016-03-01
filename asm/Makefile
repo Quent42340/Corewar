@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Tue Mar  1 02:33:32 2016 Benjamin Grange
+## Last update Tue Mar  1 11:04:14 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -26,6 +26,7 @@ SOURCES		= source/main.c \
 		  source/file/file_reader_string.c \
 		  source/file/file_reader.c \
 		  source/file/program_file_create.c \
+		  source/lexer/lex_comment.c \
 		  source/lexer/lex_config.c \
 		  source/lexer/lex_identifiers.c \
 		  source/lexer/lex_keyword.c \

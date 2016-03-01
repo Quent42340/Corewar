@@ -5,13 +5,13 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Feb 29 23:37:53 2016 Benjamin Grange
-** Last update Mon Feb 29 23:38:11 2016 Benjamin Grange
+** Last update Tue Mar  1 10:38:13 2016 Benjamin Grange
 */
 
 #ifndef _OP_H_
 # define _OP_H_
 
-#define MEM_SIZE                (6*1024)
+#define MEM_SIZE                (6 * 1024)
 #define IDX_MOD                 512   /* modulo de l'index < */
 #define MAX_ARGS_NUMBER         4     /* this may not be changed 2^*IND_SIZE */
 

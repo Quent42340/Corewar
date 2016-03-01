@@ -1,1 +1,2 @@
-.namo"o"
+  .name "ok"
+  .comment "ok"

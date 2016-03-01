@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 21:51:54 2016 Benjamin Grange
-** Last update Mon Feb 29 22:44:25 2016 Benjamin Grange
+** Last update Tue Mar  1 03:35:24 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -24,7 +24,7 @@ t_result		get_string_result(t_file_reader *reader,
 	return (create_result_from_string_token(reader, begin));
       else if (c == '\n')
 	return (create_result_from_se(prev,
-				      "String didn't end before EOL"));
+				      "String didn't ended before EOL"));
     }
   return (create_result_from_se(reader->cursor, "String isn't closed"));
 }
