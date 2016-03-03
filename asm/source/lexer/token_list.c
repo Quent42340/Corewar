@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Feb 29 23:44:30 2016 Benjamin Grange
-** Last update Tue Mar  1 03:11:00 2016 Benjamin Grange
+** Last update Wed Mar  2 01:47:09 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -48,6 +48,9 @@ void			free_token_list(t_token_list *list)
       tmp = list->next;
       if (list->token.content_string != NULL)
 	xfree(list->token.content_string);
+      if (list->token.type == TOKEN_TYPE_LABEL
+	  && list->token.content.string_value)
+	xfree(list->token.content.string_value);
       xfree(list);
       list = tmp;
     }

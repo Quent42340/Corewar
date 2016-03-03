@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:35:39 2016 Benjamin Grange
-** Last update Tue Mar  1 02:52:40 2016 Benjamin Grange
+** Last update Thu Mar  3 14:20:40 2016 Benjamin Grange
 */
 
 #ifndef BASIC_H_
@@ -16,9 +16,6 @@
 # define TRUE 1
 # define FALSE 0
 
-/*
-** Colors
-*/
 # define WHITE	"\033[00;0m"
 # define DARKGREY "\033[0;90;1m"
 # define GREEN	"\033[0;32;1m"
@@ -36,6 +33,8 @@ ssize_t		my_putstr(char *);
 ssize_t		my_putnbr_error(int);
 ssize_t		my_putchar_error(char);
 ssize_t		my_puterror(char *);
+int		my_isnum(char *);
+int		my_getnbr(char *);
 int		my_strcmp(char *, char *);
 void		my_cpystr(char *, char *);
 void		*print_error_n(char *);

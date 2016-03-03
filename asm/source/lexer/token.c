@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Feb 24 13:33:25 2016 Benjamin Grange
-** Last update Tue Mar  1 17:15:32 2016 Benjamin Grange
+** Last update Wed Mar  2 15:52:36 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -16,12 +16,13 @@ void		print_token(t_token t)
 
   message[0] = "INSTRUCTION";
   message[1] = "REGISTER";
-  message[2] = "DIRECT VALUE";
-  message[3] = "INTEGER";
+  message[2] = "INTEGER";
+  message[3] = "LABEL_VALUE";
   message[4] = "OPERATOR";
   message[5] = "STRING";
   message[6] = "CONFIG";
   message[7] = "COMMENT";
+  message[8] = "LABEL";
   my_putstr(DARKGREY);
   my_putstr("{");
   my_putstr(message[t.type]);
@@ -49,9 +50,4 @@ t_token		create_token(t_file_reader *reader,
   if (DEBUG)
     print_token(token);
   return (token);
-}
-
-void		delete_token(t_token *token)
-{
-  xfree(token->content_string);
 }

@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 02:05:39 2016 Benjamin Grange
-** Last update Tue Mar  1 17:27:30 2016 Benjamin Grange
+** Last update Wed Mar  2 17:26:35 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -33,12 +33,14 @@ t_result		lex_keyword(t_file_reader *reader,
 				    char *string)
 {
   int			i;
-  KeywordFunc		keyword_func[3];
+  KeywordFunc		keyword_func[5];
   t_result		result;
 
   i = 0;
   keyword_func[i++] = &lex_config;
+  keyword_func[i++] = &lex_register;
   keyword_func[i++] = &lex_instruction;
+  keyword_func[i++] = &lex_integer;
   keyword_func[i++] = NULL;
   i = 0;
   while (keyword_func[i])

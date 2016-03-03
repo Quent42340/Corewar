@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:13:52 2016 Benjamin Grange
-** Last update Tue Mar  1 01:46:37 2016 Benjamin Grange
+** Last update Tue Mar  1 20:29:42 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -38,5 +38,5 @@ void			compile_file(char *path)
       xfree(file.content);
       free_token_list(token_list);
     }
-  my_putstr("Compilation terminated !\n");
+  my_putstr("Compilation done !\n");
 }

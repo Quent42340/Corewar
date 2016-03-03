@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Tue Mar  1 17:28:02 2016 Benjamin Grange
+## Last update Wed Mar  2 17:08:46 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -15,6 +15,7 @@ INC_DIRS	= include
 SOURCES		= source/main.c \
 		  source/asm/asm.c \
 		  source/basic/error.c \
+		  source/basic/getnbr.c \
 		  source/basic/memory_util.c \
 		  source/basic/memory.c \
 		  source/basic/putnbr.c \
@@ -30,7 +31,11 @@ SOURCES		= source/main.c \
 		  source/lexer/lex_config.c \
 		  source/lexer/lex_identifiers.c \
 		  source/lexer/lex_instruction.c \
+		  source/lexer/lex_integer.c \
 		  source/lexer/lex_keyword.c \
+		  source/lexer/lex_label.c \
+		  source/lexer/lex_operator.c \
+		  source/lexer/lex_register.c \
 		  source/lexer/lex_string.c \
 		  source/lexer/lex_token.c \
 		  source/lexer/lexer.c \

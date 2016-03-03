@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:19 2016 Benjamin Grange
-** Last update Tue Mar  1 17:27:15 2016 Benjamin Grange
+** Last update Wed Mar  2 17:26:10 2016 Benjamin Grange
 */
 
 #ifndef LEXER_H_
@@ -40,8 +40,12 @@ t_result	lex_token(t_file_reader *);
 t_result	lex_keyword(t_file_reader *, t_position, char *);
 t_result	lex_config(t_file_reader *, t_position, char *);
 t_result	lex_instruction(t_file_reader *, t_position, char *);
+t_result	lex_register(t_file_reader *, t_position, char *);
+t_result	lex_integer(t_file_reader *, t_position, char *);
 t_result	lex_string(t_file_reader *);
+t_result	lex_label(t_file_reader *);
 t_result	lex_comment(t_file_reader *);
+t_result	lex_operator(t_file_reader *);
 t_result	lex_identifiers(t_file_reader *);
 
 /*

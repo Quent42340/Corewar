@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 12:18:23 2016 Benjamin Grange
-** Last update Thu Feb 25 13:26:16 2016 Benjamin Grange
+** Last update Wed Mar  2 15:49:40 2016 Benjamin Grange
 */
 
 #ifndef OPERATOR_H_
@@ -16,8 +16,7 @@ typedef enum		e_operator_enum
   OPERATOR_PLUS,
   OPERATOR_MINUS,
   OPERATOR_COMMA,
-  OPERATOR_COLON,
-  OPERATOR_DOT
+  OPERATOR_DIRECT
 }			t_operator_enum;
 
 #endif /* !OPERATOR */

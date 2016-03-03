@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 15:05:31 2016 Benjamin Grange
-** Last update Tue Mar  1 03:03:44 2016 Benjamin Grange
+** Last update Wed Mar  2 17:30:03 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -14,8 +14,10 @@ void		print_line_error_at_pos(t_file_reader *file,
 					t_position pos)
 {
   int		i;
+  int		column;
   unsigned int	save;
 
+  column = pos.column;
   while (pos.column > 0 && pos.index > 0)
     {
       pos.column--;
@@ -27,11 +29,10 @@ void		print_line_error_at_pos(t_file_reader *file,
     {
       my_putchar_error(file->file->content[pos.index]);
       pos.index++;
-      pos.column++;
     }
   my_putchar_error('\n');
   i = 0;
-  while (i++ < pos.column)
+  while (i++ < column)
     my_putchar_error(file->file->content[save + i - 1] == '\t' ? '\t' : ' ');
   my_puterror(GREEN);
   my_putchar_error('^');
@@ -74,7 +75,6 @@ void			*print_unexpected_char_error(t_file_reader *reader,
   result.syntax_error.position = reader->cursor;
   result.syntax_error.error = error;
   print_syntax_error(reader, &result, ret);
-  xfree(error);
   return (ret);
 }
 

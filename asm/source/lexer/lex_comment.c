@@ -5,10 +5,12 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 10:29:43 2016 Benjamin Grange
-** Last update Tue Mar  1 12:54:47 2016 Benjamin Grange
+** Last update Wed Mar  2 17:46:25 2016 Benjamin Grange
 */
 
 #include "lexer.h"
+
+t_result		lex_multiline_comment();
 
 t_result		lex_comment(t_file_reader *reader)
 {
