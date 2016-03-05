@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 17:18:32 2016 Benjamin Grange
-** Last update Wed Mar  2 15:48:58 2016 Benjamin Grange
+** Last update Fri Mar  4 21:16:54 2016 Benjamin Grange
 */
 
 #ifndef TOKEN_H_
@@ -22,7 +22,7 @@ typedef enum			e_token_type
   TOKEN_TYPE_INSTRUCTION,
   TOKEN_TYPE_REGISTER,
   TOKEN_TYPE_INTEGER,
-  TOKEN_TYPE_LABELVALUE,
+  TOKEN_TYPE_DIRECT_LABEL,
   TOKEN_TYPE_OPERATOR,
   TOKEN_TYPE_STRING,
   TOKEN_TYPE_CONFIG,

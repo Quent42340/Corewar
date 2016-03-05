@@ -5,12 +5,12 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Mar  2 00:52:54 2016 Benjamin Grange
-** Last update Wed Mar  2 02:00:34 2016 Benjamin Grange
+** Last update Thu Mar  3 15:35:20 2016 Benjamin Grange
 */
 
 #include "lexer.h"
 
-int			is_label_char(char c)
+static int		is_label_char(char c)
 {
   int			i;
 
@@ -24,7 +24,7 @@ int			is_label_char(char c)
   return (0);
 }
 
-t_result	create_result_from_label_token(t_file_reader *file,
+static t_result	create_result_from_label_token(t_file_reader *file,
 					       t_position pos,
 					       char *label)
 {
@@ -35,7 +35,7 @@ t_result	create_result_from_label_token(t_file_reader *file,
   return (create_result_from_token(token));
 }
 
-t_result		determine_result_for_label(t_file_reader *reader,
+static t_result		determine_result_for_label(t_file_reader *reader,
 						   t_position begin,
 						   t_position save)
 {

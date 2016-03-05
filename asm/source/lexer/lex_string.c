@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 21:51:54 2016 Benjamin Grange
-** Last update Tue Mar  1 03:35:24 2016 Benjamin Grange
+** Last update Thu Mar  3 18:34:49 2016 Benjamin Grange
 */
 
 #include "lexer.h"

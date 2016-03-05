@@ -5,14 +5,14 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 15:12:25 2016 Benjamin Grange
-** Last update Thu Mar  3 14:43:53 2016 Benjamin Grange
+** Last update Fri Mar  4 22:05:37 2016 Benjamin Grange
 */
 
 #include "lexer.h"
 
 t_result		lex_token(t_file_reader *file)
 {
-  LexerFunction		lex_func[7];
+  LexerFunction		lex_func[8];
   int			i;
   t_result		result;
 
@@ -21,6 +21,7 @@ t_result		lex_token(t_file_reader *file)
   lex_func[i++] = &lex_comment;
   lex_func[i++] = &lex_multiline_comment;
   lex_func[i++] = &lex_label;
+  lex_func[i++] = &lex_direct_label;
   lex_func[i++] = &lex_operator;
   lex_func[i++] = &lex_identifiers;
   lex_func[i++] = NULL;
