@@ -105,7 +105,10 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 		7, 3, 6,
 	};
 	
-	// m_modelMatrix.rotate(rand() % 4, 0, 0, 1);
+	m_modelMatrix.translate(width / 2, height / 2, depth / 2);
+	m_modelMatrix.rotate(2, 0, 0, 1);
+	m_modelMatrix.translate(-width / 2, -height / 2, -depth / 2);
+	
 	// m_modelMatrix.translate(rand() % 2, 0, rand() % 2);
 	// m_modelMatrix.translate(-(rand() % 2), 0, -(rand() % 2));
 	// m_modelMatrix.translate(0, rand() % 2, 0);
