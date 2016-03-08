@@ -18,6 +18,7 @@
 #include <QMap>
 
 class GLWidget;
+class PlayerWidget;
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
@@ -33,6 +34,7 @@ class MainWindow : public QMainWindow {
 		
 	private:
 		GLWidget *m_widget;
+		PlayerWidget *m_playerWidget;
 		
 		QMap<int, bool> m_keys;
 };

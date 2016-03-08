@@ -12,10 +12,12 @@
  * =====================================================================================
  */
 #include <QKeyEvent>
+#include <QHBoxLayout>
 
 #include "GLWidget.hpp"
 #include "Keyboard.hpp"
 #include "MainWindow.hpp"
+#include "PlayerWidget.hpp"
 
 MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	setWindowTitle("Corewar launcher");
@@ -31,9 +33,18 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	if (format.swapInterval() != 1)
 		qWarning() << "Warning: Unable to enable VSync";
 	
-	m_widget = new GLWidget(this);
-	m_widget->resize(width, height);
+	m_widget = new GLWidget;
 	m_widget->setFormat(format);
+	
+	m_playerWidget = new PlayerWidget;
+	m_playerWidget->setMinimumSize(width / 5, 0);
+	
+	QWidget *layoutWidget = new QWidget(this);
+	layoutWidget->resize(width, height);
+	
+	QHBoxLayout *layout = new QHBoxLayout(layoutWidget);
+	layout->addWidget(m_widget, 1);
+	layout->addWidget(m_playerWidget);
 	
 	Keyboard::setKeyMap(&m_keys);
 }
