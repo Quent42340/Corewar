@@ -18,10 +18,11 @@
 
 class PlayerWidget : public QWidget {
 	public:
-		PlayerWidget(QWidget *parent = nullptr);
+		PlayerWidget(int playerID, QWidget *parent = nullptr);
 		
 	private:
-		QGroupBox m_groupBox{"Player 1", this};
+		int m_playerID;
+		QGroupBox m_groupBox{this};
 };
 
 #endif // PLAYERWIDGET_HPP_

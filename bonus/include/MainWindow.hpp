@@ -34,7 +34,7 @@ class MainWindow : public QMainWindow {
 		
 	private:
 		GLWidget *m_widget;
-		PlayerWidget *m_playerWidget;
+		PlayerWidget *m_playerWidgets[4];
 		
 		QMap<int, bool> m_keys;
 };

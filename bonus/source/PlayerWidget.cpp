@@ -16,7 +16,10 @@
 
 #include "PlayerWidget.hpp"
 
-PlayerWidget::PlayerWidget(QWidget *parent) : QWidget(parent) {
+PlayerWidget::PlayerWidget(int playerID, QWidget *parent) : QWidget(parent) {
+	m_playerID = playerID;
+	m_groupBox.setTitle("Player " + QString::number(m_playerID));
+	
 	QVBoxLayout *layout = new QVBoxLayout(&m_groupBox);
 	layout->addWidget(new QLabel("Processes: "));
 	layout->addWidget(new QLabel("Memory owned: "));

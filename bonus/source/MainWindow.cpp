@@ -13,6 +13,7 @@
  */
 #include <QKeyEvent>
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 
 #include "GLWidget.hpp"
 #include "Keyboard.hpp"
@@ -36,15 +37,19 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	m_widget = new GLWidget;
 	m_widget->setFormat(format);
 	
-	m_playerWidget = new PlayerWidget;
-	m_playerWidget->setMinimumSize(width / 5, 0);
+	QVBoxLayout *verticalLayout = new QVBoxLayout;
+	for (int i = 0 ; i < 4 ; i++) {
+		m_playerWidgets[i] = new PlayerWidget(i + 1);
+		m_playerWidgets[i]->setMinimumSize(width / 5, 0);
+		verticalLayout->addWidget(m_playerWidgets[i]);
+	}
 	
 	QWidget *layoutWidget = new QWidget(this);
 	layoutWidget->resize(width, height);
 	
-	QHBoxLayout *layout = new QHBoxLayout(layoutWidget);
-	layout->addWidget(m_widget, 1);
-	layout->addWidget(m_playerWidget);
+	QHBoxLayout *horizontalLayout = new QHBoxLayout(layoutWidget);
+	horizontalLayout->addWidget(m_widget, 1);
+	horizontalLayout->addLayout(verticalLayout);
 	
 	Keyboard::setKeyMap(&m_keys);
 }
