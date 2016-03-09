@@ -16,13 +16,12 @@
 
 #include <QGroupBox>
 
-class PlayerWidget : public QWidget {
+class PlayerWidget : public QGroupBox {
 	public:
 		PlayerWidget(int playerID, QWidget *parent = nullptr);
 		
 	private:
 		int m_playerID;
-		QGroupBox m_groupBox{this};
 };
 
 #endif // PLAYERWIDGET_HPP_

@@ -12,16 +12,19 @@
  * =====================================================================================
  */
 #include <QLabel>
-#include <QVBoxLayout>
+#include <QGridLayout>
 
+#include "MainWindow.hpp"
 #include "PlayerWidget.hpp"
 
-PlayerWidget::PlayerWidget(int playerID, QWidget *parent) : QWidget(parent) {
+PlayerWidget::PlayerWidget(int playerID, QWidget *parent) : QGroupBox(parent) {
 	m_playerID = playerID;
-	m_groupBox.setTitle("Player " + QString::number(m_playerID));
+	setTitle("Player " + QString::number(m_playerID));
 	
-	QVBoxLayout *layout = new QVBoxLayout(&m_groupBox);
-	layout->addWidget(new QLabel("Processes: "));
-	layout->addWidget(new QLabel("Memory owned: "));
+	QGridLayout *layout = new QGridLayout(this);
+	layout->addWidget(new QLabel("Processes: "), 0, 0);
+	layout->addWidget(new QLabel("Memory owned: "), 1, 0);
+	layout->addWidget(new QLabel("0"), 0, 1, Qt::AlignRight);
+	layout->addWidget(new QLabel("0"), 1, 1, Qt::AlignRight);
 }
 
