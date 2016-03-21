@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Feb 24 13:33:25 2016 Benjamin Grange
-** Last update Wed Mar  2 15:52:36 2016 Benjamin Grange
+** Last update Mon Mar 21 16:30:02 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -23,13 +23,18 @@ void		print_token(t_token t)
   message[6] = "CONFIG";
   message[7] = "COMMENT";
   message[8] = "LABEL";
+  message[9] = "WHITESPACE";
+  message[10] = "EOL";
   my_putstr(DARKGREY);
   my_putstr("{");
   my_putstr(message[t.type]);
-  my_putstr(" : [");
-  my_putstr(t.content_string);
-  my_putstr("]}");
-  my_putstr(WHITE);
+  if (t.type != TOKEN_TYPE_EOL)
+    {
+      my_putstr(" : [");
+      my_putstr(t.content_string);
+      my_putstr("]");
+    }
+  my_putstr("}" WHITE);
   my_putchar('\n');
 }
 

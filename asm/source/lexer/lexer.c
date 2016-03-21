@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:25:28 2016 Benjamin Grange
-** Last update Mon Mar 21 15:24:34 2016 Benjamin Grange
+** Last update Mon Mar 21 16:04:22 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -24,9 +24,6 @@ t_token_list		*lexer(t_program_file *file)
   file_reader = generate_file_reader(file);
   while (string_reader_has_more(&file_reader))
     {
-      string_reader_skip_whitespace(&file_reader);
-      if (!string_reader_has_more(&file_reader))
-	break;
       result = lex_token(&file_reader);
       if (result.type == RESULT_ERROR)
 	return (print_syntax_error(&file_reader, &result, list));

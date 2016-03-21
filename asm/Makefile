@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Fri Mar  4 21:36:46 2016 Benjamin Grange
+## Last update Mon Mar 21 16:02:43 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -23,7 +23,6 @@ SOURCES		= source/main.c \
 		  source/basic/str_adv.c \
 		  source/basic/strutil.c \
 		  source/compiler/compile.c \
-		  source/file/file_reader_skip.c \
 		  source/file/file_reader_string.c \
 		  source/file/file_reader.c \
 		  source/file/program_file_create.c \
@@ -37,6 +36,7 @@ SOURCES		= source/main.c \
 		  source/lexer/lex_label.c \
 		  source/lexer/lex_operator.c \
 		  source/lexer/lex_register.c \
+		  source/lexer/lex_skipers.c \
 		  source/lexer/lex_string.c \
 		  source/lexer/lex_token.c \
 		  source/lexer/lexer.c \
