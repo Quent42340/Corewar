@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 10:29:43 2016 Benjamin Grange
-** Last update Thu Mar  3 14:44:34 2016 Benjamin Grange
+** Last update Mon Mar 21 15:24:18 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -19,7 +19,10 @@ t_result		lex_multiline_comment(t_file_reader *reader)
   pos = reader->cursor;
   c = string_reader_next(reader);
   if (!string_reader_has_more(reader))
-    return (get_null_result());
+    {
+      reader->cursor = pos;
+      return (get_null_result());
+    }
   c2 = string_reader_next(reader);
   if (c == '/' && c2 == '*')
     {
@@ -53,9 +56,10 @@ t_result		lex_comment(t_file_reader *reader)
 	  if (c == '\n')
 	    {
 	      reader->cursor = prev;
-	      return (create_result_from_comment_token(reader, pos));
+	      break;
 	    }
 	}
+      return (create_result_from_comment_token(reader, pos));
     }
   reader->cursor = pos;
   return (get_null_result());

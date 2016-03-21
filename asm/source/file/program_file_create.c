@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:26:50 2016 Benjamin Grange
-** Last update Thu Feb 25 16:58:01 2016 Benjamin Grange
+** Last update Thu Mar 17 19:23:05 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -50,6 +50,12 @@ static char		*open_and_read_file_content(char *path)
     {
       content = read_file_content(fd);
       close(fd);
+    }
+  else
+    {
+      my_puterror("File \"");
+      my_puterror(path);
+      my_puterror("\" is not accessible.\n");
     }
   return (content);
 }

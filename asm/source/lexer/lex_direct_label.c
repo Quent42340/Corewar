@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Mar  3 15:34:39 2016 Benjamin Grange
-** Last update Fri Mar  4 22:07:15 2016 Benjamin Grange
+** Last update Mon Mar 21 15:40:22 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -50,9 +50,11 @@ t_result		lex_direct_label(t_file_reader *file)
 	  prev = file->cursor;
 	  c = string_reader_next(file);
 	  if (!is_label_char(c))
-	    break;
+	    {
+	      file->cursor = prev;
+	      break;
+	    }
 	}
-      file->cursor = prev;
       if (file->cursor.index > pos.index + 1)
 	return (create_direct_label_result(file, pos2));
     }
