@@ -1,49 +1,33 @@
 /*
-** application.c for  in /home/bazin_q/rendu/CPE/CPE_2015_corewar/corewar/source
+** application.c for corewar in /home/kellen_j/rendu/CPE_2015_corewar/corewar
 ** 
-** Made by Quentin Bazin
-** Login   <bazin_q@epitech.net>
+** Made by Jakob Kellendonk
+** Login   <kellen_j@epitech.net>
 ** 
-** Started on  Tue Feb 23 15:03:50 2016 Quentin Bazin
-** Last update Tue Mar  1 12:47:05 2016 Jakob Kellendonk
+** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
+** Last update Tue Mar 22 17:08:16 2016 Jakob Kellendonk
 */
 
 #include "application.h"
-#include "flag.h"
 
-int		application_init(t_application *app, int argc, char **argv)
+int	application_init(t_application *application, t_args *args)
 {
-  t_info_list	*old;
-
-  (void)argc;
-  set_default_values(app);
-  if (create_prog_info(&app->program_list))
-    return (1);
-  while (*argv)
-    {
-      if (**argv != '-')
-	{
-	  app->program_list->file_name = *argv;
-	  old = app->program_list;
-	  if (create_prog_info(&app->program_list))
-	    return (1);
-	  old->next = app->program_list;
-	}
-      else if (handle_option_flag(app, argv))
-	return (1);
-      argv = argv + 1 + (**argv == '-');
-    }
-  return (validate_app_state(app));
-}
-
-int	application_run(t_application *app)
-{
-  (void)app;
+  (void)application;
+  (void)args;
+  /* TODO : app init */
   return (0);
 }
 
-int	application_free(t_application *app)
+int	application_run(t_application *application)
 {
-  (void)app;
+  (void)application;
+  /* TODO : app run */
+  return (0);
+}
+
+int	application_free(t_application *application)
+{
+  (void)application;
+  /* TODO : app free */
   return (0);
 }

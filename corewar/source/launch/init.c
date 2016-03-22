@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Tue Mar 22 14:41:29 2016 Flora Huot
-** Last update Tue Mar 22 14:41:29 2016 Flora Huot
+** Last update Tue Mar 22 17:03:30 2016 Jakob Kellendonk
 */
 
 #include "application.h"
@@ -27,16 +27,16 @@ int	create_prog_info(t_info_list **new)
   return (0);
 }
 
-int		handle_option_flag(t_application *app, char **flags)
+int		handle_option_flag(t_args *args, char **flags)
 {
   int		*target;
 
   if (!my_strcmp(*flags, "-a"))
-    target = &app->program_list->address;
+    target = &args->program_list->address;
   else if (!my_strcmp(*flags, "-n"))
-    target = &app->program_list->live_code;
+    target = &args->program_list->live_code;
   else if (!my_strcmp(*flags, "-dump"))
-    target = &app->dump_cycle;
+    target = &args->constants->dump_cycle;
   else
     {
       my_putstr("Error: Unknow option ", 2);
@@ -51,5 +51,5 @@ int		handle_option_flag(t_application *app, char **flags)
       my_putstr(" argument\n", 2);
       return (1);
     }
-  return (set_option_flag(app, flags, target));
+  return (set_option_flag(args, flags, target));
 }
