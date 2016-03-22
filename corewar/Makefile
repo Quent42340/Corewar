@@ -5,16 +5,17 @@
 ## Login   <bazin_q@epitech.net>
 ## 
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Tue Mar  1 12:47:53 2016 Jakob Kellendonk
+## Last update Tue Mar 22 13:11:56 2016 Jakob Kellendonk
 ##
 
 NAME		= corewar
 
 INC_DIRS	= include
 
-SOURCES		= source/application.c \
-		  source/flag_handler.c \
-		  source/flag_handler2.c \
-		  source/main.c
+SOURCES		= source/launch/application.c \
+		  source/launch/flag_handler.c \
+		  source/launch/flag_handler2.c \
+		  source/launch/main.c \
+		  source/my_mem.c \
 
 include ../Makefile.common

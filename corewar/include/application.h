@@ -5,14 +5,15 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:45 2016 Quentin Bazin
-** Last update Tue Mar  1 12:47:21 2016 Jakob Kellendonk
+** Last update Tue Mar  1 17:13:50 2016 Jakob Kellendonk
 */
 
 #ifndef APPLICATION_H_
 # define APPLICATION_H_
 
- # include <unistd.h>
+# include <unistd.h>
 # include <stdlib.h>
+# include "op.h"
 
 typedef struct		s_info_list
 {
@@ -21,10 +22,6 @@ typedef struct		s_info_list
   char			*file_name;
   struct s_info_list	*next;
 }			t_info_list;
-
-# define CYCLE_TO_DIE	1536
-# define CYCLE_DELTA	5
-# define NBR_LIVE	4
 
 typedef struct	s_application
 {
