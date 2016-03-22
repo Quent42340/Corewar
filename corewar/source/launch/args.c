@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:50 2016 Quentin Bazin
-** Last update Tue Mar 22 17:02:26 2016 Jakob Kellendonk
+** Last update Tue Mar 22 17:19:24 2016 Jakob Kellendonk
 */
 
 #include "application.h"
@@ -16,6 +16,7 @@ int		args_init(t_args *args, int argc, char **argv)
   t_info_list	*old;
 
   (void)argc;
+  args->program_amount = 0;
   set_default_values(args);
   if (create_prog_info(&args->program_list))
     return (1);
@@ -28,6 +29,7 @@ int		args_init(t_args *args, int argc, char **argv)
 	  if (create_prog_info(&args->program_list))
 	    return (1);
 	  old->next = args->program_list;
+	  args->program_amount = args->program_amount + 1;
 	}
       else if (handle_option_flag(args, argv))
 	return (1);

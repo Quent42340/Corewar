@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ## 
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Tue Mar 22 17:06:56 2016 Jakob Kellendonk
+## Last update Tue Mar 22 18:39:17 2016 Jakob Kellendonk
 ##
 
 NAME		= corewar
@@ -18,6 +18,7 @@ SOURCES		= source/launch/args.c \
 		  source/launch/init.c \
 		  source/launch/main.c \
 		  source/lib/my_mem.c \
-		  source/lib/str.c
+		  source/lib/str.c \
+		  source/lib/my_convert.c \
 
 include ../Makefile.common
