@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Feb 29 23:37:53 2016 Benjamin Grange
-** Last update Mon Mar 21 20:00:58 2016 Benjamin Grange
+** Last update Mon Mar 21 20:14:53 2016 Benjamin Grange
 */
 
 #ifndef _OP_H_
@@ -31,7 +31,7 @@
 
 # define REG_NUMBER		16
 
-typedef char			args_type_t;
+typedef char			t_args_type;
 
 # define T_REG			1       /* registre */
 # define T_DIR			2       /* directe  (ld  #1,r1  met 1 dans r1) */
@@ -48,7 +48,7 @@ typedef struct			s_op
 {
    char				*mnemonique;
    char				nbr_args;
-   args_type_t			type[MAX_ARGS_NUMBER];
+   t_args_type			type[MAX_ARGS_NUMBER];
    char				code;
    int				nbr_cycles;
    char				*comment;
@@ -68,19 +68,18 @@ extern t_op			op_tab[];
 ** header
 */
 
-# define PROG_NAME_LENGTH        128
-# define COMMENT_LENGTH          2048
-# define COREWAR_EXEC_MAGIC      0xea83f3
+# define PROG_NAME_LENGTH	128
+# define COMMENT_LENGTH		2048
 
-struct				header_s
+# define COREWAR_EXEC_MAGIC	0xea83f3
+
+typedef struct			s_header
 {
    int				magic;
-   char				prog_name[PROG_NAME_LENGTH + 1];
    int				prog_size;
+   char				prog_name[PROG_NAME_LENGTH + 1];
    char				comment[COMMENT_LENGTH + 1];
-};
-
-typedef struct header_s		header_t;
+}				t_header;
 
 /*
 ** live
