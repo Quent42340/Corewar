@@ -32,14 +32,8 @@ typedef struct	s_application
   t_info_list	*program_list;
 }		t_application;
 
-int	my_strcmp(char *str_a, char *str_b);
-int	set_option_flag(t_application *app, char **falgs, int *target);
 int	application_init(t_application *app, int argc, char **argv);
 int	application_run(t_application *app);
 int	application_free(t_application *app);
-int	my_strlen(char *str);
-void	my_putstr(char *str, int out);
-void	set_default_values(t_application *app);
-int	validate_app_state(t_application *app);
 
 #endif /* !APPLICATION_H_ */

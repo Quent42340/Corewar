@@ -9,55 +9,7 @@
 */
 
 #include "application.h"
-
-int	my_strlen(char *str)
-{
-  int	result;
-
-  result = 0;
-  while (str[result])
-    result = result + 1;
-  return (result);
-}
-
-void	my_putstr(char *str, int out)
-{
-  write(out, str, my_strlen(str));
-}
-
-int	my_getnbr(char *str, int *error)
-{
-  int	sign;
-  int	result;
-
-  sign = (*str == '-');
-  str = str + sign;
-  result = 0;
-  *error = 1;
-  while (*str)
-    {
-      if (*str < '0' || *str > '9' || result < -214748364
-	  || (*str > '7' + sign && result == -214748364))
-	{
-	  *error = 1;
-	  return (0);
-	}
-      *error = 0;
-      result = result * 10 - *str + '0';
-      str = str + 1;
-    }
-  return (!error * (result * (-(sign * 2) + 1)));
-}
-
-int	my_strcmp(char *str_a, char *str_b)
-{
-  while (*str_a && *str_b && *str_a == *str_b)
-    {
-      str_a = str_a + 1;
-      str_b = str_b + 1;
-    }
-  return (*str_a - *str_b);
-}
+#include "my.h"
 
 int	set_option_flag(t_application *app, char **flags, int *target)
 {
@@ -79,6 +31,32 @@ int	set_option_flag(t_application *app, char **flags, int *target)
 		" expected as parameter for ", 2);
       my_putstr(*flags, 2);
       my_putstr("\n", 1);
+      return (1);
+    }
+  return (0);
+}
+
+void	set_default_values(t_application *app)
+{
+  app->dump_cycle = -1;
+  app->cycle_to_die = CYCLE_TO_DIE;
+  app->cycle_delta = CYCLE_DELTA;
+  app->nbr_live = NBR_LIVE;
+}
+
+int	validate_app_state(t_application *app)
+{
+  if (app->program_list->live_code != -1 || app->program_list->address != -1)
+    {
+      my_putstr("Error: specified program's ", 2);
+      if (app->program_list->live_code != -1)
+	my_putstr("live number ", 2);
+      if (app->program_list->live_code != -1
+	  && app->program_list->address != -1)
+	my_putstr("and ", 2);
+      if (app->program_list->address != -1)
+	my_putstr("starting address ", 2);
+      my_putstr("but didn't specifie program's file.\n", 2);
       return (1);
     }
   return (0);

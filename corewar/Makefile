@@ -13,9 +13,10 @@ NAME		= corewar
 INC_DIRS	= include
 
 SOURCES		= source/launch/application.c \
-		  source/launch/flag_handler.c \
-		  source/launch/flag_handler2.c \
-		  source/launch/main.c \
-		  source/my_mem.c \
+			  source/launch/flag_handler.c \
+			  source/launch/init.c \
+			  source/launch/main.c \
+			  source/lib/my_mem.c \
+			  source/lib/str.c
 
 include ../Makefile.common

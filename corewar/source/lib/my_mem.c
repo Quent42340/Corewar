@@ -8,11 +8,9 @@
 ** Last update Tue Mar 22 13:18:41 2016 Jakob Kellendonk
 */
 
-#include "my_mem.h"
+#include "my.h"
 
-void				*my_memcpy(void *src,
-					   void *dest,
-					   register size_t n)
+void		*my_memcpy(void *src, void *dest, register size_t n)
 {
   if (n >= WSIZE)
     {
@@ -24,8 +22,8 @@ void				*my_memcpy(void *src,
       while (n >= WSIZE)
 	{
 	  n = n - WSIZE;
-	  ((unsigned int *)dest)[n >> WSIZE] =
-	    ((unsigned int *)src)[n >> WSIZE];
+	  ((unsigned int *)dest)[n / WSIZE] =
+	    ((unsigned int *)src)[n / WSIZE];
 	}
     }
   while (n > 0)
@@ -35,7 +33,6 @@ void				*my_memcpy(void *src,
     }
   return (dest);
 }
-
 
 void				*my_memset(void *src,
 					   register char c,

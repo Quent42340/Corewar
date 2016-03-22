@@ -9,48 +9,7 @@
 */
 
 #include "application.h"
-
-int	create_prog_info(t_info_list **new)
-{
-  *new = malloc(sizeof(t_info_list));
-  if (*new == NULL)
-    {
-      my_putstr("Malloc returned null!\n", 2);
-      return (1);
-    }
-  (*new)->file_name = NULL;
-  (*new)->live_code = -1;
-  (*new)->address = -1;
-  (*new)->next = NULL;
-  return (0);
-}
-
-int		handle_option_flag(t_application *app, char **flags)
-{
-  int		*target;
-
-  if (!my_strcmp(*flags, "-a"))
-    target = &app->program_list->address;
-  else if (!my_strcmp(*flags, "-n"))
-    target = &app->program_list->live_code;
-  else if (!my_strcmp(*flags, "-dump"))
-    target = &app->dump_cycle;
-  else
-    {
-      my_putstr("Error: Unknow option ", 2);
-      my_putstr(*flags, 2);
-      my_putstr("\n", 2);
-      return (1);
-    }
-  if (!flags[1])
-    {
-      my_putstr("Error: Missing number after ", 2);
-      my_putstr(*flags, 2);
-      my_putstr(" argument\n", 2);
-      return (1);
-    }
-  return (set_option_flag(app, flags, target));
-}
+#include "flag.h"
 
 int		application_init(t_application *app, int argc, char **argv)
 {
