@@ -9,29 +9,17 @@
 */
 
 #include "application.h"
-#include "my.h"
+#include "my_mem.h"
 
 int	set_option_flag(t_args *args, char **flags, int *target)
 {
   int	error;
 
-  *target = my_getnbr(flags[1], &error);
+  *target = my_getnbr_error(flags[1], &error);
   if (*target <= 0 && target == &args->constants->dump_cycle)
-    {
-      my_putstr("Error: Value betweeen 1 and 2147483647"	\
-		" expected as parameter for ", 2);
-      my_putstr(*flags, 2);
-      my_putstr("\n", 1);
-      return (1);
-    }
+    return (print_error(ERROR_POSITIVE_NUMBER_EXPECTED, *flags));
   if (error)
-    {
-      my_putstr("Error: Value betweeen -2147483648 and 2147483647" \
-		" expected as parameter for ", 2);
-      my_putstr(*flags, 2);
-      my_putstr("\n", 1);
-      return (1);
-    }
+    return (print_error(ERROR_INTEGER_EXPECTED, *flags));
   return (0);
 }
 
@@ -51,15 +39,15 @@ int	validate_args_state(t_args *args)
 {
   if (args->program_list->live_code != -1 || args->program_list->address != -1)
     {
-      my_putstr("Error: specified program's ", 2);
+      my_putstr_out("Error: specified program's ", 2);
       if (args->program_list->live_code != -1)
-	my_putstr("live number ", 2);
+	my_putstr_out("live number ", 2);
       if (args->program_list->live_code != -1
 	  && args->program_list->address != -1)
-	my_putstr("and ", 2);
+	my_putstr_out("and ", 2);
       if (args->program_list->address != -1)
-	my_putstr("starting address ", 2);
-      my_putstr("but didn't specifie program's file.\n", 2);
+	my_putstr_out("starting address ", 2);
+      my_putstr_out("but didn't specifie program's file.\n", 2);
       return (1);
     }
   return (0);

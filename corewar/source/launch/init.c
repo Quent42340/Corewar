@@ -9,17 +9,15 @@
 */
 
 #include "application.h"
+#include "error.h"
 #include "flag.h"
-#include "my.h"
+#include "my_mem.h"
 
 int	create_prog_info(t_info_list **new)
 {
   *new = malloc(sizeof(t_info_list));
   if (*new == NULL)
-    {
-      my_putstr("Malloc returned null!\n", 2);
-      return (1);
-    }
+    return (print_error(ERROR_MALLOC_FAILED, NULL));
   (*new)->file_name = NULL;
   (*new)->live_code = -1;
   (*new)->address = -1;
@@ -38,18 +36,8 @@ int		handle_option_flag(t_args *args, char **flags)
   else if (!my_strcmp(*flags, "-dump"))
     target = &args->constants->dump_cycle;
   else
-    {
-      my_putstr("Error: Unknow option ", 2);
-      my_putstr(*flags, 2);
-      my_putstr("\n", 2);
-      return (1);
-    }
+    return (print_error(ERROR_UNKNOWN_OPTION, *flags));
   if (!flags[1])
-    {
-      my_putstr("Error: Missing number after ", 2);
-      my_putstr(*flags, 2);
-      my_putstr(" argument\n", 2);
-      return (1);
-    }
+    return (print_error(ERROR_MISSING_NUMBER, *flags));
   return (set_option_flag(args, flags, target));
 }

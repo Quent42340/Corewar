@@ -8,24 +8,14 @@
 ** Last update Tue Mar 22 14:32:20 2016 Flora Huot
 */
 
-#include "my.h"
+#include "my_mem.h"
 
-int	my_strlen(char *str)
-{
-  int	result;
-
-  result = 0;
-  while (str[result])
-    result = result + 1;
-  return (result);
-}
-
-void	my_putstr(char *str, int out)
+void	my_putstr_out(char *str, int out)
 {
   write(out, str, my_strlen(str));
 }
 
-int	my_getnbr(char *str, int *error)
+int	my_getnbr_error(char *str, int *error)
 {
   int	sign;
   int	result;
@@ -47,14 +37,4 @@ int	my_getnbr(char *str, int *error)
       str = str + 1;
     }
   return (!error * (result * (-(sign * 2) + 1)));
-}
-
-int	my_strcmp(char *str_a, char *str_b)
-{
-  while (*str_a && *str_b && *str_a == *str_b)
-    {
-      str_a = str_a + 1;
-      str_b = str_b + 1;
-    }
-  return (*str_a - *str_b);
 }

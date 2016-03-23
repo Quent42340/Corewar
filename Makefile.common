@@ -24,10 +24,11 @@ LDFLAGS		+= $(foreach lib,$(LIBS_EXT),-l$(lib))
 
 OBJS		= $(SOURCES:.c=.o)
 
-all: $(NAME)
+all: libs $(NAME)
 	@echo "Done for $(NAME)."
 	@[ -e TODO ] && echo "Don't forget to read the TODO file." || echo -n
 	@fixmes="$(shell cat $(shell find . -name "*.c" -or -name "*.h") | grep FIXME | wc -l)" && [ "$$fixmes" != "0" ] && echo $$fixmes "fixme(s) remaining." || echo -n
+	@[ -e ~/.local/bin/goku ] && goku -nocheat | tail -1 || echo -n
 
 $(NAME): $(OBJS)
 	@echo "Linking $(NAME)..."
@@ -49,8 +50,22 @@ run: $(NAME)
 debug: $(NAME)
 	@LIBGL_ALWAYS_SOFTWARE=1 gdb ./$(NAME) $(RUN_ARGS)
 
+libs:
+	@[ -n "$(MY_LIBS)" ] && [ ! -e lib ] && make --no-print-directory install_libs || echo -n
+	@for lib in $(MY_LIBS); do make --no-print-directory -C lib/lib$$lib; done;
+
+install_libs: fclean
+	@rm -rf lib
+	@for lib in $(MY_LIBS); do \
+		echo -n "Installing lib$$lib... "; \
+		mkdir -p lib/lib$$lib; \
+		cp -r ~/rendu/MyLibs/lib$$lib/{include,source,Makefile} lib/lib$$lib/; \
+		make --no-print-directory -C lib/lib$$lib fclean > /dev/null; \
+		echo "OK."; \
+		done;
+
 %.o: %.c
 	@echo "=>" $<
 	@$(CC) -c $< -o $@ $(CFLAGS)
 
-.PHONY: all clean fclean re run debug
+.PHONY: all clean fclean re run debug libs install_libs

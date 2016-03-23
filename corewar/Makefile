@@ -13,12 +13,16 @@ NAME		= corewar
 INC_DIRS	= include
 
 SOURCES		= source/launch/args.c \
-		  source/launch/application.c \
-		  source/launch/flag_handler.c \
-		  source/launch/init.c \
-		  source/launch/main.c \
-		  source/lib/my_mem.c \
-		  source/lib/str.c \
-		  source/lib/my_convert.c \
+			  source/launch/application.c \
+			  source/launch/flag_handler.c \
+			  source/launch/init.c \
+			  source/launch/main.c \
+			  source/launch/read_helper.c \
+			  source/lib/my_mem.c \
+			  source/lib/my_convert.c \
+			  source/lib/str.c
 
+MY_LIBS		= my_printf my
+
+include ../Makefile.libmy
 include ../Makefile.common
