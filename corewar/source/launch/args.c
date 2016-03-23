@@ -38,7 +38,7 @@ int		args_init(t_args *args, int argc, char **argv)
   return (validate_args_state(args));
 }
 
-int		args_free(t_args *args)
+void		args_free(t_args *args)
 {
   t_info_list	*next;
 
@@ -48,5 +48,4 @@ int		args_free(t_args *args)
       free(args->program_list);
       args->program_list = next;
     }
-  return (0);
 }

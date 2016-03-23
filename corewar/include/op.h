@@ -5,6 +5,7 @@
 ** Tue Jul 13 18:53:48 1993
 */
 
+/* FIXME: Mettre à la norme ou supprimer ce ficher */
 
 #ifndef _OP_H_
 # define _OP_H_

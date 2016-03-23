@@ -15,6 +15,7 @@
 
 typedef enum				e_err
 {
+  ERROR_UNKNOWN				= -1,
   ERROR_MALLOC_FAILED			= 1,
   ERROR_OPEN_FAILED			= 2,
   ERROR_UNKNOWN_OPTION			= 3,

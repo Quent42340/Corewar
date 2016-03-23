@@ -9,22 +9,31 @@
 */
 
 #include <my.h>
+#include <stdbool.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "my_printf.h"
 
-int	my_printf_putchar(char c)
+int	my_printf_putchar(char c, int fd)
 {
-  my_putchar(c);
+  write(fd, &c, 1);
   return (1);
 }
 
-int	my_printf_putstr(char *str)
+int	my_printf_putstr(char *str, int fd)
 {
-  my_putstr(str);
-  return (my_strlen(str));
+  int	i;
+
+  i = 0;
+  while (str[i] != '\0')
+    {
+      my_printf_putchar(str[i], fd);
+      ++i;
+    }
+  return (i);
 }
 
-uint64_t	my_printf_putulnbr_base(uint64_t nb, char *base)
+uint64_t	my_printf_putulnbr_base(uint64_t nb, char *base, int fd)
 {
   unsigned int	base_n;
   unsigned int	cpt_chars;
@@ -34,14 +43,23 @@ uint64_t	my_printf_putulnbr_base(uint64_t nb, char *base)
   cpt_chars = 0;
   base_n = my_strlen(base);
   if (nb > base_n - 1)
-    {
-      cpt_chars += my_printf_putulnbr_base(nb / base_n, base);
-    }
-  my_putchar(base[nb % base_n]);
+    cpt_chars += my_printf_putulnbr_base(nb / base_n, base, fd);
+  my_printf_putchar(base[nb % base_n], fd);
   return (cpt_chars + 1);
 }
 
-int	my_printf_showstr_oct(char *str)
+int64_t		my_printf_putlnbr_base(int64_t nb, char *base, int fd)
+{
+  unsigned int	chars;
+
+  chars = 0;
+  if (nb < 0)
+    chars += my_printf_putchar('-', fd);
+  chars += my_printf_putulnbr_base(my_abs(nb), base, fd);
+  return (chars);
+}
+
+int	my_printf_showstr_oct(char *str, int fd)
 {
   int	cpt;
 
@@ -52,18 +70,16 @@ int	my_printf_showstr_oct(char *str)
     {
       if (!my_is_printable(*str))
 	{
-	  cpt += my_printf_putchar('\\');
+	  cpt += my_printf_putchar('\\', fd);
 	  if (*str < 0100)
-	    cpt += my_printf_putchar('0');
+	    cpt += my_printf_putchar('0', fd);
 	  if (*str < 010)
-	    cpt += my_printf_putchar('0');
-	  cpt += my_printf_putulnbr_base(*str, "01234567");
+	    cpt += my_printf_putchar('0', fd);
+	  cpt += my_printf_putulnbr_base(*str, "01234567", fd);
 	}
       else
-	{
-	  cpt += my_printf_putchar(*str);
-	}
-      str = str + 1;
+	cpt += my_printf_putchar(*str, fd);
+      ++str;
     }
   return (cpt);
 }

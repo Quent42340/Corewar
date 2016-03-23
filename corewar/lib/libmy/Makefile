@@ -51,7 +51,6 @@ SRCS	+=	source/my_basename.c \
 			source/my_char_in_str.c \
 			source/my_memcpy.c \
 			source/my_memset.c \
-			source/my_memcpy.c \
 			source/my_revstr.c \
 			source/my_strcapitalize.c \
 			source/my_strcat.c \

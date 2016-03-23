@@ -25,6 +25,7 @@ void	fill_error_messages(char *messages[ERROR_COUNT])
 
 void	print_usage(char *program_name)
 {
+  (void)program_name;
 }
 
 t_err	print_error(t_err error, const char *text)

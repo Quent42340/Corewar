@@ -8,7 +8,7 @@
 ** Last update Tue Mar 22 14:35:54 2016 Jakob Kellendonk
 */
 
-#include "my.h"
+#include "my_mem.h"
 
 void		*my_memcpy(void *src, void *dest, register size_t n)
 {

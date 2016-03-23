@@ -14,9 +14,11 @@ INC_DIRS	= include
 
 SOURCES		= source/launch/args.c \
 			  source/launch/application.c \
+			  source/launch/error.c \
 			  source/launch/flag_handler.c \
 			  source/launch/init.c \
 			  source/launch/main.c \
+			  source/launch/program.c \
 			  source/launch/read_helper.c \
 			  source/lib/my_mem.c \
 			  source/lib/my_convert.c \

@@ -15,9 +15,9 @@ int		main(int argc, char **argv)
   t_application	app;
   t_args	args;
 
-  return (args_init(&args, argc, argv)
-	  || application_init(&app, &args)
-	  || args_free(&args)
-	  || application_run(&app)
-	  || application_free(&app));
+  if (args_init(&args, argc, argv) && application_init(&app, &args))
+    application_run(&app);
+  args_free(&args);
+  application_free(&app);
+  return (0);
 }

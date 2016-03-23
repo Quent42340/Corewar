@@ -15,7 +15,7 @@
 int		my_printf_print_format(const char	*format,
 				       int		i,
 				       va_list		*args,
-				       t_my_format	formats[FORMATS])
+				       t_my_formats	*formats)
 {
   int		j;
 
@@ -26,51 +26,71 @@ int		my_printf_print_format(const char	*format,
       my_putchar(format[i]);
       return (2);
     }
-  while (j < FORMATS)
+  while (j < MY_FORMAT_COUNT)
     {
-      if (my_char_in_str(formats[j].specifiers, format[i]))
-	return (formats[j].print_func(args, format[i]));
+      if (my_char_in_str(formats->formats[j].specifiers, format[i]))
+	return (formats->formats[j].print_func(args, format[i], formats->fd));
       ++j;
     }
   return (-1);
 }
 
-void	my_printf_fill_formats(t_my_format formats[FORMATS])
+void	my_printf_fill_formats(t_my_formats *formats)
 {
-  formats[0].specifiers = "di";
-  formats[0].print_func = &my_printf_print_int;
-  formats[1].specifiers = "buoxX";
-  formats[1].print_func = &my_printf_print_uint;
-  formats[2].specifiers = "csS";
-  formats[2].print_func = &my_printf_print_chars;
-  formats[3].specifiers = "p";
-  formats[3].print_func = &my_printf_print_ptr_addr;
+  formats->formats[0].specifiers = "di";
+  formats->formats[0].print_func = &my_printf_print_int;
+  formats->formats[1].specifiers = "buoxX";
+  formats->formats[1].print_func = &my_printf_print_uint;
+  formats->formats[2].specifiers = "csS";
+  formats->formats[2].print_func = &my_printf_print_chars;
+  formats->formats[3].specifiers = "p";
+  formats->formats[3].print_func = &my_printf_print_addr;
+}
+
+int		my_vfprintf(int fd, const char *format, va_list *args)
+{
+  int		i;
+  int		sum;
+  int		tmp;
+  t_my_formats	formats;
+
+  i = -1;
+  sum = 0;
+  formats.fd = fd;
+  if (format == NULL)
+    return (my_printf_putstr("(null)", fd));
+  my_printf_fill_formats(&formats);
+  while (++i < my_strlen(format))
+    {
+      if (format[i] == '%' && format[++i] != '%')
+	if ((tmp = my_printf_print_format(format, i, args, &formats)) < 0)
+	  return (tmp);
+	else
+	  sum += tmp;
+      else
+	sum += my_printf_putchar(format[i], fd);
+    }
+  return (sum);
+}
+
+int		my_fprintf(int fd, const char *format, ...)
+{
+  va_list	args;
+  int		length;
+
+  va_start(args, format);
+  length = my_vfprintf(fd, format, &args);
+  va_end(args);
+  return (length);
 }
 
 int		my_printf(const char *format, ...)
 {
   va_list	args;
-  int		i;
-  int		sum;
-  int		tmp;
-  t_my_format	formats[FORMATS];
+  int		length;
 
-  i = -1;
-  sum = 0;
-  if (format == NULL)
-    return (my_printf_putstr("(null)"));
   va_start(args, format);
-  my_printf_fill_formats(formats);
-  while (++i < my_strlen(format))
-    {
-      if (format[i] == '%' && format[++i] != '%')
-	if ((tmp = my_printf_print_format(format, i, &args, formats)) < 0)
-	  return (tmp);
-	else
-	  sum += tmp;
-      else
-	sum += my_printf_putchar(format[i]);
-    }
+  length = my_vfprintf(1, format, &args);
   va_end(args);
-  return (sum);
+  return (length);
 }

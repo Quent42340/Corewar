@@ -8,7 +8,7 @@
 ** Last update Tue Mar 22 18:48:27 2016 Jakob Kellendonk
 */
 
-#include "application.h"
+#include "my_mem.h"
 
 int		read_int(int fd, int *target)
 {
