@@ -27,6 +27,6 @@ typedef enum				e_err
 void	fill_error_messages(char *messages[ERROR_COUNT]);
 
 void	print_usage(char *program_name);
-t_err	print_error(t_err error, const char *text);
+t_err	print_error(t_err error, ...);
 
-#endif /* !ERROR_H_ */ 
+#endif /* !ERROR_H_ */

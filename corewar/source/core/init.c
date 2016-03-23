@@ -17,7 +17,7 @@ int	create_prog_info(t_info_list **new)
 {
   *new = malloc(sizeof(t_info_list));
   if (*new == NULL)
-    return (print_error(ERROR_MALLOC_FAILED, NULL));
+    return (print_error(ERROR_MALLOC_FAILED));
   (*new)->file_name = NULL;
   (*new)->live_code = -1;
   (*new)->address = -1;

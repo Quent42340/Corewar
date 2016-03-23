@@ -9,18 +9,20 @@
 */
 
 #include <my.h>
+#include <my_printf.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include "error.h"
 
 void	fill_error_messages(char *messages[ERROR_COUNT])
 {
   messages[0] = "Unable to allocate memory";
-  messages[1] = "Unable to open file: ";
-  messages[2] = "Unknown option: ";
-  messages[3] = "Missing number after: ";
-  messages[4] = "Value between 1 and 2147483647 expected as parameter for: ";
+  messages[1] = "Unable to open file: %s";
+  messages[2] = "Unknown option: %s";
+  messages[3] = "Missing number after: %s";
+  messages[4] = "Value between 1 and 2147483647 expected as parameter for: %s";
   messages[5] = "Value between -2147483648 and 2147483647 expected as"
-    " parameter for: ";
+    " parameter for: %s";
 }
 
 void	print_usage(char *program_name)
@@ -28,17 +30,17 @@ void	print_usage(char *program_name)
   (void)program_name;
 }
 
-t_err	print_error(t_err error, const char *text)
+t_err	print_error(t_err error, ...)
 {
   char	*errors[ERROR_COUNT];
+  va_list	args;
 
   if (error == -1)
     return (error);
   fill_error_messages(errors);
   my_puterr("Error: ");
-  my_puterr(errors[error - 1]);
-  if (text != NULL)
-    my_puterr(text);
-  my_puterr("\n");
+  va_start(args, error);
+  my_vfprintf(2, errors[error - 1], &args);
+  va_end(args);
   return (error);
 }

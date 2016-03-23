@@ -75,8 +75,8 @@ int		my_vfprintf(int fd, const char *format, va_list *args)
 
 int		my_fprintf(int fd, const char *format, ...)
 {
-  va_list	args;
   int		length;
+  va_list	args;
 
   va_start(args, format);
   length = my_vfprintf(fd, format, &args);
@@ -86,8 +86,8 @@ int		my_fprintf(int fd, const char *format, ...)
 
 int		my_printf(const char *format, ...)
 {
-  va_list	args;
   int		length;
+  va_list	args;
 
   va_start(args, format);
   length = my_vfprintf(1, format, &args);

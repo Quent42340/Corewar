@@ -20,7 +20,7 @@ t_err		application_init(t_application *app, t_args *args)
   app->cycle_to_die = args->cycle_to_die;
   app->programs = malloc(sizeof(t_program) * args->program_amount);
   if (app->programs == NULL)
-    return (print_error(ERROR_MALLOC_FAILED, NULL));
+    return (print_error(ERROR_MALLOC_FAILED));
   app->program_amount = args->program_amount;
   i = 0;
   list = args->program_list;

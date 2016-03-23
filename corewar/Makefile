@@ -12,14 +12,14 @@ NAME		= corewar
 
 INC_DIRS	= include
 
-SOURCES		= source/launch/args.c \
-			  source/launch/application.c \
-			  source/launch/error.c \
-			  source/launch/flag_handler.c \
-			  source/launch/init.c \
-			  source/launch/main.c \
-			  source/launch/program.c \
-			  source/launch/read_helper.c \
+SOURCES		= source/core/args.c \
+			  source/core/application.c \
+			  source/core/error.c \
+			  source/core/flag_handler.c \
+			  source/core/init.c \
+			  source/core/main.c \
+			  source/core/program.c \
+			  source/core/read_helper.c \
 			  source/lib/my_mem.c \
 			  source/lib/my_convert.c \
 			  source/lib/str.c
