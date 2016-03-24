@@ -8,10 +8,10 @@
 ** Last update Tue Mar 22 16:59:05 2016 Jakob Kellendonk
 */
 
-#include "application.h"
+#include "flag.h"
 #include "my_mem.h"
 
-int	set_option_flag(t_args *args, char **flags, int *target)
+t_err	set_option_flag(t_args *args, char **flags, int *target)
 {
   int	error;
 

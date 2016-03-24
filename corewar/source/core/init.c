@@ -13,7 +13,7 @@
 #include "flag.h"
 #include "my_mem.h"
 
-int	create_prog_info(t_info_list **new)
+t_err	create_prog_info(t_info_list **new)
 {
   *new = malloc(sizeof(t_info_list));
   if (*new == NULL)
@@ -25,7 +25,7 @@ int	create_prog_info(t_info_list **new)
   return (0);
 }
 
-int		handle_option_flag(t_args *args, char **flags)
+t_err		handle_option_flag(t_args *args, char **flags)
 {
   int		*target;
 

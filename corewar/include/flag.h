@@ -13,10 +13,11 @@
 
 # include "application.h"
 
-int	create_prog_info(t_info_list **new);
-int	handle_option_flag(t_args *args, char **flags);
-int	set_option_flag(t_args *args, char **falgs, int *target);
+t_err	create_prog_info(t_info_list **new);
+t_err	handle_option_flag(t_args *args, char **flags);
+
+t_err	set_option_flag(t_args *args, char **falgs, int *target);
+int	set_default_values(t_args *args);
 int	validate_args_state(t_args *args);
-void	set_default_values(t_args *args);
 
 #endif /* !FLAG_H_ */
