@@ -23,3 +23,10 @@ int	char_to_short(unsigned char *src)
 	  * (((src[0] & 127) << 24)
 	     + (src[1] << 8) + (src[0] >> 7)));
 }
+
+void	int_to_char(int nb, unsigned char *str)
+{
+  /*  TODO: A FAIRE */
+  (void)nb;
+  (void)str;
+}

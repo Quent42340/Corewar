@@ -20,7 +20,7 @@
 int	my_getnbr_error(char *str, int *error);
 int	char_to_int(unsigned char *src);
 int	char_to_short(unsigned char *src);
-void	*my_memcpy(void *src, void *dest, register size_t n);
+void	*my_memcpy(void *dest, void *src, register size_t n);
 void	*my_memset(void *src, register char c, register size_t n);
 void	my_putstr_out(char *str, int out);
 

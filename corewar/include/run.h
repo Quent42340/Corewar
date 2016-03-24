@@ -13,6 +13,6 @@
 
 # include "application.h"
 
-t_err	tick(t_application application);
+t_err	tick(t_application *application);
 
 #endif /* !RUN_H_ */

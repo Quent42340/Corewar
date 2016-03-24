@@ -27,11 +27,13 @@ typedef struct		s_process
 typedef struct		s_program
 {
   struct header_s	info;
-  int			live;
+  unsigned char		live[4];
   t_process		*processes;
+  int			process_amount;
   int			did_live;
 }			t_program;
 
+t_err	add_process(t_program *program, t_info_list *list);
 t_err	program_init(t_program *program, struct s_application *app,
 		     t_info_list *list);
 

@@ -10,7 +10,7 @@
 
 #include "my_mem.h"
 
-void		*my_memcpy(void *src, void *dest, register size_t n)
+void		*my_memcpy(void *dest, void *src, register size_t n)
 {
   if (n >= WSIZE)
     {

@@ -9,6 +9,7 @@
 */
 
 #include "application.h"
+#include "run.h"
 
 t_err		application_init(t_application *app, t_args *args)
 {

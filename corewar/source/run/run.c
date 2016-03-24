@@ -10,7 +10,7 @@
 
 #include "application.h"
 
-int	tick(t_application *application)
+t_err	tick(t_application *application)
 {
   (void)application;
   return (0);
