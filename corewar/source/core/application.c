@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Tue Mar 22 18:43:58 2016 Jakob Kellendonk
+** Last update Thu Mar 24 13:24:15 2016 Jakob Kellendonk
 */
 
 #include "application.h"
@@ -34,9 +34,12 @@ t_err		application_init(t_application *app, t_args *args)
   return (0);
 }
 
-void	application_run(t_application *app)
+t_err	application_run(t_application *app)
 {
-  (void)app;
+  t_err	ret;
+
+  while (!(ret = tick(app)));
+  return (ret);
 }
 
 void	application_free(t_application *app)

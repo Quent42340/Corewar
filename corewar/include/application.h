@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:45 2016 Quentin Bazin
-** Last update Tue Mar 22 17:56:17 2016 Jakob Kellendonk
+** Last update Thu Mar 24 13:22:35 2016 Jakob Kellendonk
 */
 
 #ifndef APPLICATION_H_
@@ -31,7 +31,7 @@ typedef struct		s_application
 }			t_application;
 
 t_err	application_init(t_application *app, t_args *args);
-void	application_run(t_application *app);
+t_err	application_run(t_application *app);
 void	application_free(t_application *app);
 
 #endif /* !APPLICATION_H_ */
