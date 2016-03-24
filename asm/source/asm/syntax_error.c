@@ -5,9 +5,12 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Feb 25 15:05:31 2016 Benjamin Grange
-** Last update Mon Mar 21 15:19:44 2016 Benjamin Grange
+** Last update Wed Mar 23 01:08:03 2016 Benjamin Grange
 */
 
+#include "file_reader.h"
+#include "syntax_error.h"
+#include "position.h"
 #include "lexer.h"
 
 void		print_line_error_at_pos(t_file_reader *file,
@@ -40,24 +43,23 @@ void		print_line_error_at_pos(t_file_reader *file,
   my_putchar_error('\n');
 }
 
-void		*print_syntax_error(t_file_reader *file, void *r, void *ret)
+void		*print_syntax_error(t_file_reader *file,
+				    t_syntax_error *err,
+				    void *ret)
 {
-  t_result	*result;
-
-  result = (t_result *)r;
-  if (result != NULL)
+  if (err != NULL)
     {
       my_puterror(RED);
-      my_puterror("Syntax Error at (line ");
-      my_putnbr_error(result->syntax_error.position.line + 1);
+      my_puterror("Syntax Error (line ");
+      my_putnbr_error(err->position.line + 1);
       my_puterror(", column ");
-      my_putnbr_error(result->syntax_error.position.column);
+      my_putnbr_error(err->position.column);
       my_puterror(") : ");
-      my_puterror(result->syntax_error.error);
+      my_puterror(err->error);
       my_puterror(WHITE);
       my_putchar_error('\n');
-      print_line_error_at_pos(file, result->syntax_error.position);
-      xfree(result->syntax_error.error);
+      print_line_error_at_pos(file, err->position);
+      xfree(err->error);
     }
   return (ret);
 }
@@ -74,7 +76,7 @@ void			*print_unexpected_char_error(t_file_reader *reader,
   error[17] = reader->file->content[reader->cursor.index];
   result.syntax_error.position = reader->cursor;
   result.syntax_error.error = error;
-  print_syntax_error(reader, &result, ret);
+  print_syntax_error(reader, &result.syntax_error, ret);
   return (ret);
 }
 
@@ -85,4 +87,13 @@ t_syntax_error		generate_syntax_error(t_position pos, char *str)
   error.position = pos;
   error.error = str;
   return (error);
+}
+
+void			generate_and_print_se(t_file_reader *fr,
+					      t_position pos, char *str)
+{
+  t_syntax_error	error;
+
+  error = generate_syntax_error(pos, my_strdup(str));
+  print_syntax_error(fr, &error, NULL);
 }

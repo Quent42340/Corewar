@@ -1,1 +1,5 @@
-  sti		
+.name "ok"
+.comment "kek"
+
+label:
+and r1, %:label ,r1

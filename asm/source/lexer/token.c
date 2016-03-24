@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Feb 24 13:33:25 2016 Benjamin Grange
-** Last update Mon Mar 21 16:30:02 2016 Benjamin Grange
+** Last update Thu Mar 24 15:01:49 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -52,7 +52,7 @@ t_token		create_token(t_file_reader *reader,
   token.content_string = my_strndup(reader->file->content + begin.index,
 				    length);
   my_memset(&token.content, 0, sizeof(t_token_content));
-  if (DEBUG)
+  if (LEXER_DEBUG)
     print_token(token);
   return (token);
 }

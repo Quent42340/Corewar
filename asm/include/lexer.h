@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:19 2016 Benjamin Grange
-** Last update Mon Mar 21 15:50:49 2016 Benjamin Grange
+** Last update Wed Mar 23 00:16:14 2016 Benjamin Grange
 */
 
 #ifndef LEXER_H_
@@ -36,7 +36,7 @@ typedef t_result	(*KeywordFunc)(t_file_reader *, t_position, char *);
 ** Lexing functions
 */
 
-t_token_list	*lexer(t_program_file *);
+t_token_list	*lexer(t_program_file *, t_bool *);
 t_result	lex_token(t_file_reader *);
 t_result	lex_keyword(t_file_reader *, t_position, char *);
 t_result	lex_config(t_file_reader *, t_position, char *);
@@ -70,5 +70,7 @@ t_result	create_result_from_whitespace_token(t_file_reader *,
 						    t_position);
 t_result	create_result_from_eol_token(t_file_reader *, t_position);
 t_result	get_null_result();
+
+void		print_token(t_token);
 
 #endif /* !LEXER_H_ */

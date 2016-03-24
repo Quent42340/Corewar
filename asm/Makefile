@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Mon Mar 21 16:02:43 2016 Benjamin Grange
+## Last update Thu Mar 24 14:40:32 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -14,6 +14,9 @@ INC_DIRS	= include
 
 SOURCES		= source/main.c \
 		  source/asm/asm.c \
+		  source/asm/syntax_error.c \
+		  source/asm/syntax_printer.c \
+		  source/asm/syntax_warning.c \
 		  source/basic/error.c \
 		  source/basic/getnbr.c \
 		  source/basic/memory_util.c \
@@ -22,7 +25,7 @@ SOURCES		= source/main.c \
 		  source/basic/putstr.c \
 		  source/basic/str_adv.c \
 		  source/basic/strutil.c \
-		  source/compiler/compile.c \
+		  source/compiler/program_config.c \
 		  source/file/file_reader_string.c \
 		  source/file/file_reader.c \
 		  source/file/program_file_create.c \
@@ -42,9 +45,16 @@ SOURCES		= source/main.c \
 		  source/lexer/lexer.c \
 		  source/lexer/result.c \
 		  source/lexer/result_2.c \
-		  source/lexer/syntax_error.c \
 		  source/lexer/token_list.c \
 		  source/lexer/token.c \
+		  source/parser/parse_arguments.c \
+		  source/parser/parse_comment.c \
+		  source/parser/parse_config.c \
+		  source/parser/parse_instruction.c \
+		  source/parser/parse_res.c \
+		  source/parser/parse_token.c \
+		  source/parser/parse_whitespace.c \
+		  source/parser/parser_utils.c \
 		  source/parser/parser.c \
 		  source/op.c
 

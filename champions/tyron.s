@@ -1,7 +1,4 @@
+  .name "ok"
+  .comment "mdr"
 
-
-
-  .name "NOM"
-  .comment "COMMENTAIRE"
-  live %1 #Omg this is comment
-  live %1
+  add r1,r1 ,

@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:26:50 2016 Benjamin Grange
-** Last update Thu Mar 17 19:23:05 2016 Benjamin Grange
+** Last update Thu Mar 24 14:18:23 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -31,7 +31,7 @@ static char		*read_file_content(int fd)
       if (my_strlen(content) != length)
 	{
 	  xfree(content);
-	  return (NULL);
+	  return (print_error_n(RED"Can't compile binary file\n"WHITE));
 	}
       if (read_output != 4096)
 	break;

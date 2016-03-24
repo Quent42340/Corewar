@@ -5,23 +5,39 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:40:25 2016 Benjamin Grange
-** Last update Tue Feb 23 22:40:41 2016 Benjamin Grange
+** Last update Mon Mar 21 22:23:10 2016 Benjamin Grange
 */
 
 #include "asm.h"
 
-void		*my_memset(void *src, t_byte c, size_t n)
+void			*my_memset(void *src,
+				   register char c,
+				   register size_t n)
 {
-  size_t	i;
-  t_byte	*dest;
+  register size_t	t;
+  register t_byte	*s;
+  register t_uint	word;
 
-  i = 0;
-  dest = (t_byte *)src;
-  while (i < n)
+  s = src;
+  word = (c << 24) + (c << 16) + (c << 8) + c;
+  if (n >= 4)
     {
-      *(dest + i) = c;
-      i++;
+      if ((t = ((unsigned long)s & WMASK) != 0))
+	{
+	  t = WSIZE - t;
+	  n -= t;
+	  while (t-- > 0)
+	    *s++ = c;
+	}
+      while (n >= 4)
+	{
+	  *(unsigned int *)s = word;
+	  s += 4;
+	  n -= 4;
+	}
     }
+  while (n--)
+    *s++ = c;
   return (src);
 }
 

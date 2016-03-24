@@ -5,13 +5,15 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 17:14:54 2016 Benjamin Grange
-** Last update Tue Mar  1 02:14:58 2016 Benjamin Grange
+** Last update Thu Mar 24 15:11:11 2016 Benjamin Grange
 */
 
 #ifndef ASM_H_
 # define ASM_H_
 
-# define DEBUG 1
+# ifndef LEXER_DEBUG
+#  define LEXER_DEBUG 0
+# endif /* !LEXER_DEBUG */
 
 # include <stdio.h> /* FIXME */
 # include <sys/stat.h>

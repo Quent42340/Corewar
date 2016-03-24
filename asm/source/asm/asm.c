@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:13:52 2016 Benjamin Grange
-** Last update Tue Mar  1 20:29:42 2016 Benjamin Grange
+** Last update Thu Mar 24 13:07:31 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -24,19 +24,17 @@ void			compile_file(char *path)
 {
   t_program_file	file;
   t_token_list		*token_list;
-  t_byte		*compiled_file;
+  t_bool		lexer_result;
 
   token_list = NULL;
+  lexer_result = false;
   print_comiling_message(path);
   file = program_file_create(path);
   if (file.content)
     {
-      token_list = lexer(&file);
-      compiled_file = parser(token_list);
-      if (!compiled_file)
-	compile(compiled_file);
+      token_list = lexer(&file, &lexer_result);
+      parser(token_list, &file, lexer_result);
       xfree(file.content);
-      free_token_list(token_list);
     }
   my_putstr("Compilation done !\n");
 }

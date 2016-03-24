@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 02:23:04 2016 Benjamin Grange
-** Last update Tue Mar  1 03:14:11 2016 Benjamin Grange
+** Last update Tue Mar 22 13:32:21 2016 Benjamin Grange
 */
 
 #include "basic.h"
@@ -37,4 +37,20 @@ void		my_cpystr(char *str1, char *str2)
 	  str2++;
 	}
     }
+}
+
+char	*my_strcat(char *dest, char *src)
+{
+  int	i;
+  int	j;
+
+  i = my_strlen(dest);
+  j = 0;
+  while (src[j] != '\0')
+    {
+      dest[i] = src[j];
+      i = i + 1;
+      j = j + 1;
+    }
+  return (dest);
 }

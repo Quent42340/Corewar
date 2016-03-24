@@ -4,6 +4,27 @@
 ** Made by Benjamin Grange
 ** Login   <grange_c@epitech.net>
 **
-** Started on  Mon Mar 21 16:50:31 2016 Benjamin Grange
-** Last update Mon Mar 21 16:50:37 2016 Benjamin Grange
+** Started on  Tue Mar 22 15:27:33 2016 Benjamin Grange
+** Last update Thu Mar 24 15:25:33 2016 Benjamin Grange
 */
+
+#include "parser.h"
+
+t_parseres			get_whitespace_error(t_token *tkn)
+{
+  return (get_se_rest(tkn, "Missing next token"));
+}
+
+t_bool				parse_whitespace(t_parser *parser)
+{
+  t_bool			b;
+
+  b = true;
+  while (has_next_token(parser)
+	 && parser->tkn->token.type == TOKEN_TYPE_WHITESPACE)
+    {
+      get_next_token(parser);
+      b = false;
+    }
+  return (b);
+}
