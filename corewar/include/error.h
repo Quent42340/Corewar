@@ -7,6 +7,7 @@
 ** Started on  Wed Mar 23 11:17:26 2016 Flora Huot
 ** Last update Wed Mar 23 11:17:26 2016 Flora Huot
 */
+
 #ifndef ERROR_H_
 # define ERROR_H_
 
