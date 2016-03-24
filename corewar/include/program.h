@@ -5,8 +5,9 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:14 2016 Quentin Bazin
-** Last update Wed Mar 23 12:16:14 2016 Quentin Bazin
+** Last update Thu Mar 24 17:34:42 2016 Jakob Kellendonk
 */
+
 #ifndef PROGRAM_H_
 # define PROGRAM_H_
 
@@ -16,8 +17,11 @@
 
 struct s_application;
 
+# define CMD_MAX_SIZE (1 + 1 + MAX_ARGS_NUMBER * DIR_SIZE)
+
 typedef struct		s_process
 {
+  unsigned char		cmd[CMD_MAX_SIZE];
   int			cycles_left;
   int			carry;
   int			pc;
