@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Wed Mar 23 12:16:07 2016 Quentin Bazin
+** Last update Thu Mar 24 22:11:12 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -37,7 +37,6 @@ t_err		add_process(t_program *program, t_info_list *list)
 t_err		program_init(t_program *program, t_application *app,
 			     t_info_list *list)
 {
-  int		i;
   int		fd;
   t_err		error;
 

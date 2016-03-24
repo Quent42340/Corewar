@@ -5,13 +5,13 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Tue Mar 22 18:48:27 2016 Jakob Kellendonk
+** Last update Thu Mar 24 22:10:52 2016 Jakob Kellendonk
 */
 
 #include "error.h"
 #include "my_mem.h"
 
-t_err		read_char(int fd, char *target, int nb, char *file_name)
+t_err		read_char(int fd, unsigned char *target, int nb, char *file_name)
 {
   int		total;
   int		read_value;

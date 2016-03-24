@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ## 
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Thu Mar 24 13:01:57 2016 Jakob Kellendonk
+## Last update Thu Mar 24 22:36:58 2016 Jakob Kellendonk
 ##
 
 NAME		= corewar
@@ -24,6 +24,8 @@ SOURCES		= source/core/args.c \
 			  source/lib/my_convert.c \
 			  source/lib/str.c \
 			  source/run/run.c \
+			  source/run/vm_copy.c \
+			  source/core/op.c
 
 MY_LIBS		= my_printf my
 
