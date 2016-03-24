@@ -8,6 +8,7 @@
 ** Last update Thu Mar 24 13:24:15 2016 Jakob Kellendonk
 */
 
+#include <stdlib.h>
 #include "application.h"
 #include "run.h"
 

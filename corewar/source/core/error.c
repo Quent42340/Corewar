@@ -11,7 +11,6 @@
 #include <my.h>
 #include <my_printf.h>
 #include <stdarg.h>
-#include <stdlib.h>
 #include "error.h"
 
 void	fill_error_messages(char *messages[ERROR_COUNT])

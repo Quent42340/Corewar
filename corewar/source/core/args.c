@@ -8,31 +8,32 @@
 ** Last update Tue Mar 22 17:19:24 2016 Jakob Kellendonk
 */
 
-#include "application.h"
+#include <stdlib.h>
 #include "flag.h"
 
-int		args_init(t_args *args, int argc, char **argv)
+t_err		args_init(t_args *args, int argc, char **argv)
 {
   t_info_list	*old;
+  t_err		error;
 
   (void)argc;
   args->program_amount = 0;
   set_default_values(args);
-  if (create_prog_info(&args->program_list))
-    return (1);
+  if ((error = create_prog_info(&args->program_list)))
+    return (error);
   while (*argv)
     {
       if (**argv != '-')
 	{
 	  args->program_list->file_name = *argv;
 	  old = args->program_list;
-	  if (create_prog_info(&args->program_list))
-	    return (1);
+	  if ((error = create_prog_info(&args->program_list)))
+	    return (error);
 	  old->next = args->program_list;
 	  args->program_amount = args->program_amount + 1;
 	}
-      else if (handle_option_flag(args, argv))
-	return (1);
+      else if ((error = handle_option_flag(args, argv)))
+	return (error);
       argv = argv + 1 + (**argv == '-');
     }
   return (validate_args_state(args));

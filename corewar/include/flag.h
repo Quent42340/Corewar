@@ -11,7 +11,7 @@
 #ifndef FLAG_H_
 # define FLAG_H_
 
-# include "application.h"
+# include "args.h"
 
 t_err	create_prog_info(t_info_list **new);
 t_err	handle_option_flag(t_args *args, char **flags);

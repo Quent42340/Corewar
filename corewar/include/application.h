@@ -11,12 +11,6 @@
 #ifndef APPLICATION_H_
 # define APPLICATION_H_
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include "args.h"
-# include "error.h"
-# include "my.h"
 # include "program.h"
 
 typedef struct		s_application

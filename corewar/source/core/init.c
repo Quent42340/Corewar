@@ -8,10 +8,9 @@
 ** Last update Tue Mar 22 17:03:30 2016 Jakob Kellendonk
 */
 
-#include "application.h"
-#include "error.h"
+#include <my.h>
+#include <stdlib.h>
 #include "flag.h"
-#include "my_mem.h"
 
 t_err	create_prog_info(t_info_list **new)
 {

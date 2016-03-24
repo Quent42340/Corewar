@@ -10,6 +10,8 @@
 #ifndef ARGS_H_
 # define ARGS_H_
 
+# include "error.h"
+
 typedef struct		s_constants
 {
   int			cycle_delta;
@@ -33,7 +35,7 @@ typedef struct		s_args
   int			program_amount;
 }			t_args;
 
-int	args_init(t_args *args, int argc, char **argv);
+t_err	args_init(t_args *args, int argc, char **argv);
 void	args_free(t_args *args);
 
 #endif /* !ARGS_H_ */
