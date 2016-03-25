@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Mar  2 00:52:54 2016 Benjamin Grange
-** Last update Thu Mar  3 15:35:20 2016 Benjamin Grange
+** Last update Fri Mar 25 15:10:41 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -24,11 +24,11 @@ static int		is_label_char(char c)
   return (0);
 }
 
-static t_result	create_result_from_label_token(t_file_reader *file,
-					       t_position pos,
-					       char *label)
+static t_result		create_result_from_label_token(t_file_reader *file,
+						       t_position pos,
+						       char *label)
 {
-  t_token	token;
+  t_token		token;
 
   token = create_token(file, pos, TOKEN_TYPE_LABEL);
   token.content.string_value = my_strdup(label);

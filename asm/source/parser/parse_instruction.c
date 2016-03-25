@@ -5,17 +5,18 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Mar 23 16:56:14 2016 Benjamin Grange
-** Last update Fri Mar 25 03:23:50 2016 Benjamin Grange
+** Last update Fri Mar 25 15:33:50 2016 Benjamin Grange
 */
 
 #include "parser.h"
+#include "compiler.h"
 
-t_parseres		not_enough_arguments(t_token *token)
+static t_parseres	not_enough_arguments(t_token *token)
 {
   return (get_se_rest(token, "Not enough parameters to instruction"));
 }
 
-t_parseres		parse_comma(t_parser *parser, t_token *token,
+static t_parseres	parse_comma(t_parser *parser, t_token *token,
 				    int i, t_op *op)
 {
   t_token		*comma;
@@ -33,7 +34,7 @@ t_parseres		parse_comma(t_parser *parser, t_token *token,
   return (get_instruction_result());
 }
 
-t_parseres		parse_argument(t_parser *parser,
+static t_parseres	parse_argument(t_parser *parser,
 				       t_operation *operation,
 				       t_token *token,
 				       t_args_type t)
@@ -69,5 +70,6 @@ t_parseres		parse_instruction(t_parser *parser, t_token *token)
 	return (res);
       i++;
     }
+  add_operation(parser, &oper);
   return (get_instruction_result());
 }

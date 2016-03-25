@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:35:39 2016 Benjamin Grange
-** Last update Tue Mar 22 15:28:45 2016 Benjamin Grange
+** Last update Fri Mar 25 15:50:40 2016 Benjamin Grange
 */
 
 #ifndef BASIC_H_
@@ -45,6 +45,7 @@ int		my_isnum(char *);
 int		my_getnbr(char *);
 int		my_strcmp(char *, char *);
 void		my_cpystr(char *, char *);
+char		*my_strncpy(char *, char *, size_t);
 char		*my_strcat(char *, char *);
 void		*print_error_n(char *);
 int		print_error_i(char *, int);

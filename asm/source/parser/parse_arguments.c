@@ -5,24 +5,10 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Mar 23 23:59:04 2016 Benjamin Grange
-** Last update Fri Mar 25 03:23:54 2016 Benjamin Grange
+** Last update Fri Mar 25 15:28:44 2016 Benjamin Grange
 */
 
 #include "parser.h"
-
-t_bool				test_if_token_arg(t_token *t, int arg)
-{
-  if (arg == 0 && t->type == TOKEN_TYPE_REGISTER)
-    return (1);
-  if (arg == 1
-      && t->type == TOKEN_TYPE_OPERATOR
-      && t->content.operator == OPERATOR_DIRECT)
-    return (1);
-  if (arg == 2 && (t->type == TOKEN_TYPE_INTEGER
-		   || t->type == TOKEN_TYPE_DIRECT_LABEL))
-    return (1);
-  return (0);
-}
 
 t_parseres			parse_arguments(t_parser *parser,
 						t_token *token,

@@ -5,58 +5,11 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 00:12:27 2016 Benjamin Grange
-** Last update Fri Mar 25 03:24:27 2016 Benjamin Grange
+** Last update Fri Mar 25 03:32:12 2016 Benjamin Grange
 */
 
 #include "compiler.h"
 #include "parser.h"
-
-t_label				*get_label_by_name(t_parser *parser,
-						   char *name)
-{
-  t_label			*label;
-
-  label = parser->label;
-  while (label)
-    {
-      if (my_strcmp(name, label->content))
-	return (label);
-      label = label->next;
-    }
-  return (NULL);
-}
-
-t_bool				push_label(t_parser *parser,
-					   t_token *token,
-					   size_t addr)
-{
-  t_label			*label;
-
-  label = get_label_by_name(parser, token->content_string);
-  if (label == NULL)
-    {
-      label = xmalloc(sizeof(t_label));
-      if (!label)
-	return (false);
-      label->content = my_strdup(token->content_string);
-      if (!label->content)
-	return (false);
-      label->address = addr;
-      label->next = parser->label;
-      parser->label = label; /* FIXME */
-      my_putstr(YELLOW"Pushing label \"");
-      my_putstr(label->content);
-      my_putstr("\" with value : ");
-      my_putnbr_error(addr);
-      my_putchar('\n');
-      my_putstr(WHITE);
-      return (true);
-    }
-  my_puterror(RED"Double declaration of label \"");
-  my_puterror(token->content_string);
-  my_puterror("\" !\n"WHITE);
-  return (false);
-}
 
 void				delete_label(t_parser *parser,
 					     t_token_list **token,

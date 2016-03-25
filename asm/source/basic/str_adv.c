@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 02:23:04 2016 Benjamin Grange
-** Last update Tue Mar 22 13:32:21 2016 Benjamin Grange
+** Last update Fri Mar 25 15:49:56 2016 Benjamin Grange
 */
 
 #include "basic.h"
@@ -53,4 +53,22 @@ char	*my_strcat(char *dest, char *src)
       j = j + 1;
     }
   return (dest);
+}
+
+char	*my_strncpy(char *s1, char *s2, size_t n)
+{
+  char	*s;
+
+  s = s1;
+  while (n > 0 && *s2 != '\0')
+    {
+      *s++ = *s2++;
+      --n;
+    }
+  while (n > 0)
+    {
+      *s++ = '\0';
+      --n;
+    }
+  return (s1);
 }

@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:29:49 2016 Benjamin Grange
-** Last update Fri Mar 25 02:35:55 2016 Benjamin Grange
+** Last update Fri Mar 25 15:42:11 2016 Benjamin Grange
 */
 
 #include "parser.h"
@@ -21,25 +21,7 @@ void			create_parser(t_parser *parser,
   parser->reader = fr;
   parser->is_empty = true;
   parser->program.is_valid = true;
-}
-
-t_bool			verify_EOL(t_parser *parser)
-{
-  t_token		*tkn;
-
-  parse_whitespace(parser);
-  if (has_next_token(parser))
-    {
-      tkn = get_next_token(parser);
-      if (tkn->type != TOKEN_TYPE_EOL)
-	{
-	  generate_and_print_se(parser->reader, tkn->begin,
-				"One instruction per line only :/");
-	  return (true);
-	}
-      return (false);
-    }
-  return (false);
+  parser->program.file_name = fr->file->name;
 }
 
 t_bool			parse_current_token(t_parser *parser)
@@ -59,20 +41,6 @@ t_bool			parse_current_token(t_parser *parser)
       return (verify_EOL(parser));
     }
   return (false);
-}
-
-void			raise_final_warnings_errors(t_parser *parser)
-{
-  if (parser->is_empty)
-    raise_warning(&parser, NULL, "File is empty");
-  if (!parser->name_defined)
-    {
-      generate_and_print_se(parser->reader, (t_position){0},
-			    "No name specified");
-      parser->program.is_valid = false;
-    }
-  if (!parser->comment_defined)
-    raise_warning(&parser, NULL, "No comment specified");
 }
 
 t_program		parser(t_token_list *token_list,

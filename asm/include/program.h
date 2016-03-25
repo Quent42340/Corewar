@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Mar 21 19:45:41 2016 Benjamin Grange
-** Last update Thu Mar 24 23:16:04 2016 Benjamin Grange
+** Last update Fri Mar 25 15:59:19 2016 Benjamin Grange
 */
 
 #ifndef PROGRAM_H_
@@ -16,6 +16,7 @@
 
 typedef struct			s_operation
 {
+  char				op;
   size_t			nb_params;
   unsigned int			params_type[MAX_ARGS_NUMBER];
   unsigned int			params_value[MAX_ARGS_NUMBER];
@@ -24,6 +25,7 @@ typedef struct			s_operation
 
 typedef struct			s_program
 {
+  char				*file_name;
   t_bool			is_valid;
   t_header			header;
   t_operation			*op;

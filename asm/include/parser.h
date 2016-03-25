@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:58 2016 Benjamin Grange
-** Last update Fri Mar 25 02:31:25 2016 Benjamin Grange
+** Last update Fri Mar 25 15:41:10 2016 Benjamin Grange
 */
 
 #ifndef PARSER_H_
@@ -63,6 +63,8 @@ t_parseres		get_se_rest(t_token *t, char *error);
 t_parseres		get_whitespace_error(t_token *);
 void			add_address(t_token_list *token, size_t *address);
 t_bool			pre_compile_label_declaration(t_parser *parser);
+t_bool			verify_EOL(t_parser *parser);
+void			raise_final_warnings_errors(t_parser *parser);
 
 /* Parsing functions */
 

@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Fri Mar 25 02:33:46 2016 Benjamin Grange
+## Last update Fri Mar 25 18:01:19 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -26,7 +26,11 @@ SOURCES		= source/main.c \
 		  source/basic/str_adv.c \
 		  source/basic/strutil.c \
 		  source/compiler/compiler.c \
+		  source/compiler/label.c \
+		  source/compiler/params.c \
 		  source/compiler/program_config.c \
+		  source/compiler/writer_utils.c \
+		  source/compiler/writer.c \
 		  source/file/file_reader_string.c \
 		  source/file/file_reader.c \
 		  source/file/program_file_create.c \
@@ -58,6 +62,7 @@ SOURCES		= source/main.c \
 		  source/parser/parse_register.c \
 		  source/parser/parse_res.c \
 		  source/parser/parse_token.c \
+		  source/parser/parse_utils.c \
 		  source/parser/parse_whitespace.c \
 		  source/parser/parser_utils.c \
 		  source/parser/parser.c \
