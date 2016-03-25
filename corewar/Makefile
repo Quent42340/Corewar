@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ## 
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Fri Mar 25 12:41:21 2016 Jakob Kellendonk
+## Last update Fri Mar 25 16:33:20 2016 Jakob Kellendonk
 ##
 
 NAME		= corewar
@@ -30,11 +30,6 @@ SOURCES		= source/core/args.c \
 			  source/run/instructions_st.c \
 			  source/run/run.c \
 			  source/run/vm_copy.c \
-			  source/run/instructions_calcul.c \
-			  source/run/instructions_ld.c \
-			  source/run/instructions_st.c \
-			  source/run/instructions_basic.c \
-			  source/run/instructions_fork.c \
 			  source/core/op.c
 
 MY_LIBS		= my_printf my
