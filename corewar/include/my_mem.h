@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Wed Mar 23 11:09:07 2016 Flora Huot
-** Last update Fri Mar 25 12:45:28 2016 Jakob Kellendonk
+** Last update Fri Mar 25 18:04:54 2016 Jakob Kellendonk
 */
 
 #ifndef MY_MEM_H_
@@ -15,13 +15,13 @@
 # include <unistd.h>
 
 # define WSIZE sizeof(unsigned int)
-# define WMASK ((1 << WSIZE) - 1)
+# define WMASK (WSIZE - 1)
 
 int	my_getnbr_error(char *str, int *error);
 int	char_to_int(unsigned char *src);
 int	char_to_short(unsigned char *src);
 int	int_to_char(int nb, unsigned char *str);
-void	*my_memcpy(void *dest, void *src, register size_t n);
+void	*my_memcpy(void *dest, void *src, size_t n);
 void	*my_memset(void *src, register char c, register size_t n);
 void	my_putstr_out(char *str, int out);
 

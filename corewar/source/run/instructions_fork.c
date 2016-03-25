@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:29:08 2016 Flora Huot
-** Last update Fri Mar 25 15:50:00 2016 Jakob Kellendonk
+** Last update Fri Mar 25 18:06:41 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -17,7 +17,8 @@ t_err		new_process(t_process *old, int newpc)
   t_process	*new;
 
   old->parent->process_amount = old->parent->process_amount + 1;
-  old->parent->processes = realloc(old->parent->processes, sizeof(t_process) * old->parent->process_amount);
+  old->parent->processes = realloc(old->parent->processes,
+				   sizeof(t_process) * old->parent->process_amount);
   if (!old->parent->processes)
     return (ERROR_MALLOC_FAILED);
   new = old->parent->processes + old->parent->process_amount - 1;

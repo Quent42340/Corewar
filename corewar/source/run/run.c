@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Fri Mar 25 16:54:36 2016 Jakob Kellendonk
+** Last update Fri Mar 25 18:06:16 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -83,7 +83,8 @@ t_err	tick(t_application *application)
       j = 0;
       while (j < application->programs[i].process_amount)
 	{
-	  if ((err = update_process(application, application->programs[i].processes + j)))
+	  if ((err = update_process(application,
+				    application->programs[i].processes + j)))
 	    return (err);
 	  j = j + 1;
 	}

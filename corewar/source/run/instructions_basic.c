@@ -1,11 +1,11 @@
 /*
-** instructions_basic.c for  in /blinux_home/huot_b/rendus/CPE/CPE_2015_corewar/corewar/source/run
+** instructions_basic.c for corewar in corewar/source/run
 ** 
 ** Made by Flora Huot
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:27:26 2016 Flora Huot
-** Last update Fri Mar 25 16:00:09 2016 Jakob Kellendonk
+** Last update Fri Mar 25 18:07:42 2016 Jakob Kellendonk
 */
 
 #include "instructions.h"

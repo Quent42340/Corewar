@@ -5,12 +5,12 @@
 ** Login   <grange_c@epitech.net>
 ** 
 ** Started on  Tue Mar 22 12:45:49 2016 Benjamin Grange
-** Last update Tue Mar 22 14:35:54 2016 Jakob Kellendonk
+** Last update Fri Mar 25 17:38:34 2016 Jakob Kellendonk
 */
 
 #include "my_mem.h"
 
-void		*my_memcpy(void *dest, void *src, register size_t n)
+void		*my_memcpy(void *dest, void *src, size_t n)
 {
   if (n >= WSIZE)
     {
@@ -22,8 +22,8 @@ void		*my_memcpy(void *dest, void *src, register size_t n)
       while (n >= WSIZE)
 	{
 	  n = n - WSIZE;
-	  ((unsigned int *)dest)[n / WSIZE] =
-	    ((unsigned int *)src)[n / WSIZE];
+	  *((unsigned int *)((unsigned char *)dest + n)) =
+	    *((unsigned int *)((unsigned char *)src + n));
 	}
     }
   while (n > 0)

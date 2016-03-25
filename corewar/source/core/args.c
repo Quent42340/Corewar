@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:50 2016 Quentin Bazin
-** Last update Tue Mar 22 17:19:24 2016 Jakob Kellendonk
+** Last update Fri Mar 25 17:18:23 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -13,7 +13,7 @@
 
 t_err		args_init(t_args *args, int argc, char **argv)
 {
-  t_info_list	*old;
+  t_info_list	*current;
   t_err		error;
 
   (void)argc;
@@ -21,15 +21,15 @@ t_err		args_init(t_args *args, int argc, char **argv)
   set_default_values(args);
   if ((error = create_prog_info(&args->program_list)))
     return (error);
+  current = args->program_list;
   while (*argv)
     {
       if (**argv != '-')
 	{
-	  args->program_list->file_name = *argv;
-	  old = args->program_list;
-	  if ((error = create_prog_info(&args->program_list)))
+	  current->file_name = *argv;
+	  if ((error = create_prog_info(&current->next)))
 	    return (error);
-	  old->next = args->program_list;
+	  current = current->next;
 	  args->program_amount = args->program_amount + 1;
 	}
       else if ((error = handle_option_flag(args, argv)))
