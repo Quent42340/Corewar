@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:29:49 2016 Benjamin Grange
-** Last update Wed Mar 23 23:19:19 2016 Benjamin Grange
+** Last update Fri Mar 25 02:35:55 2016 Benjamin Grange
 */
 
 #include "parser.h"
@@ -88,6 +88,8 @@ t_program		parser(t_token_list *token_list,
       delete_all_comments(&token_list);
       file_reader = generate_file_reader(fr);
       create_parser(&parser, &file_reader, token_list);
+      if (!pre_compile_label_declaration(&parser))
+	return (parser.program);
       while (has_next_token(&parser) && parser.program.is_valid)
 	{
 	  parse_whitespace(&parser);

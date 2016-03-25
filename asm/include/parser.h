@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:58 2016 Benjamin Grange
-** Last update Thu Mar 24 23:33:37 2016 Benjamin Grange
+** Last update Fri Mar 25 02:31:25 2016 Benjamin Grange
 */
 
 #ifndef PARSER_H_
@@ -28,9 +28,17 @@ typedef struct		s_parseres
   t_syntax_error	syntax_error;
 }			t_parseres;
 
+typedef struct		s_label
+{
+  char			*content;
+  size_t		address;
+  struct s_label	*next;
+}			t_label;
+
 typedef struct		s_parser
 {
   t_bool		is_empty;
+  t_label		*label;
   t_bool		name_defined;
   t_bool		name_actually_defined;
   t_bool		name_just_defined;
@@ -53,6 +61,8 @@ t_parseres		get_instruction_result(void);
 t_parseres		get_se_res(t_token_list *t, char *error);
 t_parseres		get_se_rest(t_token *t, char *error);
 t_parseres		get_whitespace_error(t_token *);
+void			add_address(t_token_list *token, size_t *address);
+t_bool			pre_compile_label_declaration(t_parser *parser);
 
 /* Parsing functions */
 
@@ -63,5 +73,8 @@ t_parseres		parse_instruction(t_parser *, t_token *);
 t_parseres		parse_arguments(t_parser *, t_token *,
 					t_operation *, t_args_type);
 t_parseres		parse_register(t_token *, t_operation *);
+t_parseres		parse_direct_value(t_parser *parser,
+					   t_token *token,
+					   t_operation *op);
 
 #endif /* !PARSER_H_ */

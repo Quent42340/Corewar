@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Mar 23 16:56:14 2016 Benjamin Grange
-** Last update Thu Mar 24 23:26:52 2016 Benjamin Grange
+** Last update Fri Mar 25 03:23:50 2016 Benjamin Grange
 */
 
 #include "parser.h"
@@ -52,7 +52,7 @@ t_parseres		parse_instruction(t_parser *parser, t_token *token)
   int			i;
 
   i = 0;
-  op = op_tab[token->content.instruction];
+  op = op_tab[token->content.instruction - 1];
   my_memset(&oper, 0, sizeof(t_operation));
   if (parse_whitespace(parser))
     return (not_enough_arguments(token));
