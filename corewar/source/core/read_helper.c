@@ -11,7 +11,8 @@
 #include "error.h"
 #include "my_mem.h"
 
-t_err		read_char(int fd, unsigned char *target, int nb, char *file_name)
+t_err		read_char(int fd, unsigned char *target,
+			  int nb, char *file_name)
 {
   int		total;
   int		read_value;
@@ -26,7 +27,7 @@ t_err		read_char(int fd, unsigned char *target, int nb, char *file_name)
   if (read_value == 0)
     return (print_error(ERROR_NOT_EXECUTABLE, file_name));
   else if (read_value == -1)
-    return (print_error(ERROR_READ_FAILED, file_name));
+    return (print_error(ERROR_FILE_NOT_ACCESSIBLE, file_name));
   return (0);
 }
 

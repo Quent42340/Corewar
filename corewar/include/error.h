@@ -24,7 +24,7 @@ typedef enum				e_err
   ERROR_POSITIVE_NUMBER_EXPECTED	= 5,
   ERROR_INTEGER_EXPECTED		= 6,
   ERROR_NOT_EXECUTABLE			= 7,
-  ERROR_READ_FAILED			= 8
+  ERROR_FILE_NOT_ACCESSIBLE		= 8
 }					t_err;
 
 void	fill_error_messages(char *messages[ERROR_COUNT]);

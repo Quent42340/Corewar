@@ -23,6 +23,11 @@ SOURCES		= source/core/args.c \
 			  source/lib/my_mem.c \
 			  source/lib/my_convert.c \
 			  source/lib/str.c \
+			  source/run/instructions_basic.c \
+			  source/run/instructions_calcul.c \
+			  source/run/instructions_fork.c \
+			  source/run/instructions_ld.c \
+			  source/run/instructions_st.c \
 			  source/run/run.c \
 			  source/run/vm_copy.c \
 			  source/run/instructions_calcul.c \
