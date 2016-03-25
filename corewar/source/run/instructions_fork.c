@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:29:08 2016 Flora Huot
-** Last update Fri Mar 25 15:21:56 2016 Jakob Kellendonk
+** Last update Fri Mar 25 15:50:00 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -29,12 +29,22 @@ t_err		new_process(t_process *old, int newpc)
 
 t_err	instruction_fork(t_application *app, t_process *proc)
 {
+  t_err	err;
+
   (void)app;
-  return (new_process(proc, proc->pc + char_to_short(proc->cmd + 1) % IDX_MOD));
+  if ((err = new_process(proc, proc->pc + char_to_short(proc->cmd + 1) % IDX_MOD)))
+    return (err);
+  proc->pc = proc->pc + 3;
+  return (0);
 }
 
 t_err	instruction_lfork(t_application *app, t_process *proc)
 {
+  t_err	err;
+
   (void)app;
-  return (new_process(proc, proc->pc + char_to_short(proc->cmd + 1)));
+  if ((err = new_process(proc, proc->pc + char_to_short(proc->cmd + 1))))
+    return (err);
+  proc->pc = proc->pc + 3;
+  return (0);
 }

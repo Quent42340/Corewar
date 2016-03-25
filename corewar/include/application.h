@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:45 2016 Quentin Bazin
-** Last update Thu Mar 24 18:02:29 2016 Jakob Kellendonk
+** Last update Fri Mar 25 15:42:31 2016 Jakob Kellendonk
 */
 
 #ifndef APPLICATION_H_
@@ -19,6 +19,7 @@ typedef struct		s_application
   t_program		*programs;
   int			cycle_to_die;
   int			cycle;
+  int			live_count;
   int			live_amount;
   int			program_amount;
   t_constants		*constants;

@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:27:07 2016 Flora Huot
-** Last update Fri Mar 25 12:49:56 2016 Jakob Kellendonk
+** Last update Fri Mar 25 15:36:09 2016 Jakob Kellendonk
 */
 
 #include "instructions.h"
@@ -29,7 +29,7 @@ t_err		instruction_add(t_application *app, t_process *proc)
   int_to_char(val, buff[0]);
   buff[1] = set_args(app, proc, (fmt >> 2) & 3, buff);
   proc->carry = !val;
-  proc->pc = proc->pc + buff[1] - proc->cmd;
+  proc->pc = (proc->pc + buff[1] - proc->cmd) % MEM_SIZE;
   return (0);
 }
 
@@ -50,7 +50,7 @@ t_err	instruction_sub(t_application *app, t_process *proc)
   int_to_char(val, buff[0]);
   buff[1] = set_args(app, proc, (fmt >> 2) & 3, buff);
   proc->carry = !val;
-  proc->pc = proc->pc + buff[1] - proc->cmd;
+  proc->pc = (proc->pc + buff[1] - proc->cmd) % MEM_SIZE;
   return (0);
 }
 
@@ -71,7 +71,7 @@ t_err	instruction_and(t_application *app, t_process *proc)
   int_to_char(val, buff[0]);
   buff[1] = set_args(app, proc, (fmt >> 2) & 3, buff);
   proc->carry = !val;
-  proc->pc = proc->pc + buff[1] - proc->cmd;
+  proc->pc = (proc->pc + buff[1] - proc->cmd) % MEM_SIZE;
   return (0);
 }
 
@@ -92,7 +92,7 @@ t_err	instruction_or(t_application *app, t_process *proc)
   int_to_char(val, buff[0]);
   buff[1] = set_args(app, proc, (fmt >> 4) & 3, buff);
   proc->carry = !val;
-  proc->pc = proc->pc + buff[1] - proc->cmd;
+  proc->pc = (proc->pc + buff[1] - proc->cmd) % MEM_SIZE;
   return (0);
 }
 

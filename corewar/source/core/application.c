@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Thu Mar 24 14:15:28 2016 Jakob Kellendonk
+** Last update Fri Mar 25 15:42:50 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -24,6 +24,7 @@ t_err		application_init(t_application *app, t_args *args)
   if (app->programs == NULL)
     return (print_error(ERROR_MALLOC_FAILED));
   app->program_amount = args->program_amount;
+  app->live_count = 0;
   i = 0;
   list = args->program_list;
   while (i < app->program_amount)

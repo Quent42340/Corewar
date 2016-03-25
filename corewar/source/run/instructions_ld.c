@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:26:58 2016 Flora Huot
-** Last update Fri Mar 25 14:13:09 2016 Jakob Kellendonk
+** Last update Fri Mar 25 15:37:44 2016 Jakob Kellendonk
 */
 
 #include "instructions.h"
@@ -23,7 +23,7 @@ t_err		instruction_ld(t_application *app, t_process *proc)
   buffs[1] = get_args(app, proc, (fmt >> 6) & 3, buffs);
   proc->carry = !char_to_int(buffs[0]);
   buffs[1] = set_args(app, proc, (fmt >> 4) & 3, buffs);
-  proc->pc = proc->pc + buffs[1] - proc->cmd;
+  proc->pc = (proc->pc + buffs[1] - proc->cmd) % MEM_SIZE;
   return (0);
 }
 
@@ -45,7 +45,7 @@ t_err		instruction_ldi(t_application *app, t_process *proc)
 	     proc->registre[buffs[1][0]], 4);
   proc->carry = !char_to_int(proc->registre[buffs[1][0]]);
   buffs[1] = buffs[1] + 1;
-  proc->pc = proc->pc + buffs[1] - proc->cmd;
+  proc->pc = (proc->pc + buffs[1] - proc->cmd) % MEM_SIZE;
   return (0);
 }
 
@@ -67,7 +67,7 @@ t_err		instruction_lld(t_application *app, t_process *proc)
     }
   proc->carry = !char_to_int(buffs[0]);
   buffs[1] = set_args(app, proc, (fmt >> 4) & 3, buffs);
-  proc->pc = proc->pc + buffs[1] - proc->cmd;
+  proc->pc = (proc->pc + buffs[1] - proc->cmd) % MEM_SIZE;
   return (0);
 }
 
@@ -89,6 +89,6 @@ t_err		instruction_lldi(t_application *app, t_process *proc)
 	     proc->registre[buffs[1][0]], 4);
   proc->carry = !char_to_int(proc->registre[buffs[1][0]]);
   buffs[1] = buffs[1] + 1;
-  proc->pc = proc->pc + buffs[1] - proc->cmd;
+  proc->pc = (proc->pc + buffs[1] - proc->cmd) % MEM_SIZE;
   return (0);
 }
