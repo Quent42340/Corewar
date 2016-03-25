@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:27:26 2016 Flora Huot
-** Last update Fri Mar 25 15:58:22 2016 Jakob Kellendonk
+** Last update Fri Mar 25 16:00:09 2016 Jakob Kellendonk
 */
 
 #include "instructions.h"
@@ -38,8 +38,8 @@ t_err	instruction_live(t_application *app, t_process *proc)
 t_err	instruction_zjmp(t_application *app, t_process *proc)
 {
   (void)app;
-  proc->pc = (((proc->pc + (char_to_short(proc->cmd + 1) % IDX_MOD)) % MEM_SIZE)
-	      + MEM_SIZE) % MEM_SIZE;
+  proc->pc = (((proc->pc + (char_to_short(proc->cmd + 1) % IDX_MOD))
+	       % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;
   return (0);
 }
 
