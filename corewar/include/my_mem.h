@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Wed Mar 23 11:09:07 2016 Flora Huot
-** Last update Wed Mar 23 11:09:07 2016 Flora Huot
+** Last update Fri Mar 25 12:45:28 2016 Jakob Kellendonk
 */
 
 #ifndef MY_MEM_H_
@@ -20,6 +20,7 @@
 int	my_getnbr_error(char *str, int *error);
 int	char_to_int(unsigned char *src);
 int	char_to_short(unsigned char *src);
+int	int_to_char(int nb, unsigned char *str);
 void	*my_memcpy(void *dest, void *src, register size_t n);
 void	*my_memset(void *src, register char c, register size_t n);
 void	my_putstr_out(char *str, int out);

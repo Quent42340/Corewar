@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:50:32 2016 Jakob Kellendonk
-** Last update Tue Mar 22 18:37:41 2016 Jakob Kellendonk
+** Last update Fri Mar 25 12:34:08 2016 Jakob Kellendonk
 */
 
 int	char_to_int(unsigned char *src)
@@ -24,9 +24,13 @@ int	char_to_short(unsigned char *src)
 	     + (src[1] << 8) + (src[0] >> 7)));
 }
 
-void	int_to_char(int nb, unsigned char *str)
+void		int_to_char(int nb, unsigned char *str)
 {
-  /*  TODO: A FAIRE */
-  (void)nb;
-  (void)str;
+  unsigned int	abs;
+
+  abs = (nb + (nb < 0)) * ((nb > 1) * 2 - 1);
+  str[0] = (nb > 0) * 128u | (abs >> 24u);
+  str[1] = (abs >> 16u) & 255u;
+  str[2] = (abs >> 8u) & 255u;
+  str[3] = (abs & 255u);
 }
