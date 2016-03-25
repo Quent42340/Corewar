@@ -23,7 +23,8 @@ void	fill_error_messages(char *messages[ERROR_COUNT])
   messages[5] = "Value between -2147483648 and 2147483647 expected as"
     " parameter for: %s";
   messages[6] = "%s is not a corewar executable";
-  messages[8] = "%s is not accessible";
+  messages[7] = "%s is not accessible";
+  messages[8] = "Too many programs";
 }
 
 void	print_usage(char *program_name)

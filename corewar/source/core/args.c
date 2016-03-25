@@ -18,8 +18,8 @@ t_err		args_init(t_args *args, int argc, char **argv)
 
   (void)argc;
   args->program_amount = 0;
-  set_default_values(args);
-  if ((error = create_prog_info(&args->program_list)))
+  if ((error = set_default_values(args))
+      || (error = create_prog_info(&args->program_list)))
     return (error);
   current = args->program_list;
   while (*argv)

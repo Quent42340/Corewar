@@ -25,11 +25,11 @@ t_err	set_option_flag(t_args *args, char **flags, int *target)
   return (0);
 }
 
-int	set_default_values(t_args *args)
+t_err	set_default_values(t_args *args)
 {
   args->constants = malloc(sizeof(t_constants));
   if (!args->constants)
-    return (1);
+    return (print_error(ERROR_MALLOC_FAILED));
   args->constants->dump_cycle = -1;
   args->cycle_to_die = CYCLE_TO_DIE;
   args->constants->cycle_delta = CYCLE_DELTA;
@@ -37,8 +37,10 @@ int	set_default_values(t_args *args)
   return (0);
 }
 
-int	validate_args_state(t_args *args)
+t_err	validate_args_state(t_args *args)
 {
+  if (args->program_amount < 2 || args->program_amount > 4)
+    return (print_error(ERROR_TOO_MANY_PROGRAMS));
   if (args->program_list->live_code != -1 || args->program_list->address != -1)
     {
       my_putstr_out("Error: specified program's ", 2);
@@ -49,8 +51,8 @@ int	validate_args_state(t_args *args)
 	my_putstr_out("and ", 2);
       if (args->program_list->address != -1)
 	my_putstr_out("starting address ", 2);
-      my_putstr_out("but didn't specifie program's file.\n", 2);
-      return (1);
+      my_putstr_out("but didn't specify program's file.\n", 2);
+      return (print_error(ERROR_UNKNOWN));
     }
   return (0);
 }

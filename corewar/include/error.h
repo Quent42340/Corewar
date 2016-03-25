@@ -12,7 +12,7 @@
 # define ERROR_H_
 
 /* Ne pas oublier d'augmenter le compteur à chaque ajout */
-# define ERROR_COUNT 8
+# define ERROR_COUNT 9
 
 typedef enum				e_err
 {
@@ -24,7 +24,8 @@ typedef enum				e_err
   ERROR_POSITIVE_NUMBER_EXPECTED	= 5,
   ERROR_INTEGER_EXPECTED		= 6,
   ERROR_NOT_EXECUTABLE			= 7,
-  ERROR_FILE_NOT_ACCESSIBLE		= 8
+  ERROR_FILE_NOT_ACCESSIBLE		= 8,
+  ERROR_TOO_MANY_PROGRAMS		= 9
 }					t_err;
 
 void	fill_error_messages(char *messages[ERROR_COUNT]);

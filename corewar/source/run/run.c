@@ -19,7 +19,7 @@ int		get_cycle_amount(unsigned char *cmd)
   i = 0;
   while (i < op_tab[cmd[0] - 1].nbr_args)
     {
-      if (!((cmd[1] >> (6 - 2 * i)) & 3) | 
+      if (!((cmd[1] >> (6 - 2 * i)) & 3) |
 	  !(op_tab[cmd[0] - 1].type[i]
 	  & (((cmd[1] >> (6 - 2 * i)) == 1) * T_REG +
 	     ((cmd[1] >> (6 - 2 * i)) == 2) * T_DIR +
@@ -55,7 +55,7 @@ t_err		execute(t_application *application, t_process *process)
 
 t_err	update_process(t_application *application, t_process *process)
 {
-  int	error;
+  t_err	error;
 
   if (process->cycles_left == 1)
     {
