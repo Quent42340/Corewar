@@ -5,17 +5,36 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:29:08 2016 Flora Huot
-** Last update Thu Mar 24 17:29:08 2016 Flora Huot
+** Last update Fri Mar 25 15:21:56 2016 Jakob Kellendonk
 */
 
+#include <stdlib.h>
 #include "instructions.h"
+#include "my_mem.h"
+
+t_err		new_process(t_process *old, int newpc)
+{
+  t_process	*new;
+
+  old->parent->process_amount = old->parent->process_amount + 1;
+  old->parent->processes = realloc(old->parent->processes, sizeof(t_process) * old->parent->process_amount);
+  if (!old->parent->processes)
+    return (ERROR_MALLOC_FAILED);
+  new = old->parent->processes + old->parent->process_amount - 1;
+  my_memcpy(new, old, sizeof(t_process));
+  new->pc = ((newpc % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;
+  new->cycles_left = new->cycles_left + 1;
+  return (0);
+}
 
 t_err	instruction_fork(t_application *app, t_process *proc)
 {
-  return (0);
+  (void)app;
+  return (new_process(proc, proc->pc + char_to_short(proc->cmd + 1) % IDX_MOD));
 }
 
 t_err	instruction_lfork(t_application *app, t_process *proc)
 {
-  return (0);
+  (void)app;
+  return (new_process(proc, proc->pc + char_to_short(proc->cmd + 1)));
 }

@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Thu Mar 24 22:11:12 2016 Jakob Kellendonk
+** Last update Fri Mar 25 15:03:48 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -17,19 +17,13 @@
 
 t_err		add_process(t_program *program, t_info_list *list)
 {
-  int		y;
-
   if ((program->processes = malloc(sizeof(t_process))) == NULL)
     return (print_error(ERROR_MALLOC_FAILED));
   program->processes[0].carry = 0;
   program->processes[0].pc = list->address;
-  y = 0;
-  while (y < REG_SIZE)
-    {
-      my_memset(program->processes[0].registre[y], 0,
-		sizeof(unsigned char) * REG_NUMBER);
-      ++y;
-    }
+  program->processes[0].parent = program;
+  my_memset(program->processes[0].registre[0], 0,
+	    sizeof(unsigned char) * REG_NUMBER * REG_SIZE);
   my_memcpy(program->processes[0].registre, program->live, 4);
   return (0);
 }
