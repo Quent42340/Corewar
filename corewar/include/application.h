@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:45 2016 Quentin Bazin
-** Last update Sat Mar 26 13:14:53 2016 Jakob Kellendonk
+** Last update Sat Mar 26 16:27:59 2016 Jakob Kellendonk
 */
 
 #ifndef APPLICATION_H_
@@ -23,6 +23,9 @@ typedef struct		s_application
   int			live_count;
   int			live_amount;
   int			program_amount;
+  void			(*death_callback)(struct s_application *, t_program *);
+  void			(*st_callback)(struct s_application *, t_program *,
+					      int index, int size);
   t_constants		*constants;
 }			t_application;
 

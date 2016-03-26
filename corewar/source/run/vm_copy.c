@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 18:19:59 2016 Jakob Kellendonk
-** Last update Fri Mar 25 14:10:44 2016 Jakob Kellendonk
+** Last update Sat Mar 26 16:39:07 2016 Jakob Kellendonk
 */
 
 # include "application.h"
@@ -21,7 +21,12 @@ unsigned char	*set_args(t_application *application, t_process *process,
     }
   if (format == 3)
     {
-      vm_cpyto(application, process->pc + (char_to_short(buffs[1]) % IDX_MOD), buffs[0], 4);
+      vm_cpyto(application, process->pc + (char_to_short(buffs[1]) % IDX_MOD),
+	       buffs[0], 4);
+      if (application->st_callback)
+	application->st_callback(application, process->parent,
+				 process->pc + (char_to_short(buffs[1])
+						% IDX_MOD), 4);
       return (buffs[1] + 2);
     }  
   return (NULL);
@@ -42,7 +47,9 @@ unsigned char	*get_args(t_application *application, t_process *process,
     }
   if (format == 3)
     {
-      vm_cpyfrom(application, process->pc + (char_to_short(buffs[1]) % IDX_MOD), buffs[0], 4);
+      vm_cpyfrom(application, process->pc + (char_to_short(buffs[1])
+					     % IDX_MOD),
+		 buffs[0], 4);
       return (buffs[1] + 2);
     }  
   return (NULL);
@@ -71,5 +78,7 @@ void	vm_cpyto(t_application *application, int offset,
       vm_cpyfrom(application, 0, buf, offset + amount - MEM_SIZE);
     }
   else
-    my_memcpy(buf, application->memory + offset, amount);
+    {
+      my_memcpy(buf, application->memory + offset, amount);
+    }
 }

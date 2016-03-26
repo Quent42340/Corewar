@@ -5,12 +5,15 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:12:05 2016 Quentin Bazin
-** Last update Wed Mar 23 12:12:05 2016 Quentin Bazin
+** Last update Sat Mar 26 16:49:32 2016 Jakob Kellendonk
 */
 #ifndef ARGS_H_
 # define ARGS_H_
 
 # include "error.h"
+
+struct s_application;
+struct s_program;
 
 typedef struct		s_constants
 {
@@ -32,10 +35,15 @@ typedef struct		s_args
   int			cycle_to_die;
   t_constants		*constants;
   t_info_list		*program_list;
+  void			(*death_callback)(struct s_application *,
+					  struct s_program *);
+  void			(*st_callback)(struct s_application *,
+				       struct s_program *,
+				       int index, int size);
   int			program_amount;
 }			t_args;
 
-t_err	args_init(t_args *args, int argc, char **argv);
+t_err	args_init(t_args *args, char **argv);
 void	args_free(t_args *args);
 
 #endif /* !ARGS_H_ */

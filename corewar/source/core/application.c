@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Sat Mar 26 14:04:02 2016 Jakob Kellendonk
+** Last update Sat Mar 26 16:51:09 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -19,6 +19,8 @@ t_err		application_init(t_application *app, t_args *args)
   t_err		error;
   t_info_list	*list;
 
+  app->death_callback = args->death_callback;
+  app->st_callback = args->st_callback;
   app->constants = args->constants;
   app->last_limit_hit = 0;
   app->cycle_to_die = args->cycle_to_die;

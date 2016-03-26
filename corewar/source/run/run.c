@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Sat Mar 26 14:09:58 2016 Jakob Kellendonk
+** Last update Sat Mar 26 16:31:18 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -82,6 +82,9 @@ t_err	remove_dead(t_application *app)
   i = -1;
   while (++i < app->program_amount)
     {
+      if (app->programs[i].is_alive && !app->programs[i].did_live
+	  && app->death_callback)
+	app->death_callback(app, app->programs + i);
       if (app->programs[i].is_alive && !app->programs[i].did_live)
 	app->programs[i].is_alive = 0;
       app->programs[i].did_live = 0;
@@ -90,10 +93,9 @@ t_err	remove_dead(t_application *app)
 	last_live = app->programs[i].last_live_cycle;
     }
   i = -1;
-  if (alive <= 1)
-    while (++i < app->program_amount)
-      if (last_live == app->programs[i].last_live_cycle)
-	/* FIXME Flora : dire que ce programme a gagné! GG! (ignore le code crade please)*/;
+  while (alive <= 1 && ++i < app->program_amount)
+    if (last_live == app->programs[i].last_live_cycle)
+      /* FIXME Flora : dire que ce programme a gagné! GG! (ignore le code crade please)*/;
   app->last_limit_hit = app->cycle;
   return (ERROR_UNKNOWN * (alive <= 1));
 }

@@ -5,18 +5,17 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:50 2016 Quentin Bazin
-** Last update Fri Mar 25 17:18:23 2016 Jakob Kellendonk
+** Last update Sat Mar 26 16:49:54 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
 #include "flag.h"
 
-t_err		args_init(t_args *args, int argc, char **argv)
+t_err		args_init(t_args *args, char **argv)
 {
   t_info_list	*current;
   t_err		error;
 
-  (void)argc;
   args->program_amount = 0;
   if ((error = set_default_values(args))
       || (error = create_prog_info(&args->program_list)))
@@ -36,6 +35,8 @@ t_err		args_init(t_args *args, int argc, char **argv)
 	return (error);
       argv = argv + 1 + (**argv == '-');
     }
+  args->death_callback = NULL;
+  args->st_callback = NULL;
   return (validate_args_state(args));
 }
 
