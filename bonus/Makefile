@@ -12,7 +12,12 @@ CXX			=	g++
 #---------------------------------------------------------------------------------
 # Compiler flags
 #---------------------------------------------------------------------------------
-DEFINES		+=	-DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES		+=	-DQT_NO_DEBUG \
+				-DQT_OPENGL_LIB \
+				-DQT_WIDGETS_LIB \
+				-DQT_GUI_LIB \
+				-DQT_CORE_LIB \
+				-DQT_MULTIMEDIA_LIB
 
 CFLAGS		=	-g -Wall -Wextra -Wfatal-errors -Wno-variadic-macros -pedantic
 CXXFLAGS	=	$(CFLAGS) -std=c++11 -static-libstdc++ -MD -fPIC $(DEFINES)
@@ -20,7 +25,7 @@ CXXFLAGS	=	$(CFLAGS) -std=c++11 -static-libstdc++ -MD -fPIC $(DEFINES)
 #---------------------------------------------------------------------------------
 # Libraries
 #---------------------------------------------------------------------------------
-LIBS		=	-lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL
+LIBS		=	-lQt5Multimedia -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL
 
 #---------------------------------------------------------------------------------
 # Source folders
@@ -36,10 +41,11 @@ INCLUDES	=	include external $(call find_rec,include)
 #---------------------------------------------------------------------------------
 CXXFLAGS	+=	-I/usr/share/qt/mkspecs/linux-g++ \
 				-I/usr/include/qt \
-				-I/usr/include/qt/QtWidgets \
-				-I/usr/include/qt/QtGui \
 				-I/usr/include/qt/QtCore \
-				-I/usr/include/qt/QtOpenGL
+				-I/usr/include/qt/QtGui \
+				-I/usr/include/qt/QtMultimedia \
+				-I/usr/include/qt/QtOpenGL \
+				-I/usr/include/qt/QtWidgets
 
 #---------------------------------------------------------------------------------
 # Additional folders for libraries

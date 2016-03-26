@@ -26,8 +26,12 @@ class CorewarRenderer {
 		
 		void draw(QOpenGLShaderProgram &shader, Camera &camera);
 		
+		void reactToMusic(float n);
+		
 	private:
 		std::vector<Panel> m_panels;
+		
+		float m_maxDistance = 0;
 };
 
 #endif // COREWARRENDERER_HPP_

@@ -28,6 +28,8 @@
 
 class CorewarRenderer;
 
+#include <QAudioBuffer>
+
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 	Q_OBJECT
 	
@@ -37,6 +39,7 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 		
 	public slots:
 		void process();
+		void processAudioBuffer(const QAudioBuffer &buffer);
 		
 	protected:
 		virtual void initializeGL();

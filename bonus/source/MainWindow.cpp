@@ -34,12 +34,12 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	if (format.swapInterval() != 1)
 		qWarning() << "Warning: Unable to enable VSync";
 	
-	m_widget = new GLWidget;
+	m_widget = new GLWidget(this);
 	m_widget->setFormat(format);
 	
 	QVBoxLayout *verticalLayout = new QVBoxLayout;
 	for (int i = 0 ; i < 4 ; i++) {
-		m_playerWidgets[i] = new PlayerWidget(i + 1);
+		m_playerWidgets[i] = new PlayerWidget(i + 1, this);
 		m_playerWidgets[i]->setMinimumSize(width / 5, 0);
 		verticalLayout->addWidget(m_playerWidgets[i]);
 	}
@@ -52,6 +52,17 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	horizontalLayout->addLayout(verticalLayout);
 	
 	Keyboard::setKeyMap(&m_keys);
+	
+	// ---------------------------------------------------------------------------------------
+	
+	player.setMedia(QUrl::fromLocalFile("/home/bazin_q/rendu/CPE/CPE_2015_corewar/bonus/resources/audio/music.mp3"));
+	
+	probe.setSource(&player);
+	connect(&probe, SIGNAL(audioBufferProbed(QAudioBuffer)), m_widget, SLOT(processAudioBuffer(QAudioBuffer)));
+	
+	player.play();
+	
+	// ---------------------------------------------------------------------------------------
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {

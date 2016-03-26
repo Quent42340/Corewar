@@ -28,6 +28,11 @@ class Panel {
 		
 		void draw(QOpenGLShaderProgram &shader);
 		
+		unsigned int x() const { return m_x; }
+		unsigned int y() const { return m_y; }
+		
+		void setScale(float scale) { m_scale = scale; }
+		
 		static constexpr GLfloat width = 25.0f / 35.0f;
 		static constexpr GLfloat height = 10.0f / 35.0f;
 		static constexpr GLfloat depth = 35.0f / 35.0f;

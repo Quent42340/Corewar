@@ -20,6 +20,9 @@
 class GLWidget;
 class PlayerWidget;
 
+#include <QAudioProbe>
+#include <QMediaPlayer>
+
 class MainWindow : public QMainWindow {
 	Q_OBJECT
 	
@@ -31,6 +34,9 @@ class MainWindow : public QMainWindow {
 		
 		static const unsigned int width = 1600;
 		static const unsigned int height = 1000;
+
+QMediaPlayer player;
+QAudioProbe probe;
 		
 	private:
 		GLWidget *m_widget;

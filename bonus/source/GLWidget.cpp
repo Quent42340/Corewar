@@ -63,6 +63,20 @@ void GLWidget::process() {
 	});
 }
 
+void GLWidget::processAudioBuffer(const QAudioBuffer &buffer) {
+	const qint16 *data = buffer.constData<qint16>();
+	
+	qint64 sum = 0;
+	for(int i = buffer.frameCount() - 51 ; i < buffer.frameCount() ; ++i) {
+		sum += pow(data[i], 2);
+	}
+	
+	sum /= 50;
+	sum = sqrt(sum);
+	
+	m_renderer->reactToMusic((float(sum) + INT16_MAX + 1) / UINT16_MAX);
+}
+
 void GLWidget::resizeGL(int width, int height) {
 	glViewport(0, 0, width, height);
 	
