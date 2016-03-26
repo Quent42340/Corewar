@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:50:32 2016 Jakob Kellendonk
-** Last update Sat Mar 26 18:15:43 2016 Jakob Kellendonk
+** Last update Sat Mar 26 18:17:13 2016 Jakob Kellendonk
 */
 
 int	char_to_int(unsigned char *src)
@@ -29,8 +29,17 @@ void		int_to_char(int nb, unsigned char *str)
   unsigned int	abs;
 
   abs = (nb + (nb < 0)) * ((nb > 0) * 2 - 1);
-  str[0] = (nb < 0) * 128u | (abs >> 24u);
+  str[0] = ((nb < 0) * 128u) | (abs >> 24u);
   str[1] = (abs >> 16u) & 255u;
   str[2] = (abs >> 8u) & 255u;
   str[3] = (abs & 255u);
+}
+
+void		short_to_char(int nb, unsigned char *str)
+{
+  unsigned int	abs;
+
+  abs = (nb + (nb < 0)) * ((nb > 0) * 2 - 1);
+  str[0] = ((nb < 0) * 128u) | (abs >> 8u);
+  str[1] = (abs & 255u);
 }
