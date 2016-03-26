@@ -72,10 +72,10 @@ void Camera::updateMovement() {
 	float boardWidth = (Panel::width + Panel::height) * 32 - Panel::height;
 	float boardDepth = (Panel::depth + Panel::height) * 25 - Panel::height;
 	
-	m_angleH += 0.15;
+	m_angleH += 0.09;
 	
-	m_pos = QVector3D(boardWidth * 1.2 * cos(m_angleH * M_PI / 180.0f) + boardWidth / 2, m_pos.y(),
-	                  boardDepth * 1.2 * sin(m_angleH * M_PI / 180.0f) + boardWidth / 2);
+	m_pos = QVector3D(boardWidth * 1.1 * cos(m_angleH * M_PI / 180.0f) + boardWidth / 2, m_pos.y(),
+	                  boardDepth * 1.1* sin(m_angleH * M_PI / 180.0f) + boardWidth / 2);
 	
 	m_viewMatrix.setToIdentity();
 	m_viewMatrix.lookAt(m_pos,
