@@ -38,7 +38,7 @@ void CorewarRenderer::reactToMusic(float n) {
 		float distanceFromCenter = sqrt(pow(16 - (int)panel.x(), 2) + pow(12.5 - (int)panel.y(), 2));
 		m_maxDistance = (m_maxDistance > distanceFromCenter) ? m_maxDistance : distanceFromCenter;
 		
-		panel.setScale(1.0f + fabs(m_maxDistance - distanceFromCenter * n * 3));
+		panel.setScale(1.0f + fabs(m_maxDistance - distanceFromCenter * n * 4));
 		
 		// float rangeX = panel.x() / 32.0f;
 		// float rangeY = panel.y() / 25.0f;
