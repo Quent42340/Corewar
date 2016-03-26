@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Sat Mar 26 17:21:37 2016 Jakob Kellendonk
+** Last update Sat Mar 26 22:23:23 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -19,10 +19,10 @@ int		get_cycle_amount(unsigned char *cmd)
   i = 0;
   while (i < op_tab[cmd[0] - 1].nbr_args)
     {
-      if (!((cmd[1] >> (6 - 2 * i)) & 3) |
+      if (!((cmd[1] >> (6 - 2 * i)) & 3) ||
 	  !(op_tab[cmd[0] - 1].type[i]
-	  & (((cmd[1] >> (6 - 2 * i)) == 1) * T_REG +
-	     ((cmd[1] >> (6 - 2 * i)) == 2) * T_DIR +
+	  & (((cmd[1] >> (6 - 2 * i)) == 1) * T_REG |
+	     ((cmd[1] >> (6 - 2 * i)) == 2) * T_DIR |
 	     ((cmd[1] >> (6 - 2 * i)) == 3) * T_IND)))
 	return (1);
       i = i + 1;
@@ -66,6 +66,8 @@ t_err	update_process(t_application *application, t_process *process)
     {
       vm_cpyfrom(application, process->pc, process->cmd, CMD_MAX_SIZE);
       process->cycles_left = get_cycle_amount(process->cmd);
+      if (process->cycles_left == 1)
+	process->pc = process->pc + 1;
     }
   process->cycles_left = process->cycles_left - 1;
   return (0);
@@ -107,7 +109,7 @@ t_err	tick(t_application *application)
   t_err	err;
 
   if (application->cycle - application->last_limit_hit
-      <= application->cycle_to_die && (err = remove_dead(application)))
+      >= application->cycle_to_die && (err = remove_dead(application)))
     return (err);
   i = 0;
   while (i < application->program_amount)

@@ -22,4 +22,10 @@ fclean:
 re:
 	@for dir in $(SUBDIRS); do echo "Compiling $$dir..."; make --no-print-directory -C $$dir re; [ $$dir != "corewar" ] && echo || echo -n; done
 
-.PHONY: all clean fclean re
+lexer:
+	@for dir in $(SUBDIRS); do echo "Compiling $$dir..."; make --no-print-directory -C $$dir lexer; [ $$dir != "corewar" ] && echo || echo -n; done
+
+lexer_debug: LEXER_DEBUG = 1
+lexer_debug: all
+
+.PHONY: all clean fclean re lexer
