@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 15:59:53 2016 Benjamin Grange
-** Last update Fri Mar 25 18:09:25 2016 Benjamin Grange
+** Last update Sat Mar 26 17:15:07 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -46,6 +46,12 @@ int			open_file(char *name)
   if (!name)
     return (-1);
   fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+  if (fd < 0)
+    {
+      my_puterror(RED"Can't open file \"");
+      my_puterror(name);
+      my_puterror("\" !\n"WHITE);
+    }
   xfree(name);
   return (fd);
 }

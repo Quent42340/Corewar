@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:29:49 2016 Benjamin Grange
-** Last update Fri Mar 25 21:56:19 2016 Benjamin Grange
+** Last update Sat Mar 26 16:57:00 2016 Benjamin Grange
 */
 
 #include "parser.h"
@@ -66,6 +66,7 @@ t_program		parser(t_token_list *token_list,
 	}
       raise_final_warnings_errors(&parser);
     }
+  pop_label_request(&parser);
   free_token_list(token_list);
   return (parser.program);
 }

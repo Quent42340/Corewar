@@ -5,19 +5,19 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 20:05:41 2016 Benjamin Grange
-** Last update Fri Mar 25 21:40:18 2016 Benjamin Grange
+** Last update Sat Mar 26 17:00:04 2016 Benjamin Grange
 */
 
 #include "compiler.h"
 
-size_t				get_pc(t_program *program)
+int				get_pc(t_program *program)
 {
-  size_t			size;
+  int				size;
   t_operation			*op;
 
   op = program->op;
   size = 0;
-  while (op)
+  while (op && op->ended)
     {
       size += op->size;
       op = op->next;

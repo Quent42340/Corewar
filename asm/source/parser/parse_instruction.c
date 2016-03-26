@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Mar 23 16:56:14 2016 Benjamin Grange
-** Last update Fri Mar 25 20:04:56 2016 Benjamin Grange
+** Last update Sat Mar 26 16:00:13 2016 Benjamin Grange
 */
 
 #include "parser.h"
@@ -59,5 +59,6 @@ t_parseres		parse_instruction(t_parser *parser, t_token *token)
 	return (res);
       i++;
     }
+  oper->ended = true;
   return (get_instruction_result());
 }

@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:58 2016 Benjamin Grange
-** Last update Fri Mar 25 22:42:47 2016 Benjamin Grange
+** Last update Sat Mar 26 17:00:55 2016 Benjamin Grange
 */
 
 #ifndef PARSER_H_
@@ -30,16 +30,17 @@ typedef struct		s_parseres
 
 typedef struct		s_labelr
 {
-  char			*name;
-  size_t		cur_pc;
+  t_token		*token;
+  int			cur_pc;
   int			type;
   t_content		*content;
+  struct s_labelr	*next;
 }			t_labelr;
 
 typedef struct		s_label
 {
   char			*name;
-  size_t		address;
+  int			address;
   struct s_label	*next;
 }			t_label;
 
@@ -72,6 +73,9 @@ t_parseres		get_se_rest(t_token *t, char *error);
 t_parseres		get_whitespace_error(t_token *);
 t_bool			verify_EOL(t_parser *parser);
 void			raise_final_warnings_errors(t_parser *parser);
+t_bool			push_label_request(t_parser *, t_token *,
+					   int, t_content *);
+void			pop_label_request(t_parser *parser);
 
 /* Parsing functions */
 
