@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:50 2016 Quentin Bazin
-** Last update Sat Mar 26 16:49:54 2016 Jakob Kellendonk
+** Last update Sat Mar 26 18:28:12 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -17,6 +17,8 @@ t_err		args_init(t_args *args, char **argv)
   t_err		error;
 
   args->program_amount = 0;
+  args->death_callback = NULL;
+  args->st_callback = NULL;
   if ((error = set_default_values(args))
       || (error = create_prog_info(&args->program_list)))
     return (error);
@@ -35,16 +37,14 @@ t_err		args_init(t_args *args, char **argv)
 	return (error);
       argv = argv + 1 + (**argv == '-');
     }
-  args->death_callback = NULL;
-  args->st_callback = NULL;
-  return (validate_args_state(args));
+  return (validate_args_state(args, current));
 }
 
 void		args_free(t_args *args)
 {
   t_info_list	*next;
 
-  while (args->program_list)
+  while (args->program_list->file_name)
     {
       next = args->program_list->next;
       free(args->program_list);

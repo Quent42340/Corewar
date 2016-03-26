@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Tue Mar 22 14:42:17 2016 Flora Huot
-** Last update Tue Mar 22 17:00:06 2016 Jakob Kellendonk
+** Last update Sat Mar 26 18:27:55 2016 Jakob Kellendonk
 */
 
 #ifndef FLAG_H_
@@ -18,6 +18,6 @@ t_err	handle_option_flag(t_args *args, char **flags);
 
 t_err	set_option_flag(t_args *args, char **falgs, int *target);
 int	set_default_values(t_args *args);
-int	validate_args_state(t_args *args);
+int	validate_args_state(t_args *args, t_info_list *last);
 
 #endif /* !FLAG_H_ */

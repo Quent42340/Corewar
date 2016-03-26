@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Mon Feb 29 12:51:47 2016 Jakob Kellendonk
-** Last update Tue Mar 22 16:59:05 2016 Jakob Kellendonk
+** Last update Sat Mar 26 18:25:34 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -37,19 +37,19 @@ t_err	set_default_values(t_args *args)
   return (0);
 }
 
-t_err	validate_args_state(t_args *args)
+t_err	validate_args_state(t_args *args, t_info_list *last)
 {
   if (args->program_amount < 2 || args->program_amount > 4)
     return (print_error(ERROR_WRONG_PROGRAM_AMOUNT));
-  if (args->program_list->live_code != -1 || args->program_list->address != -1)
+  if (last->live_code != -1 || last->address != -1)
     {
       my_putstr_out("Error: specified program's ", 2);
-      if (args->program_list->live_code != -1)
+      if (last->live_code != -1)
 	my_putstr_out("live number ", 2);
-      if (args->program_list->live_code != -1
-	  && args->program_list->address != -1)
+      if (last->live_code != -1
+	  && last->address != -1)
 	my_putstr_out("and ", 2);
-      if (args->program_list->address != -1)
+      if (last->address != -1)
 	my_putstr_out("starting address ", 2);
       my_putstr_out("but didn't specify program's file.\n", 2);
       return (print_error(ERROR_UNKNOWN));
