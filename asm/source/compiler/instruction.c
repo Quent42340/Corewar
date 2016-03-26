@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 19:03:02 2016 Benjamin Grange
-** Last update Sat Mar 26 18:33:36 2016 Benjamin Grange
+** Last update Sat Mar 26 19:52:00 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -62,7 +62,7 @@ void				add_param_to_operation(t_operation *op,
   else if (op->param_size[op->nb_param] == 1)
     {
       op->param_content[op->nb_param].index = value;
-      op->size += DIR_SIZE;
+      op->size += IND_SIZE;
     }
   else if (op->param_size[op->nb_param] == 2)
     {

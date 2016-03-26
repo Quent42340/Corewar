@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 18:51:48 2016 Benjamin Grange
-** Last update Sat Mar 26 19:04:05 2016 Benjamin Grange
+** Last update Sat Mar 26 21:39:53 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -15,15 +15,20 @@ void			write_int(int fd, int nb)
   unsigned int		a;
   unsigned char		str[4];
 
-  a = (nb + (nb < 0)) * ((nb > 0) * 2 - 1);
-  str[0] = (nb < 0) * 128u | (a >> 24u);
+  if (nb < 0)
+    a = ~(unsigned int)((nb + (nb < 0)) * ((nb > 0) * 2 - 1));
+  else
+    a = nb;
+  str[0] = (a >> 24u);
   str[1] = (a >> 16u) & 255u;
   str[2] = (a >> 8u) & 255u;
   str[3] = (a & 255u);
+  /*
   printf("[%#x ", str[0]);
   printf("%#x ", str[1]);
   printf("%#x ", str[2]);
   printf("%#x] ", str[3]);
+  */
   write(fd, &str[0], sizeof(unsigned char));
   write(fd, &str[1], sizeof(unsigned char));
   write(fd, &str[2], sizeof(unsigned char));
@@ -32,14 +37,19 @@ void			write_int(int fd, int nb)
 
 void			write_short(int fd, short nb)
 {
-  unsigned int	a;
-  unsigned char	str[2];
+  unsigned char		str[2];
+  unsigned int		a;
 
-  a = (nb + (nb < 0)) * ((nb > 0) * 2 - 1);
-  str[0] = ((nb < 0) * 128u) | (a >> 8u);
+  if (nb < 0)
+    a = ~(unsigned int)((nb + (nb < 0)) * ((nb > 0) * 2 - 1));
+  else
+    a = nb;
+  str[0] = (a >> 8u) & 255u;
   str[1] = (a & 255u);
-  printf("[%#x ", str[2]);
+  /*
+  printf("[%#x ", str[0]);
   printf("%#x] ", str[1]);
+  */
   write(fd, &str[0], sizeof(unsigned char));
   write(fd, &str[1], sizeof(unsigned char));
 }
@@ -48,11 +58,11 @@ void			write_operation(t_operation *op, int fd)
 {
   size_t		i;
 
-  printf("%#x ", (char)op->op_num);
+  printf("[%#x] ", (char)op->op_num);
   write(fd, &op->op_num, 1);
   if (write_instruction_parameters(op->op_num))
     {
-      printf("%#x ", (char)op->param_type);
+      printf("[%#x] ", (char)op->param_type);
       write(fd, &op->param_type, 1);
     }
   i = 0;
@@ -79,10 +89,11 @@ void			write_program(t_program *program)
 
   if (program->is_valid)
     {
-      printf("Writing program\n");
       fd = open_file(get_program_name(program->file_name));
       if (fd > 0)
 	{
+	  set_program_magic(program);
+	  set_program_size(program);
 	  write(fd, &program->header, sizeof(t_header));
 	  op = program->op;
 	  while (op)

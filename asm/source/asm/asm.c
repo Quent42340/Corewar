@@ -5,20 +5,13 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:13:52 2016 Benjamin Grange
-** Last update Fri Mar 25 18:00:04 2016 Benjamin Grange
+** Last update Sat Mar 26 20:11:29 2016 Benjamin Grange
 */
 
 #include "asm.h"
 #include "lexer.h"
 #include "parser.h"
 #include "compiler.h"
-
-void			print_comiling_message(char *path)
-{
-  my_putstr("Compiling file [");
-  my_putstr(path);
-  my_putstr("]\n");
-}
 
 void			compile_file(char *path)
 {
@@ -29,7 +22,6 @@ void			compile_file(char *path)
 
   token_list = NULL;
   lexer_result = false;
-  print_comiling_message(path);
   file = program_file_create(path);
   if (file.content)
     {
@@ -38,5 +30,4 @@ void			compile_file(char *path)
       write_program(&program);
       xfree(file.content);
     }
-  my_putstr("Compilation done !\n");
 }

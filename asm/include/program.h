@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Mar 21 19:45:41 2016 Benjamin Grange
-** Last update Sat Mar 26 16:59:42 2016 Benjamin Grange
+** Last update Sat Mar 26 20:59:39 2016 Benjamin Grange
 */
 
 #ifndef PROGRAM_H_
@@ -44,5 +44,8 @@ typedef struct			s_program
 }				t_program;
 
 int				get_pc(t_program *);
+int				get_prog_size(t_program *);
+void				set_program_magic(t_program *program);
+void				set_program_size(t_program *program);
 
 #endif /* !PROGRAM_H_ */

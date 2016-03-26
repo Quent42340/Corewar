@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 15:59:53 2016 Benjamin Grange
-** Last update Sat Mar 26 17:15:07 2016 Benjamin Grange
+** Last update Sat Mar 26 21:01:32 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -54,4 +54,35 @@ int			open_file(char *name)
     }
   xfree(name);
   return (fd);
+}
+
+void			set_program_magic(t_program *program)
+{
+  int			nb;
+  unsigned int		a;
+  unsigned char		s[4];
+
+  nb = COREWAR_EXEC_MAGIC;
+  a = (nb + (nb < 0)) * ((nb > 0) * 2 - 1);
+  s[0] = (nb < 0) * 128u | (a >> 24u);
+  s[1] = (a >> 16u) & 255u;
+  s[2] = (a >> 8u) & 255u;
+  s[3] = (a & 255u);
+  program->header.magic = (s[3] << 24) + (s[2] << 16) + (s[1] << 8) + s[0];
+}
+
+void			set_program_size(t_program *program)
+{
+  int			nb;
+  unsigned int		a;
+  unsigned char		s[4];
+
+  nb = get_prog_size(program);
+  a = (nb + (nb < 0)) * ((nb > 0) * 2 - 1);
+  s[0] = (nb < 0) * 128u | (a >> 24u);
+  s[1] = (a >> 16u) & 255u;
+  s[2] = (a >> 8u) & 255u;
+  s[3] = (a & 255u);
+  program->header.prog_size = (s[3] << 24) + (s[2] << 16) + (s[1] << 8) + s[0];
+
 }

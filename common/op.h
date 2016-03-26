@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Feb 29 23:37:53 2016 Benjamin Grange
-** Last update Fri Mar 25 21:42:55 2016 Benjamin Grange
+** Last update Sat Mar 26 21:32:07 2016 Benjamin Grange
 */
 
 #ifndef _OP_H_
@@ -13,7 +13,7 @@
 
 # define MEM_SIZE		(6 * 1024)
 # define IDX_MOD		512   /* modulo de l'index < */
-# define MAX_ARGS_NUMBER	4     /* this may not be changed 2^*IND_SIZE */
+# define MAX_ARGS_NUMBER	4   /* this may not be changed 2^*IND_SIZE */
 
 # define COMMENT_CHAR		'#'
 # define LABEL_CHAR		':'
@@ -76,8 +76,8 @@ extern t_op			op_tab[];
 typedef struct			s_header
 {
    int				magic;
-   int				prog_size;
    char				prog_name[PROG_NAME_LENGTH + 1];
+   int				prog_size;
    char				comment[COMMENT_LENGTH + 1];
 }				t_header;
 

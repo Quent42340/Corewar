@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 22:26:50 2016 Benjamin Grange
-** Last update Thu Mar 24 14:18:23 2016 Benjamin Grange
+** Last update Sat Mar 26 21:25:55 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -25,7 +25,7 @@ static char		*read_file_content(int fd)
 	return (NULL);
       read_output = read(fd, content + length, 4096);
       if (read_output < 0)
-	return (NULL);
+	return (print_error_n(RED"Can't read. Is it a regular file ?\n"WHITE));
       length += read_output;
       content[length] = '\0';
       if (my_strlen(content) != length)
@@ -53,9 +53,9 @@ static char		*open_and_read_file_content(char *path)
     }
   else
     {
-      my_puterror("File \"");
+      my_puterror(RED"File \"");
       my_puterror(path);
-      my_puterror("\" is not accessible.\n");
+      my_puterror("\" is not accessible.\n"WHITE);
     }
   return (content);
 }
