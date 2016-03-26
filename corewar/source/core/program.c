@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sat Mar 26 12:43:36 2016 Jakob Kellendonk
+** Last update Sat Mar 26 14:03:33 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -25,7 +25,7 @@ t_err		set_address(t_application *application, t_program *program,
       /* FIXME: WTF SHOULD I DO ? */
     }
   i = 0;
-  while (application->programs[i] != program)
+  while (application->programs + i != program)
     {
       if (((application->programs[i].processes[0].pc - list->address)
 	   % MEM_SIZE + MEM_SIZE) % MEM_SIZE < program->info.prog_size
@@ -42,16 +42,14 @@ t_err		read_until(void *target, int fd, int size)
 {
   int		r;
   int		total;
-  int		i;
 
   total = 0;
-  while ((r = read(fd, target + total, size - total)) > 0)
+  while ((r = read(fd, (char *)target + total, size - total)) > 0)
     total = total + r;
   if (r == 0)
     return (ERROR_NOT_EXECUTABLE);
   if (r == -1)
     return (ERROR_FILE_NOT_ACCESSIBLE);
-  i = 0;
   return (0);
 }
 
@@ -61,17 +59,17 @@ t_err		put_program_in_vm(t_application *application,
 {
   t_err		error;
 
-  if (list->address + program->info->prog_size > MEM_SIZE)
+  if (list->address + program->info.prog_size > MEM_SIZE)
     {
-      if (error = read_until(vm->memory + list->address, fd,
-			     MEM_SIZE - list->address)
-	  || error = read_until(vm->memory, fd, list->address
-				+ program->info->prog_size - MEM_SIZE))
-	reutnr (error);
+      if ((error = read_until(application->memory + list->address, fd,
+			     MEM_SIZE - list->address))
+	  || ((error = read_until(application->memory, fd, list->address
+				  + program->info.prog_size - MEM_SIZE))))
+	return (error);
       return (0);
     }
-  return (read_until(vm->memory + list->address, fd,
-		     program->info->prog_size));
+  return (read_until(application->memory + list->address, fd,
+		     program->info.prog_size));
 }
     
 t_err		add_process(t_program *program, t_info_list *list)
@@ -107,7 +105,11 @@ t_err		program_init(t_program *program, t_application *app,
   my_memset(program->live, 0, 4);
   program->live[3] = list->live_code;
   program->process_amount = 1;
-  if ((error == add_process(program, list)) || (error = put_program_in_vm(app, program, fd)))
+  program->did_live = 0;
+  program->last_live_cycle = 0;
+  program->is_alive = 1;
+  if ((error = add_process(program, list))
+      || (error = put_program_in_vm(app, program, list, fd)))
     return (error);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:27:26 2016 Flora Huot
-** Last update Fri Mar 25 18:07:42 2016 Jakob Kellendonk
+** Last update Sat Mar 26 13:50:01 2016 Jakob Kellendonk
 */
 
 #include "instructions.h"
@@ -18,11 +18,15 @@ t_err	instruction_live(t_application *app, t_process *proc)
   i = 0;
   while (i < app->program_amount)
     {
-      app->programs[i].did_live = app->programs[i].did_live
-	|| (app->programs[i].live[0] == proc->cmd[0]
-	    && app->programs[i].live[1] == proc->cmd[1]
-	    && app->programs[i].live[2] == proc->cmd[2]
-	    && app->programs[i].live[3] == proc->cmd[3]);
+      if (app->programs[i].live[0] == proc->cmd[0]
+	  && app->programs[i].live[1] == proc->cmd[1]
+	  && app->programs[i].live[2] == proc->cmd[2]
+	  && app->programs[i].live[3] == proc->cmd[3])
+	{
+	  app->programs[i].did_live = 1;
+	  app->programs[i].last_live_cycle = app->cycle;
+	  /* FIXME Flora: afficher le bon message */
+	}
       i = i + 1;
     }
   app->live_count = app->live_count + 1;

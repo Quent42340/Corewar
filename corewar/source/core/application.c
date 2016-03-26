@@ -5,12 +5,13 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Fri Mar 25 19:31:08 2016 Jakob Kellendonk
+** Last update Sat Mar 26 14:04:02 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
 #include "application.h"
 #include "run.h"
+#include "my_mem.h"
 
 t_err		application_init(t_application *app, t_args *args)
 {
@@ -19,13 +20,14 @@ t_err		application_init(t_application *app, t_args *args)
   t_info_list	*list;
 
   app->constants = args->constants;
+  app->last_limit_hit = 0;
   app->cycle_to_die = args->cycle_to_die;
   app->programs = malloc(sizeof(t_program) * args->program_amount);
   if (app->programs == NULL)
     return (print_error(ERROR_MALLOC_FAILED));
   app->program_amount = args->program_amount;
   app->live_count = 0;
-  memset(app->memory, 0, MEM_SIZE);
+  my_memset(app->memory, 0, MEM_SIZE);
   i = 0;
   list = args->program_list;
   while (i < app->program_amount)

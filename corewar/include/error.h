@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Wed Mar 23 11:17:26 2016 Flora Huot
-** Last update Sat Mar 26 12:07:02 2016 Jakob Kellendonk
+** Last update Sat Mar 26 13:46:38 2016 Jakob Kellendonk
 */
 
 #ifndef ERROR_H_
@@ -26,7 +26,7 @@ typedef enum				e_err
   ERROR_NOT_EXECUTABLE			= 7,
   ERROR_FILE_NOT_ACCESSIBLE		= 8,
   ERROR_TOO_MANY_PROGRAMS		= 9,
-  ERROR_OVERLAP				= 10
+  ERROR_OVERLAP				= 10 /* FIXME Flora : il manque le message correspondant */
 }					t_err;
 
 void	fill_error_messages(char *messages[ERROR_COUNT]);

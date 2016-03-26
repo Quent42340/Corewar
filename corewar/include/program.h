@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:14 2016 Quentin Bazin
-** Last update Fri Mar 25 15:03:39 2016 Jakob Kellendonk
+** Last update Sat Mar 26 13:49:34 2016 Jakob Kellendonk
 */
 
 #ifndef PROGRAM_H_
@@ -38,6 +38,8 @@ typedef struct		s_program
   t_process		*processes;
   int			process_amount;
   int			did_live;
+  int			last_live_cycle;
+  int			is_alive;
 }			t_program;
 
 t_err	add_process(t_program *program, t_info_list *list);

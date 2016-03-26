@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Fri Mar 25 18:06:16 2016 Jakob Kellendonk
+** Last update Sat Mar 26 14:09:58 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -71,22 +71,55 @@ t_err	update_process(t_application *application, t_process *process)
   return (0);
 }
 
+t_err	remove_dead(t_application *app)
+{
+  int	i;
+  int	alive;
+  int	last_live;
+
+  last_live = 0;
+  alive = 0;
+  i = -1;
+  while (++i < app->program_amount)
+    {
+      if (app->programs[i].is_alive && !app->programs[i].did_live)
+	app->programs[i].is_alive = 0;
+      app->programs[i].did_live = 0;
+      alive = alive + app->programs[i].is_alive;
+      if (last_live < app->programs[i].last_live_cycle)
+	last_live = app->programs[i].last_live_cycle;
+    }
+  i = -1;
+  if (alive <= 1)
+    while (++i < app->program_amount)
+      if (last_live == app->programs[i].last_live_cycle)
+	/* FIXME Flora : dire que ce programme a gagné! GG! (ignore le code crade please)*/;
+  app->last_limit_hit = app->cycle;
+  return (ERROR_UNKNOWN * (alive <= 1));
+}
+
 t_err	tick(t_application *application)
 {
   int	i;
   int	j;
   t_err	err;
 
+  if (application->cycle - application->last_limit_hit
+      <= application->cycle_to_die && (err = remove_dead(application)))
+    return (err);
   i = 0;
   while (i < application->program_amount)
     {
-      j = 0;
-      while (j < application->programs[i].process_amount)
+      if (application->programs[i].is_alive)
 	{
-	  if ((err = update_process(application,
-				    application->programs[i].processes + j)))
-	    return (err);
-	  j = j + 1;
+	  j = 0;
+	  while (j < application->programs[i].process_amount)
+	    {
+	      if ((err = update_process(application,
+					application->programs[i].processes + j)))
+		return (err);
+	      j = j + 1;
+	    }
 	}
       i = i + 1;
     }
