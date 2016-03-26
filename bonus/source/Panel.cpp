@@ -107,6 +107,7 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 	m_modelMatrix.setToIdentity();
 	m_modelMatrix.translate(m_x * (width + height), 0.0f, m_y * (depth + height));
 	m_modelMatrix.translate(width / 2, height / 2, depth / 2);
+	
 	m_modelMatrix.rotate(2, 0, 0, 1);
 	m_modelMatrix.translate(-width / 2, -height / 2, -depth / 2);
 	m_modelMatrix.scale(1.0f, m_scale, 1.0f);

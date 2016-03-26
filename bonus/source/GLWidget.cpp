@@ -55,7 +55,8 @@ void GLWidget::initializeGL() {
 
 void GLWidget::process() {
 	m_clock.update([&] {
-		m_camera.update();
+		// m_camera.update();
+		m_camera.updateMovement();
 	});
 	
 	m_clock.draw([&] {

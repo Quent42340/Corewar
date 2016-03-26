@@ -23,8 +23,7 @@ class Camera {
 		Camera();
 		
 		void update();
-		
-		void reactToMusic(float n);
+		void updateMovement();
 		
 		float pointTargetedX() const { return m_pos.x() + cos(m_angleH * M_PI / 180.0f) * cos(m_angleV * M_PI / 180.0f); }
 		float pointTargetedY() const { return m_pos.y() + sin(m_angleV * M_PI / 180.0f); }

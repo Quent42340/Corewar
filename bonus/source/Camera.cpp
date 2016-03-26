@@ -13,6 +13,7 @@
  */
 #include "Camera.hpp"
 #include "Keyboard.hpp"
+#include "Panel.hpp"
 
 Camera::Camera() {
 	m_viewMatrix.lookAt(m_pos,
@@ -62,8 +63,23 @@ void Camera::update() {
 		
 		m_viewMatrix.setToIdentity();
 		m_viewMatrix.lookAt(m_pos,
-							QVector3D(pointTargetedX(), pointTargetedY(), pointTargetedZ()),
-							QVector3D(0, 1, 0));
+		                    QVector3D(pointTargetedX(), pointTargetedY(), pointTargetedZ()),
+		                    QVector3D(0, 1, 0));
 	}
+}
+
+void Camera::updateMovement() {
+	float boardWidth = (Panel::width + Panel::height) * 32 - Panel::height;
+	float boardDepth = (Panel::depth + Panel::height) * 25 - Panel::height;
+	
+	m_angleH += 0.15;
+	
+	m_pos = QVector3D(boardWidth * 1.2 * cos(m_angleH * M_PI / 180.0f) + boardWidth / 2, m_pos.y(),
+	                  boardDepth * 1.2 * sin(m_angleH * M_PI / 180.0f) + boardWidth / 2);
+	
+	m_viewMatrix.setToIdentity();
+	m_viewMatrix.lookAt(m_pos,
+	        QVector3D(boardWidth / 2, 0, boardDepth / 2),
+	        QVector3D(0, 1, 0));
 }
 
