@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:50:32 2016 Jakob Kellendonk
-** Last update Sat Mar 26 18:17:13 2016 Jakob Kellendonk
+** Last update Sat Mar 26 19:44:35 2016 Jakob Kellendonk
 */
 
 int	char_to_int(unsigned char *src)
@@ -20,8 +20,8 @@ int	char_to_int(unsigned char *src)
 int	char_to_short(unsigned char *src)
 {
   return (((src[0] >> 7) * -2 + 1)
-	  * (((src[0] & 127) << 24)
-	     + (src[1] << 8) + (src[0] >> 7)));
+	  * (((src[0] & 127) << 8)
+	     + src[1] + (src[0] >> 7)));
 }
 
 void		int_to_char(int nb, unsigned char *str)
