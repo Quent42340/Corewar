@@ -11,6 +11,7 @@
  *
  * =====================================================================================
  */
+#include <QCoreApplication>
 #include <QKeyEvent>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -55,7 +56,7 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	
 	// ---------------------------------------------------------------------------------------
 	
-	player.setMedia(QUrl::fromLocalFile("/home/bazin_q/rendu/CPE/CPE_2015_corewar/bonus/resources/audio/music.mp3"));
+	player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/music.mp3"));
 	
 	probe.setSource(&player);
 	connect(&probe, SIGNAL(audioBufferProbed(QAudioBuffer)), m_widget, SLOT(processAudioBuffer(QAudioBuffer)));
