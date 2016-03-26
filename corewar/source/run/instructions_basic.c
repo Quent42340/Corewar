@@ -25,7 +25,6 @@ t_err	instruction_live(t_application *app, t_process *proc)
 	{
 	  app->programs[i].did_live = 1;
 	  app->programs[i].last_live_cycle = app->cycle;
-	  /* FIXME Flora: afficher le bon message */
 	  message_alive(&app->programs[i], i);
 	}
       i = i + 1;

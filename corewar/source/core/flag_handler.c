@@ -40,7 +40,7 @@ t_err	set_default_values(t_args *args)
 t_err	validate_args_state(t_args *args)
 {
   if (args->program_amount < 2 || args->program_amount > 4)
-    return (print_error(ERROR_TOO_MANY_PROGRAMS));
+    return (print_error(ERROR_WRONG_PROGRAM_AMOUNT));
   if (args->program_list->live_code != -1 || args->program_list->address != -1)
     {
       my_putstr_out("Error: specified program's ", 2);

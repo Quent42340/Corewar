@@ -24,7 +24,8 @@ void	fill_error_messages(char *messages[ERROR_COUNT])
     " parameter for: %s";
   messages[6] = "%s is not a corewar executable";
   messages[7] = "%s is not accessible";
-  messages[8] = "Too many programs";
+  messages[8] = "Corewar requires between 2 and 4 programs";
+  messages[9] = "Program overlap detected";
 }
 
 void	print_usage(char *program_name)

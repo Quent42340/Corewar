@@ -12,7 +12,7 @@
 # define ERROR_H_
 
 /* Ne pas oublier d'augmenter le compteur à chaque ajout */
-# define ERROR_COUNT 9
+# define ERROR_COUNT 10
 
 typedef enum				e_err
 {
@@ -25,8 +25,8 @@ typedef enum				e_err
   ERROR_INTEGER_EXPECTED		= 6,
   ERROR_NOT_EXECUTABLE			= 7,
   ERROR_FILE_NOT_ACCESSIBLE		= 8,
-  ERROR_TOO_MANY_PROGRAMS		= 9,
-  ERROR_OVERLAP				= 10 /* FIXME Flora : il manque le message correspondant */
+  ERROR_WRONG_PROGRAM_AMOUNT		= 9,
+  ERROR_OVERLAP				= 10
 }					t_err;
 
 void	fill_error_messages(char *messages[ERROR_COUNT]);
