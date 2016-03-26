@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Fri Mar 25 15:42:50 2016 Jakob Kellendonk
+** Last update Fri Mar 25 19:31:08 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -25,6 +25,7 @@ t_err		application_init(t_application *app, t_args *args)
     return (print_error(ERROR_MALLOC_FAILED));
   app->program_amount = args->program_amount;
   app->live_count = 0;
+  memset(app->memory, 0, MEM_SIZE);
   i = 0;
   list = args->program_list;
   while (i < app->program_amount)

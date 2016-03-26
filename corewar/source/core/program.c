@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Fri Mar 25 17:25:15 2016 Jakob Kellendonk
+** Last update Sat Mar 26 12:43:36 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -15,6 +15,65 @@
 #include "my_mem.h"
 #include "read_helper.h"
 
+t_err		set_address(t_application *application, t_program *program,
+			    t_info_list *list)
+{
+  int		i;
+
+  if (list->address == -1)
+    {
+      /* FIXME: WTF SHOULD I DO ? */
+    }
+  i = 0;
+  while (application->programs[i] != program)
+    {
+      if (((application->programs[i].processes[0].pc - list->address)
+	   % MEM_SIZE + MEM_SIZE) % MEM_SIZE < program->info.prog_size
+	  || ((list->address - application->programs[i].processes[0].pc)
+	      + MEM_SIZE) % MEM_SIZE
+	  < application->programs[i].info.prog_size)
+	return (ERROR_OVERLAP);
+      i = i + 1;
+    }
+  return (0);
+}
+
+t_err		read_until(void *target, int fd, int size)
+{
+  int		r;
+  int		total;
+  int		i;
+
+  total = 0;
+  while ((r = read(fd, target + total, size - total)) > 0)
+    total = total + r;
+  if (r == 0)
+    return (ERROR_NOT_EXECUTABLE);
+  if (r == -1)
+    return (ERROR_FILE_NOT_ACCESSIBLE);
+  i = 0;
+  return (0);
+}
+
+t_err		put_program_in_vm(t_application *application,
+				  t_program *program,
+				  t_info_list *list, int fd)
+{
+  t_err		error;
+
+  if (list->address + program->info->prog_size > MEM_SIZE)
+    {
+      if (error = read_until(vm->memory + list->address, fd,
+			     MEM_SIZE - list->address)
+	  || error = read_until(vm->memory, fd, list->address
+				+ program->info->prog_size - MEM_SIZE))
+	reutnr (error);
+      return (0);
+    }
+  return (read_until(vm->memory + list->address, fd,
+		     program->info->prog_size));
+}
+    
 t_err		add_process(t_program *program, t_info_list *list)
 {
   if ((program->processes = malloc(sizeof(t_process))) == NULL)
@@ -48,5 +107,7 @@ t_err		program_init(t_program *program, t_application *app,
   my_memset(program->live, 0, 4);
   program->live[3] = list->live_code;
   program->process_amount = 1;
-  return (add_process(program, list));
+  if ((error == add_process(program, list)) || (error = put_program_in_vm(app, program, fd)))
+    return (error);
+  return (0);
 }

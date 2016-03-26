@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Wed Mar 23 11:17:26 2016 Flora Huot
-** Last update Wed Mar 23 11:17:26 2016 Flora Huot
+** Last update Sat Mar 26 12:07:02 2016 Jakob Kellendonk
 */
 
 #ifndef ERROR_H_
@@ -25,7 +25,8 @@ typedef enum				e_err
   ERROR_INTEGER_EXPECTED		= 6,
   ERROR_NOT_EXECUTABLE			= 7,
   ERROR_FILE_NOT_ACCESSIBLE		= 8,
-  ERROR_TOO_MANY_PROGRAMS		= 9
+  ERROR_TOO_MANY_PROGRAMS		= 9,
+  ERROR_OVERLAP				= 10
 }					t_err;
 
 void	fill_error_messages(char *messages[ERROR_COUNT]);
