@@ -57,10 +57,29 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 #---------------------------------------------------------------------------------
 # Source files
 #---------------------------------------------------------------------------------
-CFILES			=	$(sort $(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c))))
-CPPFILES		=	$(sort $(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp))))
-HFILES			=	$(sort $(foreach dir,$(INCLUDES),$(notdir $(wildcard $(dir)/*.h))))
-HPPFILES		=	$(sort $(foreach dir,$(INCLUDES),$(notdir $(wildcard $(dir)/*.hpp))))
+CFILES			=	
+
+CPPFILES		=	AppClock.cpp \
+					Camera.cpp \
+					Color.cpp \
+					CorewarRenderer.cpp \
+					GLWidget.cpp \
+					Keyboard.cpp \
+					MainWindow.cpp \
+					Panel.cpp \
+					PlayerWidget.cpp \
+					main.cpp
+
+HPPFILES		=	AppClock.hpp \
+					Camera.hpp \
+					Color.hpp \
+					CorewarRenderer.hpp \
+					GLWidget.hpp \
+					IntTypes.hpp \
+					Keyboard.hpp \
+					MainWindow.hpp \
+					Panel.hpp \
+					PlayerWidget.hpp
 
 export OUTPUT	=	$(CURDIR)/$(TARGET)
 
@@ -68,7 +87,7 @@ export VPATH	=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 					$(foreach dir,$(INCLUDES),$(CURDIR)/$(dir))
 
 export OFILES	=	$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) \
-					$(HPPFILES:.hpp=.moc.o) $(HFILES:.h=.moc.o)
+					$(HPPFILES:.hpp=.moc.o)
 
 export INCLUDE	=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir))
 
