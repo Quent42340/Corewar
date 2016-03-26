@@ -95,6 +95,7 @@ t_err	remove_dead(t_application *app)
   i = -1;
   while (alive <= 1 && ++i < app->program_amount)
     if (last_live == app->programs[i].last_live_cycle)
+      message_win(&app->programs[i], i);
       /* FIXME Flora : dire que ce programme a gagné! GG! (ignore le code crade please)*/;
   app->last_limit_hit = app->cycle;
   return (ERROR_UNKNOWN * (alive <= 1));

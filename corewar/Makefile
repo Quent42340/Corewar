@@ -28,6 +28,7 @@ SOURCES		= source/core/args.c \
 			  source/run/instructions_fork.c \
 			  source/run/instructions_ld.c \
 			  source/run/instructions_st.c \
+			  source/run/messages.c \
 			  source/run/run.c \
 			  source/run/vm_copy.c \
 			  source/core/op.c
