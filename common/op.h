@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Feb 29 23:37:53 2016 Benjamin Grange
-** Last update Mon Mar 21 20:14:53 2016 Benjamin Grange
+** Last update Fri Mar 25 21:42:55 2016 Benjamin Grange
 */
 
 #ifndef _OP_H_
@@ -30,6 +30,7 @@
 */
 
 # define REG_NUMBER		16
+# define REG_SIZE		4
 
 typedef char			t_args_type;
 
@@ -61,8 +62,7 @@ extern t_op			op_tab[];
 */
 
 # define IND_SIZE		2
-# define REG_SIZE		4
-# define DIR_SIZE		REG_SIZE
+# define DIR_SIZE		REG_SIZE /* 4 */
 
 /*
 ** header

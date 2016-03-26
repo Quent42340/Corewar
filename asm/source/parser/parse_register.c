@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Thu Mar 24 16:27:22 2016 Benjamin Grange
-** Last update Thu Mar 24 23:33:56 2016 Benjamin Grange
+** Last update Fri Mar 25 19:49:30 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -14,6 +14,6 @@
 t_parseres			parse_register(t_token *token,
 					       t_operation *op)
 {
-  add_param_operation(op, T_REG, token->content.int_value);
+  add_param_to_operation(op, T_REG, token->content.int_value);
   return (get_instruction_result());
 }

@@ -4,54 +4,19 @@
 ** Made by Benjamin Grange
 ** Login   <grange_c@epitech.net>
 **
-** Started on  Fri Mar 25 00:12:27 2016 Benjamin Grange
-** Last update Fri Mar 25 03:32:12 2016 Benjamin Grange
+** Started on  Fri Mar 25 21:44:30 2016 Benjamin Grange
+** Last update Fri Mar 25 22:03:10 2016 Benjamin Grange
 */
 
-#include "compiler.h"
 #include "parser.h"
+#include "compiler.h"
 
-void				delete_label(t_parser *parser,
-					     t_token_list **token,
-					     t_token_list *prev)
+t_parseres		parse_label(t_parser *parser, t_token *token)
 {
-  t_token_list			*tmp;
-
-  tmp = (*token)->next;
-  if (prev != NULL)
-    prev->next = (*token)->next;
-  else
-    parser->tokenlist = (*token)->next;
-  (*token)->next = NULL;
-  free_token_list(*token);
-  *token = tmp;
-}
-
-t_bool				pre_compile_label_declaration(t_parser *parser)
-{
-  t_token_list			*token;
-  t_token_list			*prev;
-  size_t			address;
-
-  address = 0;
-  prev = NULL;
-  token = parser->tokenlist;
-  while (token)
+  if (!push_label(parser, token, get_pc(&parser->program)))
     {
-      if (token->token.type == TOKEN_TYPE_LABEL)
-	{
-	  if (!push_label(parser, &token->token, address))
-	    {
-	      parser->program.is_valid = false;
-	      return (false);
-	    }
-	  delete_label(parser, &token, prev);
-	  continue;
-	}
-      else
-	add_address(token, &address);
-      prev = token;
-      token = token->next;
+      parser->program.is_valid = false;
+      return (get_se_rest(token, "Label already declared."));
     }
-  return (true);
+  return (get_instruction_result());
 }

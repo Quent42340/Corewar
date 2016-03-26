@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Fri Mar 25 18:01:19 2016 Benjamin Grange
+## Last update Fri Mar 25 22:03:38 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -25,9 +25,10 @@ SOURCES		= source/main.c \
 		  source/basic/putstr.c \
 		  source/basic/str_adv.c \
 		  source/basic/strutil.c \
-		  source/compiler/compiler.c \
+		  source/compiler/instruction_helper.c \
+		  source/compiler/instruction.c \
 		  source/compiler/label.c \
-		  source/compiler/params.c \
+		  source/compiler/pc.c \
 		  source/compiler/program_config.c \
 		  source/compiler/writer_utils.c \
 		  source/compiler/writer.c \
@@ -56,8 +57,8 @@ SOURCES		= source/main.c \
 		  source/parser/parse_comment.c \
 		  source/parser/parse_config.c \
 		  source/parser/parse_direct.c \
+		  source/parser/parse_indirect.c \
 		  source/parser/parse_instruction.c \
-		  source/parser/parse_label_address.c \
 		  source/parser/parse_label.c \
 		  source/parser/parse_register.c \
 		  source/parser/parse_res.c \

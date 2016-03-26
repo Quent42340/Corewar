@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:58 2016 Benjamin Grange
-** Last update Fri Mar 25 15:41:10 2016 Benjamin Grange
+** Last update Fri Mar 25 22:42:47 2016 Benjamin Grange
 */
 
 #ifndef PARSER_H_
@@ -28,9 +28,17 @@ typedef struct		s_parseres
   t_syntax_error	syntax_error;
 }			t_parseres;
 
+typedef struct		s_labelr
+{
+  char			*name;
+  size_t		cur_pc;
+  int			type;
+  t_content		*content;
+}			t_labelr;
+
 typedef struct		s_label
 {
-  char			*content;
+  char			*name;
   size_t		address;
   struct s_label	*next;
 }			t_label;
@@ -38,6 +46,7 @@ typedef struct		s_label
 typedef struct		s_parser
 {
   t_bool		is_empty;
+  t_labelr		*labelr;
   t_label		*label;
   t_bool		name_defined;
   t_bool		name_actually_defined;
@@ -61,13 +70,12 @@ t_parseres		get_instruction_result(void);
 t_parseres		get_se_res(t_token_list *t, char *error);
 t_parseres		get_se_rest(t_token *t, char *error);
 t_parseres		get_whitespace_error(t_token *);
-void			add_address(t_token_list *token, size_t *address);
-t_bool			pre_compile_label_declaration(t_parser *parser);
 t_bool			verify_EOL(t_parser *parser);
 void			raise_final_warnings_errors(t_parser *parser);
 
 /* Parsing functions */
 
+t_parseres		parse_label(t_parser *, t_token *);
 t_parseres		parse_all_token(t_parser *, t_token *);
 t_bool			parse_whitespace(t_parser *);
 t_parseres		parse_config(t_parser *, t_token *token);
@@ -75,8 +83,9 @@ t_parseres		parse_instruction(t_parser *, t_token *);
 t_parseres		parse_arguments(t_parser *, t_token *,
 					t_operation *, t_args_type);
 t_parseres		parse_register(t_token *, t_operation *);
-t_parseres		parse_direct_value(t_parser *parser,
-					   t_token *token,
-					   t_operation *op);
+t_parseres		parse_direct_value(t_parser *, t_token *,
+					   t_operation *);
+t_parseres		parse_indirect_value(t_parser *, t_token *,
+					     t_operation *);
 
 #endif /* !PARSER_H_ */

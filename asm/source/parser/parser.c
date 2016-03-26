@@ -5,11 +5,10 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:29:49 2016 Benjamin Grange
-** Last update Fri Mar 25 15:42:11 2016 Benjamin Grange
+** Last update Fri Mar 25 21:56:19 2016 Benjamin Grange
 */
 
 #include "parser.h"
-#include "lexer.h" /* FIXME */
 
 void			create_parser(t_parser *parser,
 				      t_file_reader *fr,
@@ -38,7 +37,9 @@ t_bool			parse_current_token(t_parser *parser)
 	  print_syntax_error(parser->reader, &res.syntax_error, NULL);
 	  return (true);
 	}
-      return (verify_EOL(parser));
+      if (tkn->type != TOKEN_TYPE_LABEL)
+	return (verify_EOL(parser));
+      return (false);
     }
   return (false);
 }
@@ -50,14 +51,11 @@ t_program		parser(t_token_list *token_list,
   t_parser		parser;
   t_file_reader		file_reader;
 
-  my_putstr("Let's parse !\n");
   if (parse)
     {
       delete_all_comments(&token_list);
       file_reader = generate_file_reader(fr);
       create_parser(&parser, &file_reader, token_list);
-      if (!pre_compile_label_declaration(&parser))
-	return (parser.program);
       while (has_next_token(&parser) && parser.program.is_valid)
 	{
 	  parse_whitespace(&parser);
@@ -67,7 +65,6 @@ t_program		parser(t_token_list *token_list,
 	  parse_whitespace(&parser);
 	}
       raise_final_warnings_errors(&parser);
-      my_putstr("Done !\n");
     }
   free_token_list(token_list);
   return (parser.program);

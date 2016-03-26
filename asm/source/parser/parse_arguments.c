@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Mar 23 23:59:04 2016 Benjamin Grange
-** Last update Fri Mar 25 15:28:44 2016 Benjamin Grange
+** Last update Fri Mar 25 20:05:15 2016 Benjamin Grange
 */
 
 #include "parser.h"
@@ -22,9 +22,7 @@ t_parseres			parse_arguments(t_parser *parser,
     return (parse_direct_value(parser, token, op));
   else if ((t & T_IND) && (token->type == TOKEN_TYPE_INTEGER
 	    || token->type == TOKEN_TYPE_DIRECT_LABEL))
-    {
-
-    }
+    return (parse_indirect_value(parser, token, op));
   else
     return (get_se_rest(token, "Bad parameter type"));
   return (get_instruction_result());

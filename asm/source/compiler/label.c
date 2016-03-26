@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 03:31:44 2016 Benjamin Grange
-** Last update Fri Mar 25 17:44:32 2016 Benjamin Grange
+** Last update Fri Mar 25 22:02:15 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -18,7 +18,7 @@ t_label				*get_label_by_name(t_parser *parser,
   label = parser->label;
   while (label)
     {
-      if (my_strcmp(name, label->content))
+      if (my_strcmp(name, label->name))
 	return (label);
       label = label->next;
     }
@@ -37,20 +37,13 @@ t_bool				push_label(t_parser *parser,
       label = xmalloc(sizeof(t_label));
       if (!label)
 	return (false);
-      label->content = my_strdup(token->content_string);
-      if (!label->content)
+      label->name = my_strdup(token->content_string);
+      if (!label->name)
 	return (false);
       label->address = addr;
       label->next = parser->label;
       parser->label = label;
-      /* FIXME */
-      printf(YELLOW"Pushing label \"%s\" with value : %lu"WHITE"\n",
-	     label->content,
-	     addr);
       return (true);
     }
-  my_puterror(RED"Double declaration of label \"");
-  my_puterror(token->content_string);
-  my_puterror("\" !\n"WHITE);
   return (false);
 }

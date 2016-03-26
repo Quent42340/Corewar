@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 23:07:42 2016 Benjamin Grange
-** Last update Wed Mar  2 15:49:28 2016 Benjamin Grange
+** Last update Fri Mar 25 20:02:35 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -20,10 +20,6 @@ t_result		lex_operator(t_file_reader *reader)
   c = string_reader_next(reader);
   if (c == SEPARATOR_CHAR)
     return (create_result_from_op_token(reader, pos, OPERATOR_COMMA));
-  else if (c == '+')
-    return (create_result_from_op_token(reader, pos, OPERATOR_PLUS));
-  else if (c == '-')
-    return (create_result_from_op_token(reader, pos, OPERATOR_MINUS));
   else if (c == DIRECT_CHAR)
     return (create_result_from_op_token(reader, pos, OPERATOR_DIRECT));
   reader->cursor = pos;

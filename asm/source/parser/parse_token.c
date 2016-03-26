@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Wed Mar 23 01:16:54 2016 Benjamin Grange
-** Last update Wed Mar 23 23:19:52 2016 Benjamin Grange
+** Last update Fri Mar 25 21:47:16 2016 Benjamin Grange
 */
 
 #include "parser.h"
@@ -39,6 +39,7 @@ t_parseres			parse_all_token(t_parser *parser,
     func[i] = parse_unknown;
   func[TOKEN_TYPE_CONFIG] = parse_config;
   func[TOKEN_TYPE_INSTRUCTION] = parse_instruction;
+  func[TOKEN_TYPE_LABEL] = parse_label;
   res = func[token->type](parser, token);
   update_flags(parser);
   return (res);
