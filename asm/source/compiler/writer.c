@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 18:51:48 2016 Benjamin Grange
-** Last update Sat Mar 26 21:39:53 2016 Benjamin Grange
+** Last update Sat Mar 26 21:42:30 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -58,11 +58,11 @@ void			write_operation(t_operation *op, int fd)
 {
   size_t		i;
 
-  printf("[%#x] ", (char)op->op_num);
+  // printf("[%#x] ", (char)op->op_num);
   write(fd, &op->op_num, 1);
   if (write_instruction_parameters(op->op_num))
     {
-      printf("[%#x] ", (char)op->param_type);
+      // printf("[%#x] ", (char)op->param_type);
       write(fd, &op->param_type, 1);
     }
   i = 0;
@@ -70,7 +70,7 @@ void			write_operation(t_operation *op, int fd)
     {
       if (op->param_size[i] == 0)
 	{
-	  printf("[%#x] ", (char)op->param_content[i].reg);
+	//   printf("[%#x] ", (char)op->param_content[i].reg);
 	  write(fd, &op->param_content[i].reg, sizeof(char));
 	}
       else if (op->param_size[i] == 1 || op->param_size[i] == 2)
@@ -79,7 +79,7 @@ void			write_operation(t_operation *op, int fd)
 	write_int(fd, op->param_content[i].direct);
       i++;
     }
-  printf("\n");
+  // printf("\n");
 }
 
 void			write_program(t_program *program)
