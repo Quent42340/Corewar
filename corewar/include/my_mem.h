@@ -5,13 +5,13 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Wed Mar 23 11:09:07 2016 Flora Huot
-** Last update Fri Mar 25 18:04:54 2016 Jakob Kellendonk
+** Last update Tue Mar 29 18:05:43 2016 Jakob Kellendonk
 */
 
 #ifndef MY_MEM_H_
 # define MY_MEM_H_
 
-#include <my.h>
+# include <my.h>
 # include <unistd.h>
 
 # define WSIZE sizeof(unsigned int)

@@ -5,11 +5,34 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Sat Mar 26 23:35:06 2016 Jakob Kellendonk
-** Last update Mon Mar 28 14:46:14 2016 Jakob Kellendonk
+** Last update Sat Mar 26 23:35:06 2016 Jakob Kellendonk
 */
 
+#include <unistd.h>
 #include "application.h"
-#include "unistd.h"
+
+t_err	end_game(t_application *app)
+{
+  int	i;
+  int	last_live;
+
+  last_live = 0;
+  i = 0;
+  while (i < app->program_amount)
+    {
+      if (app->programs[i].last_live_cycle > last_live)
+	last_live = app->programs[i].last_live_cycle;
+      i = i + 1;
+    }
+  i = 0;
+  while (i < app->program_amount)
+    {
+      if (app->programs[i].last_live_cycle == last_live)
+	message_win(app->programs + i, i);
+      i = i + 1;
+    }
+  return (ERROR_UNKNOWN);
+}
 
 t_err	dump_vm(t_application *app)
 {
