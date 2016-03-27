@@ -5,15 +5,15 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Feb 29 23:37:53 2016 Benjamin Grange
-** Last update Sat Mar 26 21:32:07 2016 Benjamin Grange
+** Last update Sun Mar 27 16:40:59 2016 Benjamin Grange
 */
 
 #ifndef _OP_H_
 # define _OP_H_
 
 # define MEM_SIZE		(6 * 1024)
-# define IDX_MOD		512   /* modulo de l'index < */
-# define MAX_ARGS_NUMBER	4   /* this may not be changed 2^*IND_SIZE */
+# define IDX_MOD		512
+# define MAX_ARGS_NUMBER	4
 
 # define COMMENT_CHAR		'#'
 # define LABEL_CHAR		':'
@@ -25,25 +25,15 @@
 # define NAME_CMD_STRING	".name"
 # define COMMENT_CMD_STRING	".comment"
 
-/*
-** Registres
-*/
-
 # define REG_NUMBER		16
 # define REG_SIZE		4
 
 typedef char			t_args_type;
 
-# define T_REG			1       /* registre */
-# define T_DIR			2       /* directe  (ld  #1,r1  met 1 dans r1) */
-# define T_IND			4       /* indirecte toujours relatif
-                                   ( ld 1,r1 met ce qu'il y a l'adress (1+pc)
-                                   dans r1 (4 octecs )) */
-# define T_LAB			8       /* LABEL */
-
-/*
-** op_tab
-*/
+# define T_REG			1
+# define T_DIR			2
+# define T_IND			4
+# define T_LAB			8
 
 typedef struct			s_op
 {
@@ -57,16 +47,8 @@ typedef struct			s_op
 
 extern t_op			op_tab[];
 
-/*
-** size
-*/
-
 # define IND_SIZE		2
-# define DIR_SIZE		REG_SIZE /* 4 */
-
-/*
-** header
-*/
+# define DIR_SIZE		REG_SIZE
 
 # define PROG_NAME_LENGTH	128
 # define COMMENT_LENGTH		2048
@@ -80,10 +62,6 @@ typedef struct			s_header
    int				prog_size;
    char				comment[COMMENT_LENGTH + 1];
 }				t_header;
-
-/*
-** live
-*/
 
 # define CYCLE_TO_DIE		1536
 # define CYCLE_DELTA		5
