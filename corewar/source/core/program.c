@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sun Mar 27 22:54:46 2016 Jakob Kellendonk
+** Last update Sun Mar 27 23:22:41 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -57,7 +57,7 @@ t_err		put_program_in_vm(t_application *app,
 		      program->info.prog_size, list->file_name))
     return (error);
   else if (app->st_callback)
-    app->st_callback(app, program, 0, program->info.prog_size);
+    app->st_callback(app, program, list->address, program->info.prog_size);
   if (read(fd, &error, 1))
     return (print_error(ERROR_NOT_EXECUTABLE, list->file_name));
   return (0);
