@@ -54,11 +54,17 @@ void CorewarRenderer::memoryStored(int playerID, int index, int size) {
 	};
 	
 	for (int i = index ; i < index + size ; ++i) {
+		m_panels[i].setPlayerID(playerID);
 		m_panels[i].updateColor(colors[playerID]);
+		m_panels[i].setScale(1000);
 	}
 }
 
 void CorewarRenderer::playerDead(int playerID) {
-	(void)playerID;
+	for (Panel &panel : m_panels) {
+		if (playerID == panel.playerID()) {
+			panel.setScale(-1);
+		}
+	}
 }
 

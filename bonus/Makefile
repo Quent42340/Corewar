@@ -53,7 +53,8 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 #---------------------------------------------------------------------------------
 # Source files
 #---------------------------------------------------------------------------------
-CFILES			=	args.c \
+CFILES			=	address.c \
+					args.c \
 					application.c \
 					error.c \
 					flag_handler.c \

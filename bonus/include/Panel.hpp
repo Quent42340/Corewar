@@ -33,7 +33,10 @@ class Panel {
 		unsigned int x() const { return m_x; }
 		unsigned int y() const { return m_y; }
 		
-		void setScale(float scale) { m_scale = scale; }
+		int playerID() const { return m_playerID; }
+		
+		void setPlayerID(int playerID) { m_playerID = playerID; }
+		void setScale(float scale) { if (m_scale != -1) m_scale = scale; }
 		void setRandomColors(bool randomColors) { m_randomColors = randomColors; }
 		
 		// static constexpr GLfloat width = 25.0f / 35.0f;
@@ -53,6 +56,8 @@ class Panel {
 		Color m_color = Color::text;
 		
 		bool m_randomColors = false;
+		
+		int m_playerID = -1;
 };
 
 #endif // PANEL_HPP_
