@@ -31,7 +31,7 @@ LIBS		=	$(foreach lib,$(QT_LIBS),-lQt5$(lib)) -lGL -lmy_printf -lmy
 find_rec	=	$(shell find $(1) -type d)
 
 BUILD		=	build
-SOURCES		=	source external $(call find_rec,source) \
+SOURCES		=	source external $(call find_rec,source) ../common\
 				../corewar/source $(call find_rec,../corewar/source)
 INCLUDES	=	include external $(call find_rec,include) ../corewar/include \
 				../corewar/lib/libmy/include ../corewar/lib/libmy_printf/include

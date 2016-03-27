@@ -29,9 +29,7 @@ void Panel::init() {
 	m_vertexBuffer.allocate(4 * 6 * 3 * sizeof(GLfloat));
 	
 	updateVertices();
-	updateColor();
-	
-	m_modelMatrix.translate(m_x * (width + height), 0.0f, m_y * (depth + height));
+	updateColor(m_color);
 }
 
 void Panel::updateVertices() {
@@ -50,31 +48,22 @@ void Panel::updateVertices() {
 	m_vertexBuffer.write(0, points, 2 * 6 * 3 * sizeof(GLfloat));
 }
 
-void Panel::updateColor() {
+void Panel::updateColor(const Color &color) {
 	GLfloat offset = 0.2f;
 	
 	GLfloat colors[] = {
-		m_color.r - offset, m_color.g, m_color.b - offset,
-		m_color.r, m_color.g, m_color.b,
-		m_color.r, m_color.g, m_color.b,
-		m_color.r + offset, m_color.g + offset, m_color.b + offset,
+		color.r - offset, color.g, color.b - offset,
+		color.r, color.g, color.b,
+		color.r, color.g, color.b,
+		color.r + offset, color.g + offset, color.b + offset,
 		
-		m_color.r - offset, m_color.g - offset, m_color.b - offset,
-		m_color.r, m_color.g, m_color.b,
-		m_color.r, m_color.g, m_color.b,
-		m_color.r + offset, m_color.g + offset, m_color.b + offset,
-		
-		// 1.0f, 0.0f, 0.0f,
-		// 0.0f, 1.0f, 0.0f,
-		// 0.0f, 0.0f, 1.0f,
-		// 0.0f, 1.0f, 1.0f,
-		//
-		// 1.0f, 0.0f, 0.0f,
-		// 0.0f, 1.0f, 0.0f,
-		// 0.0f, 0.0f, 1.0f,
-		// 0.0f, 1.0f, 1.0f
+		color.r - offset, color.g - offset, color.b - offset,
+		color.r, color.g, color.b,
+		color.r, color.g, color.b,
+		color.r + offset, color.g + offset, color.b + offset,
 	};
 	
+	m_color = color;
 	m_vertexBuffer.write(2 * 6 * 3 * sizeof(GLfloat), colors, 2 * 6 * 3 * sizeof(GLfloat));
 }
 
@@ -107,23 +96,19 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 	};
 	
 	m_modelMatrix.setToIdentity();
-	m_modelMatrix.translate(m_x * (width + height), 0.0f, m_y * (depth + height));
-	
-	// m_modelMatrix.translate(width / 2, height / 2, depth / 2);
-	// m_modelMatrix.rotate(2, 0, 0, 1);
-	// m_modelMatrix.translate(-width / 2, -height / 2, -depth / 2);
-	
+	m_modelMatrix.translate(m_x * (width + 0.001), 0.0f, m_y * (depth + 0.001));
 	m_modelMatrix.scale(1.0f, m_scale, 1.0f);
 	
+	if (m_randomColors) {
+		Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};
+		
+		int n = rand() % 200;
+		if (n < 5) {
+			updateColor(colors[n]);
+		}
+	}
 	
 	m_vertexBuffer.bind();
-	
-	// Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};
-	// int n = rand() % 200;
-	// if (n < 5) {
-	// 	m_color = colors[n];
-	// 	updateColor();
-	// }
 	
 	shader.setUniformValue("u_modelMatrix", m_modelMatrix);
 	

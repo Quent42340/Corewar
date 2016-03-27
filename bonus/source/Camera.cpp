@@ -12,6 +12,7 @@
  * =====================================================================================
  */
 #include "Camera.hpp"
+#include "CorewarRenderer.hpp"
 #include "Keyboard.hpp"
 #include "Panel.hpp"
 
@@ -69,13 +70,13 @@ void Camera::update() {
 }
 
 void Camera::updateMovement() {
-	float boardWidth = (Panel::width + Panel::height) * 32 - Panel::height;
-	float boardDepth = (Panel::depth + Panel::height) * 25 - Panel::height;
+	float boardWidth = (Panel::width + 0.001) * CorewarRenderer::size - Panel::height;
+	float boardDepth = (Panel::depth + 0.001) * CorewarRenderer::size - Panel::height;
 	
 	m_angleH += 0.09;
 	
 	m_pos = QVector3D(boardWidth * 1.1 * cos(m_angleH * M_PI / 180.0f) + boardWidth / 2, m_pos.y(),
-	                  boardDepth * 1.1* sin(m_angleH * M_PI / 180.0f) + boardWidth / 2);
+	                  boardDepth * 1.1 * sin(m_angleH * M_PI / 180.0f) + boardWidth / 2);
 	
 	m_viewMatrix.setToIdentity();
 	m_viewMatrix.lookAt(m_pos,

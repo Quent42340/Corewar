@@ -15,8 +15,8 @@
 #include "CorewarRenderer.hpp"
 
 CorewarRenderer::CorewarRenderer() {
-	for (int x = 0 ; x < 32 ; ++x) {
-		for (int y = 0 ; y < 25 ; ++y) {
+	for (int y = 0 ; y < size ; ++y) {
+		for (int x = 0 ; x < size ; ++x) {
 			m_panels.emplace_back(x, y);
 		}
 	}
@@ -37,7 +37,7 @@ void CorewarRenderer::draw(QOpenGLShaderProgram &shader, Camera &camera) {
 
 void CorewarRenderer::reactToMusic(float n) {
 	for (Panel &panel : m_panels) {
-		float distanceFromCenter = sqrt(pow(16 - (int)panel.x(), 2) + pow(12.5 - (int)panel.y(), 2));
+		float distanceFromCenter = sqrt(pow(size / 2 - (int)panel.x(), 2) + pow(size / 2 - (int)panel.y(), 2));
 		m_maxDistance = (m_maxDistance > distanceFromCenter) ? m_maxDistance : distanceFromCenter;
 		
 		panel.setScale(1.0f + fabs(m_maxDistance - distanceFromCenter * n * 4));
@@ -54,8 +54,7 @@ void CorewarRenderer::memoryStored(int playerID, int index, int size) {
 	};
 	
 	for (int i = index ; i < index + size ; ++i) {
-		m_panels[i].setColor(colors[playerID]);
-		m_panels[i].updateColor();
+		m_panels[i].updateColor(colors[playerID]);
 	}
 }
 

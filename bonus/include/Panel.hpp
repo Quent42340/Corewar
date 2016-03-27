@@ -26,17 +26,18 @@ class Panel {
 		void init();
 		
 		void updateVertices();
-		void updateColor();
+		void updateColor(const Color &color);
 		
 		void draw(QOpenGLShaderProgram &shader);
 		
 		unsigned int x() const { return m_x; }
 		unsigned int y() const { return m_y; }
 		
-		void setColor(const Color &color) { m_color = color; }
 		void setScale(float scale) { m_scale = scale; }
+		void setRandomColors(bool randomColors) { m_randomColors = randomColors; }
 		
-		static constexpr GLfloat width = 25.0f / 35.0f;
+		// static constexpr GLfloat width = 25.0f / 35.0f;
+		static constexpr GLfloat width = 35.0f / 35.0f;
 		static constexpr GLfloat height = 10.0f / 35.0f;
 		static constexpr GLfloat depth = 35.0f / 35.0f;
 		
@@ -47,9 +48,11 @@ class Panel {
 		unsigned int m_x;
 		unsigned int m_y;
 		
-		Color m_color{Color::text};
-		
 		float m_scale = 1.0f;
+		
+		Color m_color = Color::text;
+		
+		bool m_randomColors = false;
 };
 
 #endif // PANEL_HPP_

@@ -16,6 +16,8 @@
 
 #include <array>
 
+#include "op.h"
+
 #include "Panel.hpp"
 
 class Camera;
@@ -32,6 +34,8 @@ class CorewarRenderer {
 		
 		void memoryStored(int playerID, int index, int size);
 		void playerDead(int playerID);
+		
+		static constexpr int size = sqrt(MEM_SIZE);
 		
 	private:
 		std::vector<Panel> m_panels;
