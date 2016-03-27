@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sun Mar 27 19:26:05 2016 Jakob Kellendonk
+** Last update Sun Mar 27 20:03:42 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -89,7 +89,7 @@ t_err		add_process(t_program *program, t_info_list *list)
   my_memset(program->processes[0].cmd, 0 , CMD_MAX_SIZE);
   my_memset(program->processes[0].registre[0], 0,
 	    sizeof(unsigned char) * REG_NUMBER * REG_SIZE);
-  my_memcpy(program->processes[0].registre, program->live, 4);
+  int_to_char(program->live, program->processes[0].registre[0]);
   return (0);
 }
 
@@ -108,8 +108,7 @@ t_err		program_init(t_program *program, t_application *app,
       || (error = read_char(fd, program->info.comment, COMMENT_LENGTH + 4,
 			    list->file_name)))
     return (error);
-  my_memset(program->live, 0, 4);
-  int_to_char(list->live_code, program->live);
+  program->live = list->live_code;
   program->process_amount = 1;
   program->did_live = 0;
   program->last_live_cycle = 0;

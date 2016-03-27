@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:27:26 2016 Flora Huot
-** Last update Sun Mar 27 18:55:08 2016 Jakob Kellendonk
+** Last update Sun Mar 27 20:04:20 2016 Jakob Kellendonk
 */
 
 #include "application.h"
@@ -21,10 +21,7 @@ t_err	instruction_live(t_application *app, t_process **proc)
   i = -1;
   while (++i < app->program_amount)
     {
-      if (app->programs[i].live[0] == (*proc)->cmd[1]
-	  && app->programs[i].live[1] == (*proc)->cmd[2]
-	  && app->programs[i].live[2] == (*proc)->cmd[3]
-	  && app->programs[i].live[3] == (*proc)->cmd[4])
+      if (app->programs[i].live == char_to_int((*proc)->cmd + 1))
 	{
 	  app->programs[i].did_live = 1;
 	  app->programs[i].last_live_cycle = app->cycle;
