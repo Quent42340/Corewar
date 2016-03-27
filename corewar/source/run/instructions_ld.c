@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:26:58 2016 Flora Huot
-** Last update Sun Mar 27 17:18:21 2016 Jakob Kellendonk
+** Last update Thu Mar 24 17:26:58 2016 Flora Huot
 */
 
 #include "application.h"
@@ -37,13 +37,12 @@ t_err		instruction_ldi(t_application *app, t_process **proc)
   fmt = (*proc)->cmd[1];
   buffs[1] = (*proc)->cmd + 2;
   buffs[0] = read[0];
-  buffs[1] = get_args(app, *proc, (fmt >> 6) & 3, buffs);
+  val = get_args_index(app, *proc, (fmt >> 6) & 3, buffs);
   buffs[0] = read[1];
-  buffs[1] = get_args(app, *proc, (fmt >> 6) & 3, buffs);
-  val = char_to_int(read[0]) + char_to_int(read[1]);
+  val = val + get_args_index(app, *proc, (fmt >> 6) & 3, buffs);
   vm_cpyfrom(app, (*proc)->pc + (val % IDX_MOD),
-	     (*proc)->registre[buffs[1][0]], 4);
-  (*proc)->carry = !char_to_int((*proc)->registre[buffs[1][0]]);
+	     (*proc)->registre[buffs[1][0] - 1], 4);
+  (*proc)->carry = !char_to_int((*proc)->registre[buffs[1][0] - 1]);
   buffs[1] = buffs[1] + 1;
   (*proc)->pc = ((*proc)->pc + buffs[1] - (*proc)->cmd) % MEM_SIZE;
   return (0);
@@ -81,13 +80,11 @@ t_err		instruction_lldi(t_application *app, t_process **proc)
   fmt = (*proc)->cmd[1];
   buffs[1] = (*proc)->cmd + 2;
   buffs[0] = read[0];
-  buffs[1] = get_args(app, *proc, (fmt >> 6) & 3, buffs);
+  val = get_args_index(app, *proc, (fmt >> 6) & 3, buffs);
   buffs[0] = read[1];
-  buffs[1] = get_args(app, *proc, (fmt >> 6) & 3, buffs);
-  val = char_to_int(read[0]) + char_to_int(read[1]);
-  vm_cpyfrom(app, (*proc)->pc + val,
-	     (*proc)->registre[buffs[1][0]], 4);
-  (*proc)->carry = !char_to_int((*proc)->registre[buffs[1][0]]);
+  val = val + get_args_index(app, *proc, (fmt >> 6) & 3, buffs);
+  vm_cpyfrom(app, (*proc)->pc + val, (*proc)->registre[buffs[1][0] - 1], 4);
+  (*proc)->carry = !char_to_int((*proc)->registre[buffs[1][0] - 1]);
   buffs[1] = buffs[1] + 1;
   (*proc)->pc = ((*proc)->pc + buffs[1] - (*proc)->cmd) % MEM_SIZE;
   return (0);
