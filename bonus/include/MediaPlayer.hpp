@@ -31,13 +31,18 @@ class MediaPlayer : public QObject {
 		MediaPlayer();
 		
 		const QAudioProbe &audioProbe() const { return m_audioProbe; }
+		const QString &currentMusic() const { return m_currentMusic; }
+		
+	signals:
+		void downloadProgress(qint64 read, qint64 total);
+		void downloadFinished();
 		
 	public slots:
 		void playYoutubeURL(const QString &videoID);
 		void downloadYoutubeFile();
 		
 		void loadFinished(bool ok);
-		void downloadFinished(QNetworkReply *reply);
+		void saveAndPlay(QNetworkReply *reply);
 		
 	private:
 		QMediaPlayer m_player{this, QMediaPlayer::StreamPlayback};
@@ -45,6 +50,9 @@ class MediaPlayer : public QObject {
 		
 		QNetworkAccessManager m_networkManager;
 		QWebPage m_page;
+		
+		QString m_currentMusic;
+		QString m_nextMusic;
 };
 
 #endif // MEDIAPLAYER_HPP_

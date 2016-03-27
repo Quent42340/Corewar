@@ -26,10 +26,10 @@ MediaPlayer::MediaPlayer() {
 	m_player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/song_of_storms.mp3"));
 	m_player.play();
 	
-	playYoutubeURL("M3xfGMrXvYc");
+	m_currentMusic = m_player.media().canonicalUrl().toString();
 	
 	connect(m_page.mainFrame(), SIGNAL(loadFinished(bool)), this, SLOT(loadFinished(bool)));
-	connect(&m_networkManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(downloadFinished(QNetworkReply *)));
+	connect(&m_networkManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(saveAndPlay(QNetworkReply *)));
 }
 
 void MediaPlayer::playYoutubeURL(const QString &videoID) {
@@ -42,25 +42,30 @@ void MediaPlayer::downloadYoutubeFile() {
 		return;
 	}
 	
+	// m_nextMusic = m_page.mainFrame()->
+	
 	QNetworkRequest request;
 	request.setUrl(m_page.mainFrame()->findFirstElement(".videohref").attribute("href"));
-	m_networkManager.get(request);
 	
-	qDebug() << m_page.mainFrame()->findFirstElement(".videohref").attribute("href");
-	qDebug() << m_page.mainFrame()->toHtml();
+	QNetworkReply *reply = m_networkManager.get(request);
+	connect(reply, SIGNAL(downloadProgress(qint64, qint64)), this, SIGNAL(downloadProgress(qint64, qint64)));
 }
 
 void MediaPlayer::loadFinished(bool ok) {
 	if (ok) {
+		m_currentMusic = m_nextMusic;
+		
 		m_page.mainFrame()->evaluateJavaScript("document.getElementsByClassName('buttonStartConversion')[0].click()");
 		
 		downloadYoutubeFile();
 	} else {
+		m_currentMusic = "";
+		
 		qCritical() << "Error: Failed to load webpage";
 	}
 }
 
-void MediaPlayer::downloadFinished(QNetworkReply *reply) {
+void MediaPlayer::saveAndPlay(QNetworkReply *reply) {
 	QFile file("/tmp/song.mp3");
 	if (!file.open(QIODevice::WriteOnly))
 		qCritical() << "Error: Unable to open /tmp/song.mp3";
@@ -70,5 +75,7 @@ void MediaPlayer::downloadFinished(QNetworkReply *reply) {
 	m_player.setMedia(QUrl::fromLocalFile("/tmp/song.mp3"));
 	m_player.setVolume(60);
 	m_player.play();
+	
+	emit downloadFinished();
 }
 

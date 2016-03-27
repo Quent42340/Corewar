@@ -35,10 +35,10 @@ class MainWindow : public QMainWindow {
 		static const unsigned int height = 1000;
 		
 	private:
-		GLWidget *m_widget;
-		SideBar m_sideBar;
-		
 		MediaPlayer m_mediaPlayer;
+		
+		GLWidget *m_widget;
+		SideBar m_sideBar{&m_mediaPlayer};
 		
 		QMap<int, bool> m_keys;
 };
