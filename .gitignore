@@ -11,3 +11,5 @@ corewar/corewar
 *.cor
 asm/test.sh
 asm/asm_reference
+bonus/build
+bonus/launcher
