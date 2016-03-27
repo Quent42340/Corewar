@@ -20,7 +20,7 @@ ifndef LEXER_DEBUG
   LEXER_DEBUG = 0
 endif
 
-CFLAGS		+= -g3 -Wall -Wextra -Wfatal-errors
+CFLAGS		+= -g3 -W -Wall -Wextra -Wfatal-errors
 CFLAGS		+= $(foreach inc_dir,$(INC_DIRS),-I$(inc_dir))
 
 LDFLAGS		+= $(foreach lib_dir,$(LIB_DIRS),-L$(lib_dir))

@@ -5,13 +5,14 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 22:24:22 2016 Jakob Kellendonk
-** Last update Thu Mar 24 22:34:48 2016 Jakob Kellendonk
+** Last update Sun Mar 27 16:41:49 2016 Jakob Kellendonk
 */
 
 #ifndef VM_COPY_H_
 # define VM_COPY_H_
 
 # include "my_mem.h"
+# include "application.h"
 
 unsigned char	*set_args(t_application *application, t_process *process,
 			  unsigned char format, unsigned char *buffs[2]);

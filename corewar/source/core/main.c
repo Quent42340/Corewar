@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:02:59 2016 Quentin Bazin
-** Last update Sat Mar 26 18:00:48 2016 Jakob Kellendonk
+** Last update Sun Mar 27 13:48:31 2016 Jakob Kellendonk
 */
 
 #include "application.h"
@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
     {
       args_free(&args);
       application_run(&app);
+      application_free(&app);
     }
-  application_free(&app);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Sat Mar 26 23:41:35 2016 Jakob Kellendonk
+** Last update Sun Mar 27 17:25:32 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -14,27 +14,38 @@
 int		get_cycle_amount(unsigned char *cmd)
 {
   int		i;
+  int		offset;
 
+  offset = 2;
   if (cmd[0] <= 0 || cmd[0] > 16)
     return (1);
   i = 0;
-  while (i < op_tab[cmd[0] - 1].nbr_args)
+  while ((cmd[0] != 1 && cmd[0] != 9 && cmd[0] != 12 && cmd[0] != 15) 
+	 && i < op_tab[cmd[0] - 1].nbr_args)
     {
-      if (!((cmd[1] >> (6 - 2 * i)) & 3) ||
-	  !(op_tab[cmd[0] - 1].type[i]
-	  & (((cmd[1] >> (6 - 2 * i)) == 1) * T_REG |
-	     ((cmd[1] >> (6 - 2 * i)) == 2) * T_DIR |
-	     ((cmd[1] >> (6 - 2 * i)) == 3) * T_IND)))
+      if ((!((cmd[1] >> (6 - 2 * i)) & 3)
+	   || !(op_tab[cmd[0] - 1].type[i]
+		& (((((cmd[1] >> (6 - 2 * i)) & 3) == 1) * T_REG
+		   | (((cmd[1] >> (6 - 2 * i)) & 3) == 2) * T_DIR
+		    | (((cmd[1] >> (6 - 2 * i)) & 3) == 3) * T_IND)))
+	   || (((cmd[1] >> (6 - 2 * i)) == 1)
+	       && (cmd[offset] > 16 || cmd[offset] < 1))))
 	return (1);
+      offset = offset + ((cmd[1] >> (6 - 2 * i)) == 1)
+	+ ((cmd[1] >> (6 - 2 * i)) == 2) * DIR_SIZE
+	+ ((cmd[1] >> (6 - 2 * i)) == 3) * IND_SIZE;
       i = i + 1;
     }
   return (op_tab[cmd[0] - 1].nbr_cycles);
 }
 
-t_err		execute(t_application *application, t_process *process)
+t_err		execute(t_application *application, t_process **process)
 {
   t_func	funcs[16];
 
+  write(1, "executing ", 10);
+  my_putstr_out(op_tab[(*process)->cmd[0] - 1].mnemonique, 1);
+  write(1, "\n", 1);
   funcs[0] = &instruction_live;
   funcs[1] = &instruction_ld;
   funcs[2] = &instruction_st;
@@ -51,7 +62,7 @@ t_err		execute(t_application *application, t_process *process)
   funcs[13] = &instruction_lldi;
   funcs[14] = &instruction_lfork;
   funcs[15] = &instruction_aff;
-  return (funcs[process->cmd[0] - 1](application, process));
+  return (funcs[(*process)->cmd[0] - 1](application, process));
 }
 
 t_err	update_process(t_application *application, t_process *process)
@@ -60,7 +71,7 @@ t_err	update_process(t_application *application, t_process *process)
 
   if (process->cycles_left == 1)
     {
-      if ((error = execute(application, process)))
+      if ((error = execute(application, &process)))
 	return (error);
     }
   else if (process->cycles_left == 0)

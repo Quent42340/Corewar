@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:14 2016 Quentin Bazin
-** Last update Sun Mar 27 03:29:44 2016 Jakob Kellendonk
+** Last update Sun Mar 27 13:30:02 2016 Jakob Kellendonk
 */
 
 #ifndef PROGRAM_H_
@@ -28,7 +28,7 @@ typedef struct		s_process
   int			carry;
   int			pc;
   struct s_program	*parent;
-  unsigned char		registre[REG_SIZE][REG_NUMBER];
+  unsigned char		registre[REG_NUMBER][REG_SIZE];
 }			t_process;
 
 typedef struct		s_program
