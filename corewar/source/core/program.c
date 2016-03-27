@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sun Mar 27 21:43:59 2016 Jakob Kellendonk
+** Last update Sun Mar 27 22:54:46 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -15,27 +15,45 @@
 #include "my_mem.h"
 #include "read_helper.h"
 
-t_err		set_address(t_application *application, t_program *program,
+t_err		address_check(t_application *app, t_program *program,
 			    t_info_list *list)
 {
   int		i;
 
-  if (list->address == -1)
-    {
-      /* FIXME: WTF SHOULD I DO ? */
-    }
   i = 0;
-  while (application->programs + i != program)
+  while (app->programs + i != program)
     {
-      if (((application->programs[i].processes[0].pc - list->address)
+      if (((app->programs[i].processes[0].pc - list->address)
 	   % MEM_SIZE + MEM_SIZE) % MEM_SIZE < program->info.prog_size
-	  || ((list->address - application->programs[i].processes[0].pc)
+	  || ((list->address - app->programs[i].processes[0].pc)
 	      + MEM_SIZE) % MEM_SIZE
-	  < application->programs[i].info.prog_size)
+	  < app->programs[i].info.prog_size)
 	return (print_error(ERROR_OVERLAP));
       i = i + 1;
     }
   return (0);
+}
+
+t_err		set_address(t_application *app, t_program *program,
+			    t_info_list *list)
+{
+  int		i;
+  t_info_list	*tmp;
+  int		d;
+
+  i = 0;
+  tmp = list;
+  while (tmp->address == -1 && tmp->file_name && (tmp = tmp->next))
+    i = i + 1;
+  list->address = 0;
+  if (i && program->index)
+    {
+      d = ((tmp->address == - 1) ? app->programs->processes->pc : tmp->address)
+	- app->programs[program->index - 1].processes->pc;
+      list->address = app->programs[program->index - 1].processes->pc
+	+ ((d <= 0) * MEM_SIZE + d) / (i + 1);
+    }
+  return (address_check(app, program, list));
 }
 
 t_err		read_until(unsigned char *target, int fd,
@@ -123,7 +141,8 @@ t_err		program_init(t_program *program, t_application *app,
   program->did_live = 0;
   program->last_live_cycle = 0;
   program->is_alive = 1;
-  if ((error = add_process(program, list))
+  if ((error = set_address(app, program, list))
+      || (error = add_process(program, list))
       || (error = put_program_in_vm(app, program, list, fd)))
     return (error);
   close(fd);
