@@ -32,6 +32,8 @@ class SideBar : public QWidget {
 		
 		void initMusicPlayerWidgets();
 		void initYoutubeWidgets();
+		void initLocalMusicWidgets();
+		void initSettingsWidgets();
 		void initPlayerWidgets();
 		
 	public slots:
@@ -48,7 +50,7 @@ class SideBar : public QWidget {
 		GLWidget *m_glWidget;
 		MediaPlayer *m_mediaPlayer;
 		
-		PlayerWidget *m_playerWidgets[4];
+		std::vector<PlayerWidget *> m_playerWidgets;
 };
 
 #endif // SIDEBAR_HPP_

@@ -22,15 +22,17 @@ extern "C" {
 }
 
 #include "MediaPlayer.hpp"
-#include "SideBar.hpp"
 
 class GLWidget;
+class SideBar;
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
 	
 	public:
 		MainWindow(t_application &app);
+		
+		void initSideBar();
 		
 		void keyPressEvent(QKeyEvent *event);
 		void keyReleaseEvent(QKeyEvent *event);

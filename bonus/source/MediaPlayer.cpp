@@ -24,17 +24,22 @@
 
 #include "MediaPlayer.hpp"
 
-MediaPlayer::MediaPlayer() {
+MediaPlayer::MediaPlayer(QWidget *parent) : QWidget(parent) {
 	m_audioProbe.setSource(&m_player);
-	// m_player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/hello.mp3"));
-	m_player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/song_of_storms.mp3"));
-	m_player.play();
-	
-	// playYoutubeURL("7eZIbmq5Jiw");
-	
-	m_currentMusic = m_player.media().canonicalUrl().toString();
 	
 	connect(m_page.mainFrame(), SIGNAL(loadFinished(bool)), this, SLOT(loadFinished(bool)));
+}
+
+void MediaPlayer::playLocalFile(const QString &localFilePath, bool relativePath) {
+	QString path;
+	if (relativePath)
+		path = QCoreApplication::applicationDirPath() + "/";
+	
+	m_player.setMedia(QUrl::fromLocalFile(path + localFilePath));
+	m_player.play();
+	
+	m_currentMusic = localFilePath;
+	emit musicChanged(localFilePath);
 }
 
 void MediaPlayer::playYoutubeURL(const QString &videoID) {

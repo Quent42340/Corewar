@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
 		args.st_callback = &MainWindow::handleStorage;
 		
 		if (!application_init(&my_app, &args)) {
+			window.initSideBar();
 			window.show();
 			
 			exit_code = app.exec();

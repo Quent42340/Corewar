@@ -60,16 +60,27 @@ void GLWidget::initializeGL() {
 	connect(&m_timer, SIGNAL(timeout()), this, SLOT(process()));
 }
 
+#include "MainWindow.hpp"
+
 void GLWidget::process() {
 	m_clock.update([&] {
-		tick(&m_app);
-		
-		for (int i = 0 ; i < m_app.program_amount ; ++i) {
-			emit programUpdated(i, m_app.programs[i].process_amount, 0);
+		for (int i = 0 ; m_isAppRunning && i < 2 ; ++i) {
+			m_isAppRunning = tick(&m_app) == 0;
+			
+			if (!m_isAppRunning) {
+				m_renderer->setKikooMode(true);
+				emit kikooModeStateUpdated(2);
+			}
 		}
 		
-		// m_camera.update();
-		m_camera.updateMovement();
+		for (int i = 0 ; m_isAppRunning && i < m_app.program_amount ; ++i) {
+			emit programUpdated(m_app.programs[i]);
+		}
+		
+		if (m_freeMovement)
+			m_camera.update();
+		else
+			m_camera.updateMovement();
 	});
 	
 	m_clock.draw([&] {

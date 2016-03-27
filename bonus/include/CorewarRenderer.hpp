@@ -16,13 +16,17 @@
 
 #include <array>
 
+#include <QObject>
+
 #include "op.h"
 
 #include "Panel.hpp"
 
 class Camera;
 
-class CorewarRenderer {
+class CorewarRenderer : public QObject {
+	Q_OBJECT
+	
 	public:
 		CorewarRenderer();
 		
@@ -36,6 +40,9 @@ class CorewarRenderer {
 		void playerDead(int playerID);
 		
 		static constexpr int size = sqrt(MEM_SIZE);
+		
+	public slots:
+		void setKikooMode(int checkBoxState);
 		
 	private:
 		std::vector<Panel> m_panels;

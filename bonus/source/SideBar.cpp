@@ -11,8 +11,11 @@
  *
  * =====================================================================================
  */
+#include <QCheckBox>
+#include <QFileDialog>
 #include <QFormLayout>
 
+#include "CorewarRenderer.hpp"
 #include "GLWidget.hpp"
 #include "MainWindow.hpp"
 #include "MediaPlayer.hpp"
@@ -29,9 +32,8 @@ SideBar::SideBar(MediaPlayer *mediaPlayer, GLWidget *glWidget, QWidget *parent) 
 	
 	initMusicPlayerWidgets();
 	initYoutubeWidgets();
-	initPlayerWidgets();
-	
-	m_layout->addStretch();
+	initLocalMusicWidgets();
+	initSettingsWidgets();
 	
 	connect(m_youtubeVideoButton, SIGNAL(pressed()), this, SLOT(downloadYoutubeMusic()));
 	connect(m_mediaPlayer, SIGNAL(downloadFinished()), this, SLOT(downloadFinished()));
@@ -42,7 +44,7 @@ void SideBar::initMusicPlayerWidgets() {
 	QGroupBox *musicBox = new QGroupBox("Now playing", this);
 	QHBoxLayout *layout = new QHBoxLayout(musicBox);
 	
-	QLabel *youtubeVideoNameLabel = new QLabel("", musicBox);
+	QLabel *youtubeVideoNameLabel = new QLabel(musicBox);
 	youtubeVideoNameLabel->setWordWrap(true);
 	
 	layout->addWidget(youtubeVideoNameLabel);
@@ -53,8 +55,9 @@ void SideBar::initMusicPlayerWidgets() {
 
 void SideBar::initYoutubeWidgets() {
 	QGroupBox *youtubeBox = new QGroupBox("YouTube", this);
-	m_youtubeVideoIDWidget = new QLineEdit("7eZIbmq5Jiw", youtubeBox);
 	m_youtubeVideoButton = new QPushButton("Download and play", youtubeBox);
+	
+	m_youtubeVideoIDWidget = new QLineEdit("7eZIbmq5Jiw", youtubeBox);
 	
 	m_downloadProgressBar = new QProgressBar(youtubeBox);
 	m_downloadProgressBar->setRange(0, 100);
@@ -68,11 +71,48 @@ void SideBar::initYoutubeWidgets() {
 	m_layout->addWidget(youtubeBox);
 }
 
+void SideBar::initLocalMusicWidgets() {
+	QGroupBox *localMusicBox = new QGroupBox("Local file", this);
+	QHBoxLayout *layout = new QHBoxLayout(localMusicBox);
+	QPushButton *browseButton = new QPushButton("Browse music...", localMusicBox);
+	
+	layout->addWidget(browseButton);
+	m_layout->addWidget(localMusicBox);
+	
+	connect(browseButton, &QPushButton::clicked, [&]() {
+		QString localFilePath = QFileDialog::getOpenFileName(this, "Open File", "", "Audio files (*.mp3)");
+		
+		if (!localFilePath.isEmpty())
+			m_mediaPlayer->playLocalFile(localFilePath, false);
+	});
+}
+
+void SideBar::initSettingsWidgets() {
+	QGroupBox *settingsBox = new QGroupBox("Settings", this);
+	QVBoxLayout *layout = new QVBoxLayout(settingsBox);
+	QCheckBox *kikooModeCheckBox = new QCheckBox("Kikoo mode", settingsBox);
+	QCheckBox *freeMovementCheckBox = new QCheckBox("Free movement", settingsBox);
+	
+	layout->addWidget(kikooModeCheckBox);
+	layout->addWidget(freeMovementCheckBox);
+	m_layout->addWidget(settingsBox);
+	
+	connect(kikooModeCheckBox, SIGNAL(stateChanged(int)), m_glWidget->corewarRenderer(), SLOT(setKikooMode(int)));
+	connect(m_glWidget, &GLWidget::kikooModeStateUpdated, [kikooModeCheckBox] (int state) {
+		kikooModeCheckBox->setCheckState(Qt::CheckState(state));
+	});
+	connect(freeMovementCheckBox, &QCheckBox::stateChanged, [&] (int state) {
+		m_glWidget->setFreeMovement(state == 2);
+	});
+}
+
 void SideBar::initPlayerWidgets() {
-	for (int i = 0 ; i < 4 ; i++) {
-		m_playerWidgets[i] = new PlayerWidget(i, this);
+	m_layout->addStretch();
+	
+	for (int i = 0 ; i < m_glWidget->app().program_amount ; i++) {
+		m_playerWidgets.push_back(new PlayerWidget(i, this));
 		m_layout->addWidget(m_playerWidgets[i]);
-		connect(m_glWidget, SIGNAL(programUpdated(int, int, int)), m_playerWidgets[i], SLOT(updateInfo(int, int, int)));
+		connect(m_glWidget, SIGNAL(programUpdated(t_program &)), m_playerWidgets[i], SLOT(updateInfo(t_program &)));
 	}
 }
 

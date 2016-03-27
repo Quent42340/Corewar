@@ -17,6 +17,8 @@
 #include <QGroupBox>
 #include <QLabel>
 
+#include "program.h"
+
 class PlayerWidget : public QGroupBox {
 	Q_OBJECT
 	
@@ -24,11 +26,11 @@ class PlayerWidget : public QGroupBox {
 		PlayerWidget(int playerID, QWidget *parent = nullptr);
 		
 	public slots:
-		void updateInfo(int playerID, int processCount, int memoryOwned);
+		void updateInfo(t_program &program);
 		
 	private:
+		QLabel m_commentLabel{"Empty comment"};
 		QLabel m_processCountLabel{"0"};
-		QLabel m_memoryOwnedLabel{"0"};
 		
 		int m_playerID;
 };

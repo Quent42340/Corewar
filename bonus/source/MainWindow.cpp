@@ -19,9 +19,11 @@
 #include "Keyboard.hpp"
 #include "MainWindow.hpp"
 #include "PlayerWidget.hpp"
+#include "SideBar.hpp"
 
 MainWindow::MainWindow(t_application &app) : QMainWindow(nullptr, Qt::Dialog), m_app(app) {
 	setWindowTitle("Corewar launcher");
+	setFocusPolicy(Qt::ClickFocus);
 	resize(width, height);
 	
 	QSurfaceFormat format;
@@ -49,6 +51,12 @@ MainWindow::MainWindow(t_application &app) : QMainWindow(nullptr, Qt::Dialog), m
 	Keyboard::setKeyMap(&m_keys);
 	
 	connect(&m_mediaPlayer.audioProbe(), SIGNAL(audioBufferProbed(QAudioBuffer)), m_glWidget, SLOT(processAudioBuffer(QAudioBuffer)));
+	
+	m_mediaPlayer.playLocalFile("resources/audio/song_of_storms.mp3");
+}
+
+void MainWindow::initSideBar() {
+	m_sideBar->initPlayerWidgets();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
@@ -67,8 +75,6 @@ void MainWindow::handleDeath(t_application *app, t_program *program) {
 	
 	CorewarRenderer *renderer = window->m_glWidget->corewarRenderer();
 	renderer->playerDead(program->index);
-	
-	qDebug() << "Death";
 }
 
 void MainWindow::handleStorage(t_application *app, t_program *program, int index, int size) {
@@ -76,7 +82,5 @@ void MainWindow::handleStorage(t_application *app, t_program *program, int index
 	
 	CorewarRenderer *renderer = window->m_glWidget->corewarRenderer();
 	renderer->memoryStored(program->index, index, size);
-	
-	qDebug() << "Memory stored for player" << program->index << "at index:" << index << "and size:" << size;
 }
 

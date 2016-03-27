@@ -49,21 +49,37 @@ void CorewarRenderer::memoryStored(int playerID, int index, int size) {
 		Color::red,
 		Color::blue,
 		Color::green,
-		Color::cyan,
-		Color::black
+		Color::yellow,
+		Color::white
 	};
 	
 	for (int i = index ; i < index + size ; ++i) {
-		m_panels[i].setPlayerID(playerID);
-		m_panels[i].updateColor(colors[playerID]);
-		m_panels[i].setScale(1000);
+		Panel &panel = m_panels[i % m_panels.size()];
+		
+		if (panel.isEnabled()) {
+			panel.setPlayerID(playerID);
+			panel.setColor(colors[playerID]);
+			panel.updateColor(colors[playerID]);
+			panel.setScale(panel.scale() * 1.5);
+		}
 	}
 }
 
 void CorewarRenderer::playerDead(int playerID) {
 	for (Panel &panel : m_panels) {
-		if (playerID == panel.playerID()) {
-			panel.setScale(-1);
+		if (panel.isEnabled() && playerID == panel.playerID()) {
+			panel.setDead(true);
+		}
+	}
+}
+
+void CorewarRenderer::setKikooMode(int checkBoxState) {
+	for (Panel &panel : m_panels) {
+		panel.setRandomColors(checkBoxState == 2);
+		panel.setEnabled(checkBoxState == 0);
+		
+		if (checkBoxState == 0) {
+			panel.updateColor(panel.color());
 		}
 	}
 }

@@ -44,6 +44,7 @@ class Color {
 		static Color blue;
 		static Color red;
 		static Color green;
+		static Color yellow;
 		static Color cyan;
 };
 

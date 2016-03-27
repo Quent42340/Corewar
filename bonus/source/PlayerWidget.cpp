@@ -19,17 +19,22 @@ PlayerWidget::PlayerWidget(int playerID, QWidget *parent) : QGroupBox(parent) {
 	m_playerID = playerID;
 	setTitle("Player " + QString::number(m_playerID + 1));
 	
+	QFrame* line = new QFrame;
+	line->setFrameShape(QFrame::HLine);
+	line->setFrameShadow(QFrame::Sunken);
+	
 	QGridLayout *layout = new QGridLayout(this);
-	layout->addWidget(new QLabel("Processes: "), 0, 0);
-	layout->addWidget(new QLabel("Memory owned: "), 1, 0);
-	layout->addWidget(&m_processCountLabel, 0, 1, Qt::AlignRight);
-	layout->addWidget(&m_memoryOwnedLabel, 1, 1, Qt::AlignRight);
+	layout->addWidget(&m_commentLabel, 0, 0, 1, 0);
+	layout->addWidget(line, 1, 0, 1, 2);
+	layout->addWidget(new QLabel("Processes: "), 2, 0);
+	layout->addWidget(&m_processCountLabel, 2, 1, Qt::AlignRight);
 }
 
-void PlayerWidget::updateInfo(int playerID, int processCount, int memoryOwned) {
-	if (playerID == m_playerID) {
-		m_processCountLabel.setNum(processCount);
-		m_memoryOwnedLabel.setNum(memoryOwned);
+void PlayerWidget::updateInfo(t_program &program) {
+	if (program.index == m_playerID) {
+		setTitle(program.info.prog_name);
+		m_commentLabel.setText(program.info.comment);
+		m_processCountLabel.setNum(program.process_amount);
 	}
 }
 

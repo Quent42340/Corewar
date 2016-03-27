@@ -37,10 +37,15 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 	public:
 		GLWidget(t_application &app, QWidget *parent = nullptr);
 		
+		const t_application &app() const { return m_app; }
+		
 		CorewarRenderer *corewarRenderer() const { return m_renderer.get(); }
 		
+		void setFreeMovement(bool freeMovement) { m_freeMovement = freeMovement; }
+		
 	signals:
-		void programUpdated(int playerID, int processCount, int memoryOwned);
+		void kikooModeStateUpdated(int state);
+		void programUpdated(t_program &program);
 		
 	public slots:
 		void process();
@@ -66,6 +71,9 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 		QTimer m_timer;
 		
 		t_application &m_app;
+		bool m_isAppRunning = true;
+		
+		bool m_freeMovement = false;
 };
 
 #endif // GLWIDGET_HPP_

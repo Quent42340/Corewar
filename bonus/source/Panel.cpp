@@ -45,6 +45,7 @@ void Panel::updateVertices() {
 		width, 0.0f, depth,
 	};
 	
+	m_vertexBuffer.bind();
 	m_vertexBuffer.write(0, points, 2 * 6 * 3 * sizeof(GLfloat));
 }
 
@@ -63,7 +64,7 @@ void Panel::updateColor(const Color &color) {
 		color.r + offset, color.g + offset, color.b + offset,
 	};
 	
-	m_color = color;
+	m_vertexBuffer.bind();
 	m_vertexBuffer.write(2 * 6 * 3 * sizeof(GLfloat), colors, 2 * 6 * 3 * sizeof(GLfloat));
 }
 
@@ -97,7 +98,7 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 	
 	m_modelMatrix.setToIdentity();
 	m_modelMatrix.translate(m_x * (width + 0.001), 0.0f, m_y * (depth + 0.001));
-	m_modelMatrix.scale(1.0f, (m_scale != -1) ? m_scale : 1.0f, 1.0f);
+	m_modelMatrix.scale(1.0f, (!m_isDead) ? m_scale : m_scale / 2, 1.0f);
 	
 	if (m_randomColors) {
 		Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};

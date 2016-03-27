@@ -35,8 +35,10 @@ class Camera {
 		QVector3D m_pos{320.0f / 35.0f + 20.0f, 500.0f / 35.0f + 50.0f, 960.0f / 35.0f + 20.0f};
 		QVector3D m_v{0.0f, 0.0f, 0.0f};
 		
-		float m_angleH = -90.0f - 25.0f;
+		float m_angleH = -90.0f;
 		float m_angleV = -30.0f;
+		
+		float m_movementAngle = 0.0;
 		
 		QMatrix4x4 m_viewMatrix;
 };

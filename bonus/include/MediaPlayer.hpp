@@ -28,7 +28,9 @@ class MediaPlayer : public QWidget {
 	Q_OBJECT
 	
 	public:
-		MediaPlayer();
+		MediaPlayer(QWidget *parent = nullptr);
+		
+		void playLocalFile(const QString &localFilePath, bool relativePath = true);
 		
 		const QAudioProbe &audioProbe() const { return m_audioProbe; }
 		
