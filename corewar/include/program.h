@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:14 2016 Quentin Bazin
-** Last update Sun Mar 27 20:11:14 2016 Jakob Kellendonk
+** Last update Sun Mar 27 21:44:45 2016 Jakob Kellendonk
 */
 
 #ifndef PROGRAM_H_
@@ -45,7 +45,7 @@ typedef struct		s_program
 
 t_err	add_process(t_program *program, t_info_list *list);
 t_err	program_init(t_program *program, struct s_application *app,
-		     t_info_list *list);
+		     t_info_list *list, int index);
 
 void	message_alive(t_program *program, int player);
 void	message_win(t_program *program, int player);

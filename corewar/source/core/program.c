@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sun Mar 27 21:21:39 2016 Jakob Kellendonk
+** Last update Sun Mar 27 21:43:59 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -103,7 +103,7 @@ t_err		add_process(t_program *program, t_info_list *list)
 }
 
 t_err		program_init(t_program *program, t_application *app,
-			     t_info_list *list)
+			     t_info_list *list, int index)
 {
   int		fd;
   t_err		error;
@@ -117,6 +117,7 @@ t_err		program_init(t_program *program, t_application *app,
       || (error = read_char(fd, program->info.comment, COMMENT_LENGTH + 4,
 			    list->file_name)))
     return (error);
+  program->index = index;
   program->live = list->live_code;
   program->process_amount = 1;
   program->did_live = 0;

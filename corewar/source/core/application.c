@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Sun Mar 27 21:23:41 2016 Jakob Kellendonk
+** Last update Sun Mar 27 21:44:24 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -23,9 +23,8 @@ t_err		init_programs(t_application *app, t_args *args)
   list = args->program_list;
   while (i < app->program_amount)
     {
-      if ((error = program_init(app->programs + i, app, list)))
+      if ((error = program_init(app->programs + i, app, list, i)))
 	return (error);
-      app->programs[i].index = i;
       list = list->next;
       i = i + 1;
     }
