@@ -20,7 +20,7 @@ int		get_cycle_amount(unsigned char *cmd)
   if (cmd[0] <= 0 || cmd[0] > 16)
     return (1);
   i = 0;
-  while ((cmd[0] != 1 && cmd[0] != 9 && cmd[0] != 12 && cmd[0] != 15) 
+  while ((cmd[0] != 1 && cmd[0] != 9 && cmd[0] != 12 && cmd[0] != 15)
 	 && i < op_tab[cmd[0] - 1].nbr_args)
     {
       if ((!((cmd[1] >> (6 - 2 * i)) & 3)
@@ -125,21 +125,17 @@ t_err	tick(t_application *application)
     return (err);
   if (application->cycle == application->constants->dump_cycle)
     return (dump_vm(application));
-  i = 0;
-  while (i < application->program_amount)
+  i = -1;
+  while (++i < application->program_amount)
     {
       if (application->programs[i].is_alive)
 	{
-	  j = 0;
-	  while (j < application->programs[i].process_amount)
-	    {
-	      if ((err = update_process(application,
-					application->programs[i].processes + j)))
-		return (err);
-	      j = j + 1;
-	    }
+	  j = -1;
+	  while (++j < application->programs[i].process_amount)
+	    if ((err = update_process(application,
+				      application->programs[i].processes + j)))
+	      return (err);
 	}
-      i = i + 1;
     }
   application->cycle = application->cycle + 1;
   return (0);

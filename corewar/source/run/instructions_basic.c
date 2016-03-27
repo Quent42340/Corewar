@@ -18,8 +18,8 @@ t_err	instruction_live(t_application *app, t_process **proc)
   write(1, "livecode: ", 10);
   write(1, "0123456789ABCDEF" + (char_to_int((*proc)->cmd + 1) & 15), 1);
   write(1, "\n", 1);
-  i = 0;
-  while (i < app->program_amount)
+  i = -1;
+  while (++i < app->program_amount)
     {
       if (app->programs[i].live[0] == (*proc)->cmd[1]
 	  && app->programs[i].live[1] == (*proc)->cmd[2]
@@ -30,7 +30,6 @@ t_err	instruction_live(t_application *app, t_process **proc)
 	  app->programs[i].last_live_cycle = app->cycle;
 	  message_alive(&app->programs[i], i);
 	}
-      i = i + 1;
     }
   app->live_count = app->live_count + 1;
   if (app->live_count == app->constants->nbr_live)
