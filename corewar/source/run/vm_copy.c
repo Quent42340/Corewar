@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 18:19:59 2016 Jakob Kellendonk
-** Last update Sun Mar 27 14:55:33 2016 Jakob Kellendonk
+** Last update Mon Mar 28 01:36:05 2016 Jakob Kellendonk
 */
 
 # include "application.h"
@@ -25,11 +25,39 @@ unsigned char	*set_args(t_application *application, t_process *process,
 	       buffs[0], REG_SIZE);
       if (application->st_callback)
 	application->st_callback(application, process->parent,
-				 process->pc + (char_to_short(buffs[1])
+				 (process->pc + (char_to_short(buffs[1]) + IDX_MOD)
 						% IDX_MOD), REG_SIZE);
       return (buffs[1] + 2);
     }
   return (NULL);
+}
+
+int	get_args_index(t_application *application, t_process *process,
+			  unsigned char format, unsigned char *buffs[2])
+{
+  int	val;
+
+  if (format == 1)
+    {
+      val = char_to_int(process->registre[buffs[1][0] - 1]);
+      buffs[1] = buffs[1] + 1;
+      return (val);
+    }
+  if (format == 2)
+    {
+      val = char_to_short(buffs[1]);
+      buffs[1] = buffs[1] + 2;
+      return (val);
+    }
+  if (format == 3)
+    {
+      vm_cpyfrom(application, process->pc + (char_to_short(buffs[1])
+					     % IDX_MOD),
+		 buffs[0], IND_SIZE);
+      buffs[1] = buffs[1] + 2;
+      return (char_to_int(buffs[0]));
+    }
+  return (0);
 }
 
 unsigned char	*get_args(t_application *application, t_process *process,
