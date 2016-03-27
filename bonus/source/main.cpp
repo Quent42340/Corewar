@@ -34,15 +34,15 @@ int main(int argc, char *argv[]) {
 		args.st_callback = &MainWindow::handleStorage;
 		
 		if (!application_init(&my_app, &args)) {
-			my_app.qt_data = &window;
 			window.show();
 			
 			exit_code = app.exec();
 		}
+		
+		application_free(&my_app);
 	}
 	
 	args_free(&args);
-	application_free(&my_app);
 	
 	return exit_code;
 }

@@ -23,6 +23,8 @@ class Panel {
 	public:
 		Panel(unsigned int x, unsigned int y);
 		
+		void init();
+		
 		void updateVertices();
 		void updateColor();
 		

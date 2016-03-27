@@ -20,7 +20,9 @@
 Panel::Panel(unsigned int x, unsigned int y) {
 	m_x = x;
 	m_y = y;
-	
+}
+
+void Panel::init() {
 	m_vertexBuffer.create();
 	m_vertexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
 	m_vertexBuffer.bind();

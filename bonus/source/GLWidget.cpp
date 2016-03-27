@@ -19,6 +19,10 @@ extern "C" {
 #include "CorewarRenderer.hpp"
 #include "GLWidget.hpp"
 
+GLWidget::GLWidget(t_application &app, QWidget *parent) : QOpenGLWidget(parent), m_app(app) {
+	m_renderer.reset(new CorewarRenderer);
+}
+
 void GLWidget::initializeGL() {
 	initializeOpenGLFunctions();
 	
@@ -44,10 +48,10 @@ void GLWidget::initializeGL() {
 		return;
 	}
 	
+	m_renderer->initPanels();
+	
 	m_vao.create();
 	m_vao.bind();
-	
-	m_renderer.reset(new CorewarRenderer);
 	
 	m_projMatrix.perspective(45.0f, width() / float(height()), 0.01f, 1000.0f);
 	m_shader.setUniformValue("u_projectionMatrix", m_projMatrix);

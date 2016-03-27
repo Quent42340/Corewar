@@ -24,6 +24,8 @@ class CorewarRenderer {
 	public:
 		CorewarRenderer();
 		
+		void initPanels();
+		
 		void draw(QOpenGLShaderProgram &shader, Camera &camera);
 		
 		void reactToMusic(float n);

@@ -75,6 +75,6 @@ void MainWindow::handleStorage(t_application *app, t_program *program, int index
 	CorewarRenderer *renderer = window->m_glWidget->corewarRenderer();
 	renderer->memoryStored(program->index, index, size);
 	
-	qDebug() << "Memory stored";
+	qDebug() << "Memory stored for player" << program->index;
 }
 

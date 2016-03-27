@@ -22,6 +22,11 @@ CorewarRenderer::CorewarRenderer() {
 	}
 }
 
+void CorewarRenderer::initPanels() {
+	for (Panel &panel : m_panels)
+		panel.init();
+}
+
 void CorewarRenderer::draw(QOpenGLShaderProgram &shader, Camera &camera) {
 	shader.setUniformValue("u_viewMatrix", camera.viewMatrix());
 	

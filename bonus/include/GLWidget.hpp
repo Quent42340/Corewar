@@ -35,8 +35,7 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 	Q_OBJECT
 	
 	public:
-		GLWidget(t_application &app, QWidget *parent = nullptr)
-			: QOpenGLWidget(parent), m_app(app) {}
+		GLWidget(t_application &app, QWidget *parent = nullptr);
 		
 		CorewarRenderer *corewarRenderer() const { return m_renderer.get(); }
 		

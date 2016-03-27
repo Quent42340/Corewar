@@ -26,11 +26,11 @@
 
 MediaPlayer::MediaPlayer() {
 	m_audioProbe.setSource(&m_player);
-	// player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/hello.mp3"));
-	// m_player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/song_of_storms.mp3"));
-	// m_player.play();
+	// m_player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/hello.mp3"));
+	m_player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/song_of_storms.mp3"));
+	m_player.play();
 	
-	// playYoutubeURL("hf4IxNNiqbU");
+	// playYoutubeURL("7eZIbmq5Jiw");
 	
 	m_currentMusic = m_player.media().canonicalUrl().toString();
 	
