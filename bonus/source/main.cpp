@@ -14,7 +14,9 @@
 
 #include <QApplication>
 
+extern "C" {
 #include "args.h"
+}
 
 #include "MainWindow.hpp"
 
@@ -24,16 +26,17 @@ int main(int argc, char *argv[]) {
 	
 	int exit_code = 0;
 	if (!args_init(&args, argv + 1) && !application_init(&my_app, &args)) {
+		args_free(&args);
+
 		QApplication app(argc, argv);
 		
 		MainWindow window(my_app);
 		window.show();
 		
 		exit_code = app.exec();
+
+		application_free(&my_app);
 	}
-	
-	args_free(&args);
-	application_free(&my_app);
 	
 	return exit_code;
 }

@@ -18,6 +18,8 @@ Color Color::white(255, 255, 255);
 Color Color::text(248, 208, 136);
 Color Color::blue(32, 168, 248);
 Color Color::red(232, 8, 24);
+Color Color::green(8, 232, 32);
+Color Color::cyan(8, 232, 248);
 
 Color::Color(u8 _r, u8 _g, u8 _b, u8 _a) {
 	r = _r / 255.0f;

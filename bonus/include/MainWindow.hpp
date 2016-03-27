@@ -17,7 +17,9 @@
 #include <QMainWindow>
 #include <QMap>
 
+extern "C" {
 #include "application.h"
+}
 
 #include "MediaPlayer.hpp"
 #include "SideBar.hpp"
@@ -33,13 +35,16 @@ class MainWindow : public QMainWindow {
 		void keyPressEvent(QKeyEvent *event);
 		void keyReleaseEvent(QKeyEvent *event);
 		
+		static void handleDeath(t_application *app, t_program *program);
+		static void handleStorage(t_application *app, t_program *program, int index, int size);
+		
 		static const unsigned int width = 1600;
 		static const unsigned int height = 1000;
 		
 	private:
 		MediaPlayer m_mediaPlayer;
 		
-		GLWidget *m_widget;
+		GLWidget *m_glWidget;
 		SideBar m_sideBar{&m_mediaPlayer};
 		
 		QMap<int, bool> m_keys;

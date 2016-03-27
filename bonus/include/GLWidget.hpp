@@ -38,6 +38,8 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 		GLWidget(t_application &app, QWidget *parent = nullptr)
 			: QOpenGLWidget(parent), m_app(app) {}
 		
+		CorewarRenderer *corewarRenderer() const { return m_renderer.get(); }
+		
 	public slots:
 		void process();
 		void processAudioBuffer(const QAudioBuffer &buffer);

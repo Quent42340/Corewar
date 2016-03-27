@@ -105,7 +105,7 @@ export OUTPUT	=	$(CURDIR)/$(TARGET)
 export VPATH	=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 					$(foreach dir,$(INCLUDES),$(CURDIR)/$(dir))
 
-export OFILES	=	$(CFILES:.c=.o) $(CPPFILES:.cpp=.o) \
+export OFILES	=	$(CFILES:.c=.o) $(CPPFILES:.cpp=.oxx) \
 					$(HPPFILES:.hpp=.moc.o)
 
 export INCLUDE	=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir))
@@ -162,7 +162,7 @@ $(OUTPUT): $(OFILES)
 	@echo "=>" $(notdir $<)
 	@$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
 
-%.o: %.cpp
+%.oxx: %.cpp
 	@echo "=>" $(notdir $<)
 	@$(CXX) -c $< -o $@ $(CXXFLAGS) $(INCLUDE)
 

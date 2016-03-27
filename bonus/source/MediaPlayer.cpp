@@ -30,7 +30,7 @@ MediaPlayer::MediaPlayer() {
 	// m_player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/song_of_storms.mp3"));
 	// m_player.play();
 	
-	playYoutubeURL("hf4IxNNiqbU");
+	// playYoutubeURL("hf4IxNNiqbU");
 	
 	m_currentMusic = m_player.media().canonicalUrl().toString();
 	

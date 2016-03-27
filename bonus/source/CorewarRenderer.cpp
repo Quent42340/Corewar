@@ -39,3 +39,17 @@ void CorewarRenderer::reactToMusic(float n) {
 	}
 }
 
+void CorewarRenderer::memoryStored(int playerID, int index, int size) {
+	Color colors[4] = {
+		Color::red,
+		Color::blue,
+		Color::green,
+		Color::cyan
+	};
+	
+	
+}
+
+void CorewarRenderer::playerDead(int playerID) {
+}
+

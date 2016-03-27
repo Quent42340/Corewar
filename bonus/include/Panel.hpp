@@ -31,6 +31,7 @@ class Panel {
 		unsigned int x() const { return m_x; }
 		unsigned int y() const { return m_y; }
 		
+		void setColor(const Color &color) { m_color = color; }
 		void setScale(float scale) { m_scale = scale; }
 		
 		static constexpr GLfloat width = 25.0f / 35.0f;
@@ -44,7 +45,7 @@ class Panel {
 		unsigned int m_x;
 		unsigned int m_y;
 		
-		Color m_color{Color::blue};
+		Color m_color{Color::text};
 		
 		float m_scale = 1.0f;
 };

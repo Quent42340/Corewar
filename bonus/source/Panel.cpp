@@ -116,12 +116,12 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 	
 	m_vertexBuffer.bind();
 	
-	Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};
-	int n = rand() % 200;
-	if (n < 5) {
-		m_color = colors[n];
-		updateColor();
-	}
+	// Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};
+	// int n = rand() % 200;
+	// if (n < 5) {
+	// 	m_color = colors[n];
+	// 	updateColor();
+	// }
 	
 	shader.setUniformValue("u_modelMatrix", m_modelMatrix);
 	

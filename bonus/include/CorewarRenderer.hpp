@@ -28,6 +28,9 @@ class CorewarRenderer {
 		
 		void reactToMusic(float n);
 		
+		void memoryStored(int playerID, int index, int size);
+		void playerDead(int playerID);
+		
 	private:
 		std::vector<Panel> m_panels;
 		
