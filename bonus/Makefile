@@ -17,8 +17,8 @@ CXX			=	g++
 DEFINES		+=	-DQT_NO_DEBUG \
 				$(foreach lib,$(QT_LIBS),-DQT_$(shell echo lib | tr "[:lower:]" "[:upper:]")_LIB)
 
-CFLAGS		=	-g -Wall -Wextra -Wfatal-errors -Wno-variadic-macros -pedantic
-CXXFLAGS	=	$(CFLAGS) -std=c++11 -static-libstdc++ -MD -fPIC $(DEFINES)
+CFLAGS		=	-g -Wall -Wextra -Wfatal-errors -Wno-variadic-macros -pedantic -MD
+CXXFLAGS	=	$(CFLAGS) -std=c++11 -static-libstdc++ -fPIC $(DEFINES)
 
 #---------------------------------------------------------------------------------
 # Libraries

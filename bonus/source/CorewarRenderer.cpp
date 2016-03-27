@@ -40,16 +40,21 @@ void CorewarRenderer::reactToMusic(float n) {
 }
 
 void CorewarRenderer::memoryStored(int playerID, int index, int size) {
-	Color colors[4] = {
+	Color colors[5] = {
 		Color::red,
 		Color::blue,
 		Color::green,
-		Color::cyan
+		Color::cyan,
+		Color::black
 	};
 	
-	
+	for (int i = index ; i < index + size ; ++i) {
+		m_panels[i].setColor(colors[playerID]);
+		m_panels[i].updateColor();
+	}
 }
 
 void CorewarRenderer::playerDead(int playerID) {
+	(void)playerID;
 }
 

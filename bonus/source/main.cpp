@@ -21,22 +21,28 @@ extern "C" {
 #include "MainWindow.hpp"
 
 int main(int argc, char *argv[]) {
-	t_args args;
+	QApplication app(argc, argv);
 	t_application my_app;
 	
+	t_args args;
 	int exit_code = 0;
-	if (!args_init(&args, argv + 1) && !application_init(&my_app, &args)) {
-		args_free(&args);
-
-		QApplication app(argc, argv);
-		
+	if (!args_init(&args, argv + 1)) {
 		MainWindow window(my_app);
-		window.show();
+		my_app.qt_data = &window;
 		
-		exit_code = app.exec();
-
-		application_free(&my_app);
+		args.death_callback = &MainWindow::handleDeath;
+		args.st_callback = &MainWindow::handleStorage;
+		
+		if (!application_init(&my_app, &args)) {
+			my_app.qt_data = &window;
+			window.show();
+			
+			exit_code = app.exec();
+		}
 	}
+	
+	args_free(&args);
+	application_free(&my_app);
 	
 	return exit_code;
 }
