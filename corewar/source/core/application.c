@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Mon Mar 28 00:24:48 2016 Jakob Kellendonk
+** Last update Mon Mar 28 01:38:32 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -31,17 +31,11 @@ t_err		init_programs(t_application *app, t_args *args)
   return (0);
 }
 
-#include "my_printf.h"
-void		log_st(t_application *app, t_program *prog, int index, int size)
-{
-  my_printf("index: %i, size: %i\n", index, size);
-}
-
 t_err		application_init(t_application *app, t_args *args)
 {
   my_memset(app, 0, sizeof(t_application)- sizeof(void *));
   app->death_callback = args->death_callback;
-  app->st_callback = log_st;/*args->st_callback;*/
+  app->st_callback = args->st_callback;
   app->constants = args->constants;
   app->cycle_to_die = args->cycle_to_die;
   app->programs = malloc(sizeof(t_program) * args->program_amount);
