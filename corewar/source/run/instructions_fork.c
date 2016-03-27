@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:29:08 2016 Flora Huot
-** Last update Sun Mar 27 18:49:37 2016 Jakob Kellendonk
+** Last update Sun Mar 27 21:05:49 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -27,7 +27,7 @@ t_err		new_process(t_process **old, int newpc)
   if (!parent->processes)
     return (print_error(ERROR_MALLOC_FAILED));
   new = parent->processes + parent->process_amount - 1;
-  my_memcpy(new, old, sizeof(t_process));
+  my_memcpy(new, *old, sizeof(t_process));
   new->pc = ((newpc % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;
   new->cycles_left = 0;
   return (0);

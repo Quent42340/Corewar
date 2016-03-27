@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sun Mar 27 20:03:42 2016 Jakob Kellendonk
+** Last update Sun Mar 27 21:21:39 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -55,7 +55,8 @@ t_err		read_until(unsigned char *target, int fd,
   return (0);
 }
 
-t_err		put_program_in_vm(t_application *application,
+
+t_err		put_program_in_vm(t_application *app,
 				  t_program *program,
 				  t_info_list *list, int fd)
 {
@@ -63,16 +64,24 @@ t_err		put_program_in_vm(t_application *application,
 
   if (list->address + program->info.prog_size > MEM_SIZE)
     {
-      if ((error = read_until(application->memory + list->address, fd,
+      if ((error = read_until(app->memory + list->address, fd,
 			      MEM_SIZE - list->address, list->file_name))
-	  || ((error = read_until(application->memory, fd, list->address
+	  || ((error = read_until(app->memory, fd, list->address
 				  + program->info.prog_size - MEM_SIZE,
 				  list->file_name))))
 	return (error);
+      if (app->st_callback)
+	app->st_callback(app, program, list->address,
+			 MEM_SIZE - list->address);
+      if (app->st_callback)
+	app->st_callback(app, program, 0, list->address
+			   + program->info.prog_size - MEM_SIZE);
     }
-  else if (read_until(application->memory + list->address, fd,
+  else if (read_until(app->memory + list->address, fd,
 		      program->info.prog_size, list->file_name))
     return (error);
+  else if (app->st_callback)
+    app->st_callback(app, program, 0, program->info.prog_size);
   if (read(fd, &error, 1))
     return (print_error(ERROR_NOT_EXECUTABLE, list->file_name));
   return (0);
