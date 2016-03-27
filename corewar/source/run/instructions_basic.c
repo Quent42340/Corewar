@@ -42,7 +42,7 @@ t_err	instruction_zjmp(t_application *app, t_process **proc)
 {
   (void)app;
   (*proc)->pc = ((((*proc)->pc + (char_to_short((*proc)->cmd + 1) % IDX_MOD))
-	       % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;
+		  % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;
   return (0);
 }
 
