@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 18:38:35 2016 Benjamin Grange
-** Last update Tue Mar  1 20:24:32 2016 Benjamin Grange
+** Last update Sun Mar 27 04:35:14 2016 Benjamin Grange
 */
 
 #include "basic.h"
@@ -14,6 +14,8 @@ int			my_isnum(char *str)
 {
   if (!*str)
     return (0);
+  if (*str == '+' || *str == '-')
+    str++;
   while (*str)
     {
       if (*str < '0' || *str > '9')
@@ -26,13 +28,20 @@ int			my_isnum(char *str)
 int			my_getnbr(char *str)
 {
   int			i;
+  int			j;
 
+  j = 1;
   i = 0;
+  if (*str == '+' || *str == '-')
+    {
+      j *= -(*str == '-');
+      str++;
+    }
   while (*str)
     {
       i *= 10;
       i += *str - '0';
       str++;
     }
-  return (i);
+  return (i * j);
 }
