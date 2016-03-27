@@ -73,7 +73,6 @@ t_err		read_until(unsigned char *target, int fd,
   return (0);
 }
 
-
 t_err		put_program_in_vm(t_application *app,
 				  t_program *program,
 				  t_info_list *list, int fd)
@@ -93,7 +92,7 @@ t_err		put_program_in_vm(t_application *app,
 			 MEM_SIZE - list->address);
       if (app->st_callback)
 	app->st_callback(app, program, 0, list->address
-			   + program->info.prog_size - MEM_SIZE);
+			 + program->info.prog_size - MEM_SIZE);
     }
   else if (read_until(app->memory + list->address, fd,
 		      program->info.prog_size, list->file_name))

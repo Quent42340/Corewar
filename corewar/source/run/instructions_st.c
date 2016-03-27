@@ -40,11 +40,11 @@ t_err	instruction_sti(t_application *app, t_process **proc)
   buffs[0] = read[2];
   buffs[1] = get_args(app, *proc, (fmt >> 2) & 3, buffs);
   vm_cpyto(app, (*proc)->pc + (char_to_int(read[1])
-			    + char_to_int(read[2])) % IDX_MOD, read[0], 4);
+			       + char_to_int(read[2])) % IDX_MOD, read[0], 4);
   if (app->st_callback)
     app->st_callback(app, (*proc)->parent, (*proc)->pc
 		     + (char_to_int(read[1]) + char_to_int(read[2]))
-	      % IDX_MOD, 4);
+		     % IDX_MOD, 4);
   (*proc)->pc = (*proc)->pc + buffs[1] - (*proc)->cmd;
   return (0);
 }
