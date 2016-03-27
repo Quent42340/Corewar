@@ -26,6 +26,7 @@ void	fill_error_messages(char *messages[ERROR_COUNT])
   messages[7] = "%s is not accessible";
   messages[8] = "Corewar requires between 2 and 4 programs";
   messages[9] = "Program overlap detected";
+  messages[10] = "Two programs have the same live code: %d";
 }
 
 void	print_usage(char *program_name)
