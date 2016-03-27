@@ -39,7 +39,7 @@ t_err		instruction_ldi(t_application *app, t_process **proc)
   buffs[0] = read[0];
   val = get_args_index(app, *proc, (fmt >> 6) & 3, buffs);
   buffs[0] = read[1];
-  val = val + get_args_index(app, *proc, (fmt >> 6) & 3, buffs);
+  val = val + get_args_index(app, *proc, (fmt >> 4) & 3, buffs);
   vm_cpyfrom(app, (*proc)->pc + (val % IDX_MOD),
 	     (*proc)->registre[buffs[1][0] - 1], 4);
   (*proc)->carry = !char_to_int((*proc)->registre[buffs[1][0] - 1]);
@@ -82,7 +82,7 @@ t_err		instruction_lldi(t_application *app, t_process **proc)
   buffs[0] = read[0];
   val = get_args_index(app, *proc, (fmt >> 6) & 3, buffs);
   buffs[0] = read[1];
-  val = val + get_args_index(app, *proc, (fmt >> 6) & 3, buffs);
+  val = val + get_args_index(app, *proc, (fmt >> 4) & 3, buffs);
   vm_cpyfrom(app, (*proc)->pc + val, (*proc)->registre[buffs[1][0] - 1], 4);
   (*proc)->carry = !char_to_int((*proc)->registre[buffs[1][0] - 1]);
   buffs[1] = buffs[1] + 1;
