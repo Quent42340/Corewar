@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Tue Mar 22 17:04:58 2016 Jakob Kellendonk
-** Last update Sun Mar 27 20:11:54 2016 Jakob Kellendonk
+** Last update Sun Mar 27 21:23:41 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -34,7 +34,7 @@ t_err		init_programs(t_application *app, t_args *args)
 
 t_err		application_init(t_application *app, t_args *args)
 {
-  my_memset(app, 0, sizeof(t_application));
+  my_memset(app, 0, sizeof(t_application)- sizeof(void *));
   app->death_callback = args->death_callback;
   app->st_callback = args->st_callback;
   app->constants = args->constants;
