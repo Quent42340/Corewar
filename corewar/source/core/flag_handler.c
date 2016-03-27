@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Mon Feb 29 12:51:47 2016 Jakob Kellendonk
-** Last update Sun Mar 27 23:18:50 2016 Jakob Kellendonk
+** Last update Sun Mar 27 23:27:25 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -83,6 +83,8 @@ t_err		verify_prog_numbers(t_args *args)
 
 t_err	validate_args_state(t_args *args, t_info_list *last)
 {
+  t_info_list	*tmpi;
+
   if (args->program_amount < 2 || args->program_amount > 4)
     return (print_error(ERROR_WRONG_PROGRAM_AMOUNT));
   if (last->live_code != -1 || last->address != -1)
@@ -96,6 +98,13 @@ t_err	validate_args_state(t_args *args, t_info_list *last)
 	my_putstr_out("starting address ", 2);
       my_putstr_out("but didn't specify program's file.\n", 2);
       return (print_error(ERROR_UNKNOWN));
+    }
+  tmpi = args->program_list;
+  while (tmpi->file_name)
+    {
+      if (tmpi->address != -1)
+	tmpi->address = (tmpi->address + MEM_SIZE) % MEM_SIZE;
+      tmpi = tmpi->next;
     }
   return (verify_prog_numbers(args));
 }
