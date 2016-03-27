@@ -106,32 +106,19 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 	
 	m_modelMatrix.setToIdentity();
 	m_modelMatrix.translate(m_x * (width + height), 0.0f, m_y * (depth + height));
-	m_modelMatrix.translate(width / 2, height / 2, depth / 2);
 	
-	m_modelMatrix.rotate(2, 0, 0, 1);
-	m_modelMatrix.translate(-width / 2, -height / 2, -depth / 2);
+	// m_modelMatrix.translate(width / 2, height / 2, depth / 2);
+	// m_modelMatrix.rotate(2, 0, 0, 1);
+	// m_modelMatrix.translate(-width / 2, -height / 2, -depth / 2);
+	
 	m_modelMatrix.scale(1.0f, m_scale, 1.0f);
 	
-	// m_angle = (m_angle + 2) % 360;
-	
-	// m_modelMatrix.translate(rand() % 2, 0, rand() % 2);
-	// m_modelMatrix.translate(-(rand() % 2), 0, -(rand() % 2));
-	// m_modelMatrix.translate(0, rand() % 2, 0);
-	
-	// m_scale += (rand() % 50 - 25.0f) / 100.0f;
-	// if (m_scale < 1.0f)
-	// 	m_scale = 1.0f;
-	// if (m_scale > 50.0f)
-	// 	m_scale = 50.0f;
-	// m_modelMatrix.setToIdentity();
-	// m_modelMatrix.translate(m_x * (width + 10), 0.0f, m_y * (depth + 10));
-	// m_modelMatrix.scale(1.0f, m_scale, 1.0f);
 	
 	m_vertexBuffer.bind();
 	
 	Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};
 	int n = rand() % 200;
-	if (n < 5) { // && (m_angle == 90 || m_angle == 270)) {
+	if (n < 5) {
 		m_color = colors[n];
 		updateColor();
 	}

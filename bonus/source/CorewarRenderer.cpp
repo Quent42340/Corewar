@@ -31,25 +31,11 @@ void CorewarRenderer::draw(QOpenGLShaderProgram &shader, Camera &camera) {
 }
 
 void CorewarRenderer::reactToMusic(float n) {
-	// n -= 0.3f;
-	// n *= 2.0f;
-	
 	for (Panel &panel : m_panels) {
 		float distanceFromCenter = sqrt(pow(16 - (int)panel.x(), 2) + pow(12.5 - (int)panel.y(), 2));
 		m_maxDistance = (m_maxDistance > distanceFromCenter) ? m_maxDistance : distanceFromCenter;
 		
 		panel.setScale(1.0f + fabs(m_maxDistance - distanceFromCenter * n * 4));
-		
-		// float rangeX = panel.x() / 32.0f;
-		// float rangeY = panel.y() / 25.0f;
-        //
-		// float nextRangeX = (panel.x() + 1) / 32.0f;
-		// float nextRangeY = (panel.y() + 1) / 25.0f;
-        //
-		// if (n >= rangeY && n < nextRangeY && n >= rangeX && n < nextRangeX)
-		// 	panel.setScale(1.0f + (n - rangeX + n - rangeY) * 100);
-		// else
-		// 	panel.setScale(1.0f);
 	}
 }
 

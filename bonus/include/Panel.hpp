@@ -47,8 +47,6 @@ class Panel {
 		Color m_color{Color::blue};
 		
 		float m_scale = 1.0f;
-		
-		int m_angle = 0;
 };
 
 #endif // PANEL_HPP_

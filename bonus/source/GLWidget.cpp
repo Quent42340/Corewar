@@ -28,7 +28,6 @@ void GLWidget::initializeGL() {
 	
 	glHint(GL_GENERATE_MIPMAP_HINT, GL_NICEST);
 	
-	// glClearColor(0.196078, 0.6, 0.8, 1.0); // Skyblue
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	
 	if (!prepareShaderProgram("shaders/core.v.glsl", "shaders/core.f.glsl")) {

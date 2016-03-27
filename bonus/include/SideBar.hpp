@@ -29,6 +29,7 @@ class SideBar : public QWidget {
 	public:
 		SideBar(MediaPlayer *mediaPlayer, QWidget *parent = nullptr);
 		
+		void initMusicPlayerWidgets();
 		void initYoutubeWidgets();
 		void initPlayerWidgets();
 		
