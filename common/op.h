@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Feb 29 23:37:53 2016 Benjamin Grange
-** Last update Sun Mar 27 16:48:43 2016 Benjamin Grange
+** Last update Sun Mar 27 16:51:26 2016 Benjamin Grange
 */
 
 #ifndef OP_H_
@@ -67,4 +67,4 @@ typedef struct			s_header
 # define CYCLE_DELTA		5
 # define NBR_LIVE		40
 
-#endif
+#endif /* !OP_H_ */
