@@ -5,11 +5,11 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Feb 29 23:37:53 2016 Benjamin Grange
-** Last update Sun Mar 27 16:40:59 2016 Benjamin Grange
+** Last update Sun Mar 27 16:48:43 2016 Benjamin Grange
 */
 
-#ifndef _OP_H_
-# define _OP_H_
+#ifndef OP_H_
+# define OP_H_
 
 # define MEM_SIZE		(6 * 1024)
 # define IDX_MOD		512

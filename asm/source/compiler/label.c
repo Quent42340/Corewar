@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 03:31:44 2016 Benjamin Grange
-** Last update Sun Mar 27 01:53:55 2016 Benjamin Grange
+** Last update Sun Mar 27 16:45:22 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -70,7 +70,7 @@ t_bool				push_label_request(t_parser *parser,
   return (true);
 }
 
-void				pop_label_request(t_parser *parser)
+t_bool				pop_label_request(t_parser *parser)
 {
   t_label			*label;
   t_parseres			res;
@@ -85,7 +85,7 @@ void				pop_label_request(t_parser *parser)
 	  res = get_se_rest(labelr->token, "Use of undefined label");
 	  parser->program.is_valid = false;
 	  print_syntax_error(parser->reader, &res.syntax_error, NULL);
-	  return ;
+	  return (false);
 	}
       if (labelr->type == 1)
 	labelr->content->index = (short)(label->address - labelr->cur_pc);
@@ -95,4 +95,5 @@ void				pop_label_request(t_parser *parser)
 	labelr->content->direct = (int)(label->address - labelr->cur_pc);
       labelr = labelr->next;
     }
+  return (true);
 }

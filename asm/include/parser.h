@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:58 2016 Benjamin Grange
-** Last update Sun Mar 27 01:35:03 2016 Benjamin Grange
+** Last update Sun Mar 27 16:45:31 2016 Benjamin Grange
 */
 
 #ifndef PARSER_H_
@@ -61,8 +61,6 @@ typedef struct		s_parser
 
 typedef t_parseres	(*ParserFunc)(t_parser *, t_token *);
 
-/* Basic parser functions */
-
 t_program		parser(t_token_list *, t_program_file *, t_bool);
 void			delete_all_comments(t_token_list **);
 t_bool			has_next_token(t_parser *);
@@ -75,11 +73,8 @@ t_bool			verify_EOL(t_parser *parser);
 void			raise_final_warnings_errors(t_parser *parser);
 t_bool			push_label_request(t_parser *, t_token *,
 					   int, t_content *);
-void			pop_label_request(t_parser *parser);
+t_bool			pop_label_request(t_parser *parser);
 void			free_label(t_parser *parser);
-
-/* Parsing functions */
-
 t_parseres		parse_label(t_parser *, t_token *);
 t_parseres		parse_all_token(t_parser *, t_token *);
 t_bool			parse_whitespace(t_parser *);
