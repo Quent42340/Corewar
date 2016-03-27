@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Mon Mar 21 19:45:41 2016 Benjamin Grange
-** Last update Sat Mar 26 20:59:39 2016 Benjamin Grange
+** Last update Sun Mar 27 01:38:45 2016 Benjamin Grange
 */
 
 #ifndef PROGRAM_H_
@@ -47,5 +47,6 @@ int				get_pc(t_program *);
 int				get_prog_size(t_program *);
 void				set_program_magic(t_program *program);
 void				set_program_size(t_program *program);
+void				free_program(t_program *);
 
 #endif /* !PROGRAM_H_ */

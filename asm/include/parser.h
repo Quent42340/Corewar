@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:32:58 2016 Benjamin Grange
-** Last update Sat Mar 26 17:00:55 2016 Benjamin Grange
+** Last update Sun Mar 27 01:35:03 2016 Benjamin Grange
 */
 
 #ifndef PARSER_H_
@@ -76,6 +76,7 @@ void			raise_final_warnings_errors(t_parser *parser);
 t_bool			push_label_request(t_parser *, t_token *,
 					   int, t_content *);
 void			pop_label_request(t_parser *parser);
+void			free_label(t_parser *parser);
 
 /* Parsing functions */
 

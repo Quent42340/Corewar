@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 03:31:44 2016 Benjamin Grange
-** Last update Sat Mar 26 17:12:33 2016 Benjamin Grange
+** Last update Sun Mar 27 01:53:55 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -38,6 +38,7 @@ t_bool				push_label(t_parser *parser,
       label = xmalloc(sizeof(t_label));
       if (!label)
 	return (false);
+      my_memset(label, 0, sizeof(t_label));
       label->name = my_strdup(token->content_string);
       if (!label->name)
 	return (false);
@@ -81,7 +82,7 @@ void				pop_label_request(t_parser *parser)
       label = get_label_by_name(parser, labelr->token->content_string);
       if (!label)
 	{
-	  res = get_se_rest(labelr->token, "Label not defined");
+	  res = get_se_rest(labelr->token, "Use of undefined label");
 	  parser->program.is_valid = false;
 	  print_syntax_error(parser->reader, &res.syntax_error, NULL);
 	  return ;

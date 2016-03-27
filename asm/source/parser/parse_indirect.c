@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 20:00:29 2016 Benjamin Grange
-** Last update Sat Mar 26 16:51:20 2016 Benjamin Grange
+** Last update Sun Mar 27 03:31:52 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -14,7 +14,7 @@
 static t_parseres		parse_indirect_integer(t_token *token,
 						       t_operation *op)
 {
-  add_param_to_operation(op, T_IND, token->content.int_value);
+  add_param_to_operation(op, 3, token->content.int_value);
   return (get_instruction_result());
 }
 
@@ -22,7 +22,7 @@ static t_parseres		parse_indirect_label(t_parser *parser,
 						     t_token *token,
 						     t_operation *op)
 {
-  add_param_to_operation(op, T_IND, 0);
+  add_param_to_operation(op, 3, 0);
   if (push_label_request(parser, token,
 			 op->param_size[op->nb_param - 1],
 			 &op->param_content[op->nb_param - 1]))

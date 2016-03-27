@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:13:52 2016 Benjamin Grange
-** Last update Sat Mar 26 20:11:29 2016 Benjamin Grange
+** Last update Sun Mar 27 01:39:17 2016 Benjamin Grange
 */
 
 #include "asm.h"
@@ -28,6 +28,7 @@ void			compile_file(char *path)
       token_list = lexer(&file, &lexer_result);
       program = parser(token_list, &file, lexer_result);
       write_program(&program);
+      free_program(&program);
       xfree(file.content);
     }
 }

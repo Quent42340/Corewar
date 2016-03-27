@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Feb 23 23:29:49 2016 Benjamin Grange
-** Last update Sat Mar 26 16:57:00 2016 Benjamin Grange
+** Last update Sun Mar 27 01:35:19 2016 Benjamin Grange
 */
 
 #include "parser.h"
@@ -21,6 +21,8 @@ void			create_parser(t_parser *parser,
   parser->is_empty = true;
   parser->program.is_valid = true;
   parser->program.file_name = fr->file->name;
+  parser->label = NULL;
+  parser->labelr = NULL;
 }
 
 t_bool			parse_current_token(t_parser *parser)
@@ -51,11 +53,11 @@ t_program		parser(t_token_list *token_list,
   t_parser		parser;
   t_file_reader		file_reader;
 
+  delete_all_comments(&token_list);
+  file_reader = generate_file_reader(fr);
+  create_parser(&parser, &file_reader, token_list);
   if (parse)
     {
-      delete_all_comments(&token_list);
-      file_reader = generate_file_reader(fr);
-      create_parser(&parser, &file_reader, token_list);
       while (has_next_token(&parser) && parser.program.is_valid)
 	{
 	  parse_whitespace(&parser);
@@ -66,7 +68,10 @@ t_program		parser(t_token_list *token_list,
 	}
       raise_final_warnings_errors(&parser);
     }
+  else
+    parser.program.is_valid = false;
   pop_label_request(&parser);
+  free_label(&parser);
   free_token_list(token_list);
   return (parser.program);
 }
