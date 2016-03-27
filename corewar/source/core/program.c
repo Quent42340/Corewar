@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sat Mar 26 22:05:09 2016 Jakob Kellendonk
+** Last update Sun Mar 27 03:23:16 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -38,16 +38,16 @@ t_err		set_address(t_application *application, t_program *program,
   return (0);
 }
 
-t_err		read_until(void *target, int fd, int size, char *file_name)
+t_err		read_until(unsigned char *target, int fd, int size, char *file_name)
 {
   int		r;
   int		total;
 
   total = 0;
-  while (total != size && (r = read(fd, (char *)target + total,
-				    size - total)) > 0)
+  while (total < size
+	 && (r = read(fd, target + total, size - total)) > 0)
     total = total + r;
-  if (r == 0)
+  if (total != size)
     return (print_error(ERROR_NOT_EXECUTABLE, file_name));
   if (r == -1)
     return (print_error(ERROR_FILE_NOT_ACCESSIBLE, file_name));
@@ -63,15 +63,18 @@ t_err		put_program_in_vm(t_application *application,
   if (list->address + program->info.prog_size > MEM_SIZE)
     {
       if ((error = read_until(application->memory + list->address, fd,
-			     MEM_SIZE - list->address, list->file_name))
+			      MEM_SIZE - list->address, list->file_name))
 	  || ((error = read_until(application->memory, fd, list->address
 				  + program->info.prog_size - MEM_SIZE,
 				  list->file_name))))
 	return (error);
-      return (0);
     }
-  return (read_until(application->memory + list->address, fd,
-		     program->info.prog_size, list->file_name));
+  else if (read_until(application->memory + list->address, fd,
+		      program->info.prog_size, list->file_name))
+    return (error);
+  if (read(fd, &error, 1))
+    return (print_error(ERROR_NOT_EXECUTABLE, list->file_name));
+  return (0);
 }
     
 t_err		add_process(t_program *program, t_info_list *list)
@@ -79,8 +82,10 @@ t_err		add_process(t_program *program, t_info_list *list)
   if ((program->processes = malloc(sizeof(t_process))) == NULL)
     return (print_error(ERROR_MALLOC_FAILED));
   program->processes[0].carry = 0;
+  program->processes[0].cycles_left = 0;
   program->processes[0].pc = list->address;
   program->processes[0].parent = program;
+  my_memset(program->processes[0].cmd, 0 , CMD_MAX_SIZE);
   my_memset(program->processes[0].registre[0], 0,
 	    sizeof(unsigned char) * REG_NUMBER * REG_SIZE);
   my_memcpy(program->processes[0].registre, program->live, 4);
@@ -93,7 +98,6 @@ t_err		program_init(t_program *program, t_application *app,
   int		fd;
   t_err		error;
 
-  (void)app;
   if ((fd = open(list->file_name, O_RDONLY)) == -1)
     return (print_error(ERROR_OPEN_FAILED, list->file_name));
   if ((error = read_int(fd, &program->info.magic, list->file_name))

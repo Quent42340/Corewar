@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Tue Mar 22 14:41:29 2016 Flora Huot
-** Last update Tue Mar 22 17:03:30 2016 Jakob Kellendonk
+** Last update Sun Mar 27 01:54:52 2016 Jakob Kellendonk
 */
 
 #include <my.h>
@@ -24,14 +24,14 @@ t_err	create_prog_info(t_info_list **new)
   return (0);
 }
 
-t_err		handle_option_flag(t_args *args, char **flags)
+t_err		handle_option_flag(t_args *args, char **flags, t_info_list *current)
 {
   int		*target;
 
   if (!my_strcmp(*flags, "-a"))
-    target = &args->program_list->address;
+    target = &current->address;
   else if (!my_strcmp(*flags, "-n"))
-    target = &args->program_list->live_code;
+    target = &current->live_code;
   else if (!my_strcmp(*flags, "-dump"))
     target = &args->constants->dump_cycle;
   else

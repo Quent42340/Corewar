@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:22:51 2016 Jakob Kellendonk
-** Last update Fri Mar 25 16:43:43 2016 Jakob Kellendonk
+** Last update Sat Mar 26 23:39:40 2016 Jakob Kellendonk
 */
 
 #ifndef RUN_H_
@@ -36,5 +36,6 @@ t_err	instruction_lldi(t_application *app, t_process *proc);
 t_err	instruction_st(t_application *app, t_process *proc);
 t_err	instruction_sti(t_application *app, t_process *proc);
 
+t_err	dump_vm(t_application *app);
 
 #endif /* !RUN_H_ */

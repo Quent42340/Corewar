@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Sat Mar 26 22:23:23 2016 Jakob Kellendonk
+** Last update Sat Mar 26 23:41:35 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -14,6 +14,7 @@
 int		get_cycle_amount(unsigned char *cmd)
 {
   int		i;
+
   if (cmd[0] <= 0 || cmd[0] > 16)
     return (1);
   i = 0;
@@ -111,6 +112,8 @@ t_err	tick(t_application *application)
   if (application->cycle - application->last_limit_hit
       >= application->cycle_to_die && (err = remove_dead(application)))
     return (err);
+  if (application->cycle == application->constants->dump_cycle)
+    return (dump_vm(application));
   i = 0;
   while (i < application->program_amount)
     {

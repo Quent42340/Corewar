@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:14 2016 Quentin Bazin
-** Last update Sat Mar 26 13:49:34 2016 Jakob Kellendonk
+** Last update Sun Mar 27 03:29:44 2016 Jakob Kellendonk
 */
 
 #ifndef PROGRAM_H_
@@ -33,7 +33,7 @@ typedef struct		s_process
 
 typedef struct		s_program
 {
-  struct header_s	info;
+  struct s_header	info;
   unsigned char		live[4];
   t_process		*processes;
   int			process_amount;

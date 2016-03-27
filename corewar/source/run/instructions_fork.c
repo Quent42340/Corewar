@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:29:08 2016 Flora Huot
-** Last update Fri Mar 25 18:06:41 2016 Jakob Kellendonk
+** Last update Sun Mar 27 01:28:32 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -20,7 +20,7 @@ t_err		new_process(t_process *old, int newpc)
   old->parent->processes = realloc(old->parent->processes,
 				   sizeof(t_process) * old->parent->process_amount);
   if (!old->parent->processes)
-    return (ERROR_MALLOC_FAILED);
+    return (print_error(ERROR_MALLOC_FAILED));
   new = old->parent->processes + old->parent->process_amount - 1;
   my_memcpy(new, old, sizeof(t_process));
   new->pc = ((newpc % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;

@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:45 2016 Quentin Bazin
-** Last update Sat Mar 26 16:27:59 2016 Jakob Kellendonk
+** Last update Sun Mar 27 00:28:23 2016 Jakob Kellendonk
 */
 
 #ifndef APPLICATION_H_

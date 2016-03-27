@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Tue Mar 22 14:32:20 2016 Flora Huot
-** Last update Tue Mar 22 14:32:20 2016 Flora Huot
+** Last update Sat Mar 26 23:51:02 2016 Jakob Kellendonk
 */
 
 #include "my_mem.h"
@@ -36,5 +36,5 @@ int	my_getnbr_error(char *str, int *error)
       result = result * 10 - *str + '0';
       str = str + 1;
     }
-  return (!error * (result * (-(sign * 2) + 1)));
+  return ((result * ((sign * 2) - 1)));
 }

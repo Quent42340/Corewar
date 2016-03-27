@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Tue Feb 23 15:03:50 2016 Quentin Bazin
-** Last update Sat Mar 26 18:28:12 2016 Jakob Kellendonk
+** Last update Sun Mar 27 01:53:48 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -33,7 +33,7 @@ t_err		args_init(t_args *args, char **argv)
 	  current = current->next;
 	  args->program_amount = args->program_amount + 1;
 	}
-      else if ((error = handle_option_flag(args, argv)))
+      else if ((error = handle_option_flag(args, argv, current)))
 	return (error);
       argv = argv + 1 + (**argv == '-');
     }
@@ -50,4 +50,5 @@ void		args_free(t_args *args)
       free(args->program_list);
       args->program_list = next;
     }
+  free(args->program_list);
 }

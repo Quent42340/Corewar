@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Mon Feb 29 12:51:47 2016 Jakob Kellendonk
-** Last update Sat Mar 26 18:25:34 2016 Jakob Kellendonk
+** Last update Sat Mar 26 23:43:33 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -18,10 +18,10 @@ t_err	set_option_flag(t_args *args, char **flags, int *target)
   int	error;
 
   *target = my_getnbr_error(flags[1], &error);
-  if (*target <= 0 && target == &args->constants->dump_cycle)
-    return (print_error(ERROR_POSITIVE_NUMBER_EXPECTED, *flags));
   if (error)
     return (print_error(ERROR_INTEGER_EXPECTED, *flags));
+  if (*target <= 0 && target == &args->constants->dump_cycle)
+    return (print_error(ERROR_POSITIVE_NUMBER_EXPECTED, *flags));
   return (0);
 }
 

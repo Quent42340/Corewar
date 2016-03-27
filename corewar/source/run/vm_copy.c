@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 18:19:59 2016 Jakob Kellendonk
-** Last update Sat Mar 26 16:39:07 2016 Jakob Kellendonk
+** Last update Sat Mar 26 23:08:05 2016 Jakob Kellendonk
 */
 
 # include "application.h"
@@ -58,7 +58,7 @@ unsigned char	*get_args(t_application *application, t_process *process,
 void	vm_cpyfrom(t_application *application, int offset,
 		   unsigned char *buf, int amount)
 {
-  offset = ((offset % MEM_SIZE)+ MEM_SIZE) % MEM_SIZE;
+  offset = ((offset % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;
   if (offset + amount > MEM_SIZE)
     {
       vm_cpyfrom(application, offset, buf, MEM_SIZE - offset);
