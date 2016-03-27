@@ -11,7 +11,15 @@
 SUBDIRS	= asm corewar
 
 all:
-	@for dir in $(SUBDIRS); do echo "Compiling $$dir..."; make --no-print-directory -C $$dir; echo; done
+	@for dir in $(SUBDIRS); do echo "Cleaning $$dir..."; make --no-print-directory -C $$dir; [ $$dir != "corewar" ] && echo || echo -n; done
+
+asm:
+	@echo "Compiling asm..."
+	@make --no-print-directory -C asm
+
+corewar:
+	@echo "Compiling corewar..."
+	@make --no-print-directory -C corewar
 
 clean:
 	@for dir in $(SUBDIRS); do echo "Cleaning $$dir..."; make --no-print-directory -C $$dir clean; [ $$dir != "corewar" ] && echo || echo -n; done
@@ -28,4 +36,4 @@ lexer:
 lexer_debug: LEXER_DEBUG = 1
 lexer_debug: all
 
-.PHONY: all clean fclean re lexer
+.PHONY: all asm corewar clean fclean re lexer

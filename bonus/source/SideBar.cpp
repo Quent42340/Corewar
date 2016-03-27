@@ -13,13 +13,15 @@
  */
 #include <QFormLayout>
 
+#include "GLWidget.hpp"
 #include "MainWindow.hpp"
 #include "MediaPlayer.hpp"
 #include "PlayerWidget.hpp"
 #include "SideBar.hpp"
 
-SideBar::SideBar(MediaPlayer *mediaPlayer, QWidget *parent) : QWidget(parent) {
+SideBar::SideBar(MediaPlayer *mediaPlayer, GLWidget *glWidget, QWidget *parent) : QWidget(parent) {
 	m_mediaPlayer = mediaPlayer;
+	m_glWidget = glWidget;
 	
 	setMinimumSize(MainWindow::width / 5, 0);
 	
@@ -68,8 +70,9 @@ void SideBar::initYoutubeWidgets() {
 
 void SideBar::initPlayerWidgets() {
 	for (int i = 0 ; i < 4 ; i++) {
-		m_playerWidgets[i] = new PlayerWidget(i + 1, this);
+		m_playerWidgets[i] = new PlayerWidget(i, this);
 		m_layout->addWidget(m_playerWidgets[i]);
+		connect(m_glWidget, SIGNAL(programUpdated(int, int, int)), m_playerWidgets[i], SLOT(updateInfo(int, int, int)));
 	}
 }
 

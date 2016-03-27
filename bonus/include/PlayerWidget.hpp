@@ -15,12 +15,21 @@
 #define PLAYERWIDGET_HPP_
 
 #include <QGroupBox>
+#include <QLabel>
 
 class PlayerWidget : public QGroupBox {
+	Q_OBJECT
+	
 	public:
 		PlayerWidget(int playerID, QWidget *parent = nullptr);
 		
+	public slots:
+		void updateInfo(int playerID, int processCount, int memoryOwned);
+		
 	private:
+		QLabel m_processCountLabel{"0"};
+		QLabel m_memoryOwnedLabel{"0"};
+		
 		int m_playerID;
 };
 

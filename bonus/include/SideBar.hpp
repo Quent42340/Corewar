@@ -20,6 +20,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+class GLWidget;
 class MediaPlayer;
 class PlayerWidget;
 
@@ -27,7 +28,7 @@ class SideBar : public QWidget {
 	Q_OBJECT
 	
 	public:
-		SideBar(MediaPlayer *mediaPlayer, QWidget *parent = nullptr);
+		SideBar(MediaPlayer *mediaPlayer, GLWidget *glWidget, QWidget *parent = nullptr);
 		
 		void initMusicPlayerWidgets();
 		void initYoutubeWidgets();
@@ -44,6 +45,7 @@ class SideBar : public QWidget {
 		QPushButton *m_youtubeVideoButton;
 		QProgressBar *m_downloadProgressBar;
 		
+		GLWidget *m_glWidget;
 		MediaPlayer *m_mediaPlayer;
 		
 		PlayerWidget *m_playerWidgets[4];

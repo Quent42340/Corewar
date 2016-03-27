@@ -64,6 +64,10 @@ void GLWidget::process() {
 	m_clock.update([&] {
 		tick(&m_app);
 		
+		for (int i = 0 ; i < m_app.program_amount ; ++i) {
+			emit programUpdated(i, m_app.programs[i].process_amount, 0);
+		}
+		
 		// m_camera.update();
 		m_camera.updateMovement();
 	});

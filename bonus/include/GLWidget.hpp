@@ -39,6 +39,9 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 		
 		CorewarRenderer *corewarRenderer() const { return m_renderer.get(); }
 		
+	signals:
+		void programUpdated(int playerID, int processCount, int memoryOwned);
+		
 	public slots:
 		void process();
 		void processAudioBuffer(const QAudioBuffer &buffer);

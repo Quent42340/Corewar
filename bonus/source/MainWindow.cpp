@@ -37,12 +37,14 @@ MainWindow::MainWindow(t_application &app) : QMainWindow(nullptr, Qt::Dialog), m
 	m_glWidget = new GLWidget(m_app, this);
 	m_glWidget->setFormat(format);
 	
+	m_sideBar = new SideBar(&m_mediaPlayer, m_glWidget, this);
+	
 	QWidget *layoutWidget = new QWidget(this);
 	layoutWidget->resize(width, height);
 	
 	QHBoxLayout *horizontalLayout = new QHBoxLayout(layoutWidget);
 	horizontalLayout->addWidget(m_glWidget, 1);
-	horizontalLayout->addWidget(&m_sideBar);
+	horizontalLayout->addWidget(m_sideBar);
 	
 	Keyboard::setKeyMap(&m_keys);
 	
@@ -75,6 +77,6 @@ void MainWindow::handleStorage(t_application *app, t_program *program, int index
 	CorewarRenderer *renderer = window->m_glWidget->corewarRenderer();
 	renderer->memoryStored(program->index, index, size);
 	
-	qDebug() << "Memory stored for player" << program->index;
+	qDebug() << "Memory stored for player" << program->index << "at index:" << index << "and size:" << size;
 }
 

@@ -45,7 +45,7 @@ class MainWindow : public QMainWindow {
 		MediaPlayer m_mediaPlayer;
 		
 		GLWidget *m_glWidget;
-		SideBar m_sideBar{&m_mediaPlayer};
+		SideBar *m_sideBar;
 		
 		QMap<int, bool> m_keys;
 		
