@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:29:08 2016 Flora Huot
-** Last update Sun Mar 27 17:21:21 2016 Jakob Kellendonk
+** Last update Sun Mar 27 18:49:37 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -29,7 +29,7 @@ t_err		new_process(t_process **old, int newpc)
   new = parent->processes + parent->process_amount - 1;
   my_memcpy(new, old, sizeof(t_process));
   new->pc = ((newpc % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;
-  new->cycles_left = new->cycles_left + 1;
+  new->cycles_left = 0;
   return (0);
 }
 
