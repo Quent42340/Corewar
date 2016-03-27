@@ -37,12 +37,12 @@ typedef char			t_args_type;
 
 typedef struct			s_op
 {
-   char				*mnemonique;
-   char				nbr_args;
-   t_args_type			type[MAX_ARGS_NUMBER];
-   char				code;
-   int				nbr_cycles;
-   char				*comment;
+  char				*mnemonique;
+  char				nbr_args;
+  t_args_type			type[MAX_ARGS_NUMBER];
+  char				code;
+  int				nbr_cycles;
+  char				*comment;
 }				t_op;
 
 extern t_op			op_tab[];
@@ -57,10 +57,10 @@ extern t_op			op_tab[];
 
 typedef struct			s_header
 {
-   int				magic;
-   char				prog_name[PROG_NAME_LENGTH + 1];
-   int				prog_size;
-   char				comment[COMMENT_LENGTH + 1];
+  int				magic;
+  char				prog_name[PROG_NAME_LENGTH + 1];
+  int				prog_size;
+  char				comment[COMMENT_LENGTH + 1];
 }				t_header;
 
 # define CYCLE_TO_DIE		1536
