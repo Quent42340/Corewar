@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ## 
 ## Started on  Fri Dec 04 20:23:33 2015 Quentin Bazin
-## Last update Mon Dec 14 14:32:20 2015 Quentin Bazin
+## Last update Sat Mar 26 22:48:15 2016 Jakob Kellendonk
 ##
 
 ifndef CC
@@ -20,7 +20,7 @@ ifndef LEXER_DEBUG
   LEXER_DEBUG = 0
 endif
 
-CFLAGS		+= -g -Wall -Wextra -Wfatal-errors -pedantic
+CFLAGS		+= -g3 -W -Wall -Wextra -Wfatal-errors
 CFLAGS		+= $(foreach inc_dir,$(INC_DIRS),-I$(inc_dir))
 
 LDFLAGS		+= $(foreach lib_dir,$(LIB_DIRS),-L$(lib_dir))
@@ -28,10 +28,11 @@ LDFLAGS		+= $(foreach lib,$(LIBS_EXT),-l$(lib))
 
 OBJS		= $(SOURCES:.c=.o)
 
-all: $(NAME)
+all: libs $(NAME)
 	@echo "Done for $(NAME)."
 	@[ -e TODO ] && echo "Don't forget to read the TODO file." || echo -n
 	@fixmes="$(shell cat $(shell find . -name "*.c" -or -name "*.h") | grep FIXME | wc -l)" && [ "$$fixmes" != "0" ] && echo $$fixmes "fixme(s) remaining." || echo -n
+	@[ -e ~/.local/bin/goku ] && goku -nocheat | tail -1 || echo -n
 
 $(NAME): $(OBJS)
 	@echo "Linking $(NAME)..."
@@ -53,6 +54,19 @@ run: $(NAME)
 debug: $(NAME)
 	@LIBGL_ALWAYS_SOFTWARE=1 gdb ./$(NAME) $(RUN_ARGS)
 
+libs:
+	@[ -n "$(MY_LIBS)" ] && [ ! -e lib ] && make --no-print-directory install_libs || echo -n
+	@for lib in $(MY_LIBS); do make --no-print-directory -C lib/lib$$lib; done;
+
+install_libs: fclean
+	@rm -rf lib
+	@for lib in $(MY_LIBS); do \
+		echo -n "Installing lib$$lib... "; \
+		mkdir -p lib/lib$$lib; \
+		cp -r ~/rendu/MyLibs/lib$$lib/{include,source,Makefile} lib/lib$$lib/; \
+		make --no-print-directory -C lib/lib$$lib fclean > /dev/null; \
+		echo "OK."; \
+		done;
 lexer: lexer_debug
 
 lexer_debug: LEXER_DEBUG = 1
@@ -62,4 +76,4 @@ lexer_debug: all
 	@echo "=>" $<
 	@$(CC) -c $< -o $@ $(CFLAGS) -DLEXER_DEBUG=$(LEXER_DEBUG)
 
-.PHONY: all clean fclean re run debug
+.PHONY: all clean fclean re run debug libs install_libs

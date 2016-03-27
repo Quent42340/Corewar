@@ -4,11 +4,10 @@
 *.o
 *.a
 TODO
+Notes
 a.out
 asm/asm
 corewar/corewar
 *.cor
-bonus/build
-bonus/launcher
 asm/test.sh
 asm/asm_reference
