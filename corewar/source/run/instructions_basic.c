@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:27:26 2016 Flora Huot
-** Last update Sun Mar 27 20:04:20 2016 Jakob Kellendonk
+** Last update Sun Mar 27 23:32:58 2016 Jakob Kellendonk
 */
 
 #include "application.h"
@@ -15,9 +15,6 @@ t_err	instruction_live(t_application *app, t_process **proc)
 {
   int	i;
 
-  write(1, "livecode: ", 10);
-  write(1, "0123456789ABCDEF" + (char_to_int((*proc)->cmd + 1) & 15), 1);
-  write(1, "\n", 1);
   i = -1;
   while (++i < app->program_amount)
     {

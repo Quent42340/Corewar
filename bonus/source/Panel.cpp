@@ -97,7 +97,7 @@ void Panel::draw(QOpenGLShaderProgram &shader) {
 	
 	m_modelMatrix.setToIdentity();
 	m_modelMatrix.translate(m_x * (width + 0.001), 0.0f, m_y * (depth + 0.001));
-	m_modelMatrix.scale(1.0f, (m_scale != -1) ? m_scale : 5.0f, 1.0f);
+	m_modelMatrix.scale(1.0f, (m_scale != -1) ? m_scale : 1.0f, 1.0f);
 	
 	if (m_randomColors) {
 		Color colors[5] = {Color::black, Color::white, Color::text, Color::blue, Color::red};

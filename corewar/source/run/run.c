@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Sun Mar 27 17:25:32 2016 Jakob Kellendonk
+** Last update Sun Mar 27 23:32:43 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -43,9 +43,6 @@ t_err		execute(t_application *application, t_process **process)
 {
   t_func	funcs[16];
 
-  write(1, "executing ", 10);
-  my_putstr_out(op_tab[(*process)->cmd[0] - 1].mnemonique, 1);
-  write(1, "\n", 1);
   funcs[0] = &instruction_live;
   funcs[1] = &instruction_ld;
   funcs[2] = &instruction_st;
