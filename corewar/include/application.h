@@ -26,6 +26,7 @@ typedef struct		s_application
   void			(*death_callback)(struct s_application *, t_program *);
   void			(*st_callback)(struct s_application *, t_program *,
 					      int index, int size);
+  void			*qt_data;
   t_constants		*constants;
 }			t_application;
 
