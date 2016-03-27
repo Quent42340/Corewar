@@ -13,26 +13,26 @@ NAME		= corewar
 INC_DIRS	= include
 
 SOURCES		= source/core/args.c \
-		  source/core/application.c \
-		  source/core/error.c \
-		  source/core/flag_handler.c \
-		  source/core/init.c \
-		  source/core/main.c \
-		  source/core/program.c \
-		  source/core/read_helper.c \
-		  source/lib/my_mem.c \
-		  source/lib/my_convert.c \
-		  source/lib/str.c \
-		  source/run/instructions_basic.c \
-		  source/run/instructions_calcul.c \
-		  source/run/instructions_fork.c \
-		  source/run/instructions_ld.c \
-		  source/run/instructions_st.c \
-		  source/run/messages.c \
-		  source/run/run.c \
-		  source/run/run2.c \
-		  source/run/vm_copy.c \
-		  source/core/op.c \
+			  source/core/application.c \
+			  source/core/error.c \
+			  source/core/flag_handler.c \
+			  source/core/init.c \
+			  source/core/main.c \
+			  source/core/program.c \
+			  source/core/read_helper.c \
+			  source/lib/my_mem.c \
+			  source/lib/my_convert.c \
+			  source/lib/str.c \
+			  source/run/instructions_basic.c \
+			  source/run/instructions_calcul.c \
+			  source/run/instructions_fork.c \
+			  source/run/instructions_ld.c \
+			  source/run/instructions_st.c \
+			  source/run/messages.c \
+			  source/run/run.c \
+			  source/run/run2.c \
+			  source/run/vm_copy.c \
+			  source/core/op.c \
 
 MY_LIBS		= my_printf my
 

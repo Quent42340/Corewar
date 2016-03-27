@@ -38,7 +38,8 @@ t_err	instruction_fork(t_application *app, t_process **proc)
   t_err	err;
 
   (void)app;
-  if ((err = new_process(proc, (*proc)->pc + char_to_short((*proc)->cmd + 1) % IDX_MOD)))
+  if ((err = new_process(proc, (*proc)->pc
+			 + char_to_short((*proc)->cmd + 1) % IDX_MOD)))
     return (err);
   (*proc)->pc = (*proc)->pc + 3;
   return (0);

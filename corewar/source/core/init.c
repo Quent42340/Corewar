@@ -24,7 +24,8 @@ t_err	create_prog_info(t_info_list **new)
   return (0);
 }
 
-t_err		handle_option_flag(t_args *args, char **flags, t_info_list *current)
+t_err		handle_option_flag(t_args *args, char **flags,
+				   t_info_list *current)
 {
   int		*target;
 
