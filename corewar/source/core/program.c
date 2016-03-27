@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sun Mar 27 03:23:16 2016 Jakob Kellendonk
+** Last update Sun Mar 27 18:51:40 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -108,7 +108,7 @@ t_err		program_init(t_program *program, t_application *app,
 			    list->file_name)))
     return (error);
   my_memset(program->live, 0, 4);
-  program->live[3] = list->live_code;
+  int_to_char(list->live_code, program->live);
   program->process_amount = 1;
   program->did_live = 0;
   program->last_live_cycle = 0;

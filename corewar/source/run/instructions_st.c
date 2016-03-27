@@ -5,7 +5,7 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:30:13 2016 Flora Huot
-** Last update Sun Mar 27 16:42:32 2016 Jakob Kellendonk
+** Last update Sun Mar 27 19:11:05 2016 Jakob Kellendonk
 */
 
 #include "vm_copy.h"
@@ -42,8 +42,8 @@ t_err	instruction_sti(t_application *app, t_process **proc)
   vm_cpyto(app, (*proc)->pc + (char_to_int(read[1])
 			    + char_to_int(read[2])) % IDX_MOD, read[0], 4);
   if (app->st_callback)
-    app->st_callback(app, (*proc)->parent, (*proc)->pc + (char_to_int(read[1])
-						    + char_to_int(read[2]))
+    app->st_callback(app, (*proc)->parent, (*proc)->pc
+		     + (char_to_int(read[1]) + char_to_int(read[2]))
 	      % IDX_MOD, 4);
   (*proc)->pc = (*proc)->pc + buffs[1] - (*proc)->cmd;
   return (0);
