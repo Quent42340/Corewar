@@ -50,7 +50,7 @@ void SideBar::initMusicPlayerWidgets() {
 }
 
 void SideBar::initYoutubeWidgets() {
-	QGroupBox *youtubeBox = new QGroupBox("Youtube", this);
+	QGroupBox *youtubeBox = new QGroupBox("YouTube", this);
 	m_youtubeVideoIDWidget = new QLineEdit(youtubeBox);
 	m_youtubeVideoButton = new QPushButton("Download and play", youtubeBox);
 	
