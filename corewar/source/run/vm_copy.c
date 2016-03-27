@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 18:19:59 2016 Jakob Kellendonk
-** Last update Mon Mar 28 01:36:05 2016 Jakob Kellendonk
+** Last update Mon Mar 28 01:50:53 2016 Jakob Kellendonk
 */
 
 # include "application.h"
@@ -25,7 +25,7 @@ unsigned char	*set_args(t_application *application, t_process *process,
 	       buffs[0], REG_SIZE);
       if (application->st_callback)
 	application->st_callback(application, process->parent,
-				 (process->pc + (char_to_short(buffs[1]) + IDX_MOD)
+				 process->pc + (char_to_short(buffs[1])
 						% IDX_MOD), REG_SIZE);
       return (buffs[1] + 2);
     }
