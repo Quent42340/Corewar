@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 10:29:43 2016 Benjamin Grange
-** Last update Mon Mar 21 15:24:18 2016 Benjamin Grange
+** Last update Sun Mar 27 05:03:18 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -47,7 +47,7 @@ t_result		lex_comment(t_file_reader *reader)
 
   pos = reader->cursor;
   c = string_reader_next(reader);
-  if (c == COMMENT_CHAR)
+  if (c == COMMENT_CHAR || c == ';')
     {
       while (string_reader_has_more(reader))
 	{

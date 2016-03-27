@@ -68,4 +68,3 @@ typedef struct			s_header
 # define NBR_LIVE		40
 
 #endif /* !OP_H_ */
-

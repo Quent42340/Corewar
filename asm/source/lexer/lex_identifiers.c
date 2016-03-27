@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 01:54:14 2016 Benjamin Grange
-** Last update Wed Mar  2 17:09:34 2016 Benjamin Grange
+** Last update Sun Mar 27 04:19:58 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -15,7 +15,8 @@ t_bool			is_identifier(char c)
   if ((c >= 'a' && c <= 'z')
       || (c >= 'A' && c <= 'Z')
       || (c >= '0' && c <= '9')
-      || c == '.' || c == '_')
+      || c == '.' || c == '_'
+      || c == '+' || c == '-')
     return (TRUE);
   else
     return (FALSE);

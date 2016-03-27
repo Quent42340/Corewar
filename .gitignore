@@ -8,8 +8,6 @@ Notes
 a.out
 asm/asm
 corewar/corewar
-bonus/build
-bonus/launcher
 *.cor
 asm/test.sh
 asm/asm_reference

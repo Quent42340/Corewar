@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Tue Mar  1 02:05:39 2016 Benjamin Grange
-** Last update Fri Mar  4 22:05:12 2016 Benjamin Grange
+** Last update Sun Mar 27 16:46:31 2016 Benjamin Grange
 */
 
 #include "lexer.h"
@@ -16,7 +16,7 @@ t_result		create_unkown_identifer_result(t_position begin,
   char			*error;
   t_result		result;
 
-  error = xmalloc(my_strlen("Unknown identifier \"\"") + my_strlen(string) + 1);
+  error = xmalloc(my_strlen("Unknown identifier ") + my_strlen(string) + 3);
   if (error == NULL)
     return create_result_from_se(begin, "Unknown identifier");
   my_cpystr(error, "Unknown identifier \"");

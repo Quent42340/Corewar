@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 19:03:02 2016 Benjamin Grange
-** Last update Sat Mar 26 19:52:00 2016 Benjamin Grange
+** Last update Sun Mar 27 03:58:49 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -23,9 +23,7 @@ static int			get_param_size(t_operation *op,
       else
 	return (3);
     }
-  if (param == T_IND)
-    return (2);
-  return (0);
+  return (2);
 }
 
 t_operation			*create_operation(t_parser *parser,
@@ -52,7 +50,7 @@ void				add_param_to_operation(t_operation *op,
 						       t_args_type type,
 						       unsigned value)
 {
-  op->param_type += (type << (2 * (3 - op->nb_param % 4)));
+  op->param_type += (type << (2 * (3 - (op->nb_param % 4))));
   op->param_size[op->nb_param] = get_param_size(op, type);
   if (op->param_size[op->nb_param] == 0)
     {

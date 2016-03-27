@@ -5,7 +5,7 @@
 ## Login   <bazin_q@epitech.net>
 ##
 ## Started on  Tue Dec 01 15:46:23 2015 Quentin Bazin
-## Last update Fri Mar 25 22:03:38 2016 Benjamin Grange
+## Last update Sun Mar 27 01:39:33 2016 Benjamin Grange
 ##
 
 NAME		= asm
@@ -25,6 +25,7 @@ SOURCES		= source/main.c \
 		  source/basic/putstr.c \
 		  source/basic/str_adv.c \
 		  source/basic/strutil.c \
+		  source/compiler/free_program.c \
 		  source/compiler/instruction_helper.c \
 		  source/compiler/instruction.c \
 		  source/compiler/label.c \
@@ -53,6 +54,7 @@ SOURCES		= source/main.c \
 		  source/lexer/result_2.c \
 		  source/lexer/token_list.c \
 		  source/lexer/token.c \
+		  source/parser/free_parser.c \
 		  source/parser/parse_arguments.c \
 		  source/parser/parse_comment.c \
 		  source/parser/parse_config.c \

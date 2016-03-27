@@ -5,7 +5,7 @@
 ** Login   <grange_c@epitech.net>
 **
 ** Started on  Fri Mar 25 19:23:16 2016 Benjamin Grange
-** Last update Fri Mar 25 19:23:39 2016 Benjamin Grange
+** Last update Sun Mar 27 03:56:58 2016 Benjamin Grange
 */
 
 #include "compiler.h"
@@ -23,11 +23,11 @@ t_bool				write_instruction_parameters(int op_num)
 t_bool				is_param_index(int instru, int i)
 {
   if (instru == INSTRUCTION_ZJMP
-      || (instru == INSTRUCTION_LDI
+      || ((instru == INSTRUCTION_LDI || instru == INSTRUCTION_LLDI)
 	  && i >= 0 && i <= 1)
       || (instru == INSTRUCTION_STI
 	  && i >= 1 && i <= 2)
-      || instru == INSTRUCTION_FORK)
+      || (instru == INSTRUCTION_FORK || instru == INSTRUCTION_LFORK))
     return (1);
   return (0);
 }
