@@ -23,7 +23,7 @@ CXXFLAGS	=	$(CFLAGS) -std=c++11 -static-libstdc++ -MD -fPIC $(DEFINES)
 #---------------------------------------------------------------------------------
 # Libraries
 #---------------------------------------------------------------------------------
-LIBS		=	$(foreach lib,$(QT_LIBS),-lQt5$(lib)) -lGL
+LIBS		=	$(foreach lib,$(QT_LIBS),-lQt5$(lib)) -lGL -lmy_printf -lmy
 
 #---------------------------------------------------------------------------------
 # Source folders
@@ -31,8 +31,10 @@ LIBS		=	$(foreach lib,$(QT_LIBS),-lQt5$(lib)) -lGL
 find_rec	=	$(shell find $(1) -type d)
 
 BUILD		=	build
-SOURCES		=	source external $(call find_rec,source)
-INCLUDES	=	include external $(call find_rec,include)
+SOURCES		=	source external $(call find_rec,source) \
+				../corewar/source $(call find_rec,../corewar/source)
+INCLUDES	=	include external $(call find_rec,include) ../corewar/include \
+				../corewar/lib/libmy/include ../corewar/lib/libmy_printf/include
 
 #---------------------------------------------------------------------------------
 # Some more include paths
@@ -44,14 +46,33 @@ CXXFLAGS	+=	-I/usr/share/qt/mkspecs/linux-g++ \
 #---------------------------------------------------------------------------------
 # Additional folders for libraries
 #---------------------------------------------------------------------------------
-LIBDIRS		=
+LIBDIRS		= ../corewar/lib/libmy ../corewar/lib/libmy_printf
 
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 
 #---------------------------------------------------------------------------------
 # Source files
 #---------------------------------------------------------------------------------
-CFILES			=	
+CFILES			=	args.c \
+					application.c \
+					error.c \
+					flag_handler.c \
+					init.c \
+					program.c \
+					read_helper.c \
+					my_mem.c \
+					my_convert.c \
+					str.c \
+					instructions_basic.c \
+					instructions_calcul.c \
+					instructions_fork.c \
+					instructions_ld.c \
+					instructions_st.c \
+					messages.c \
+					run.c \
+					run2.c \
+					vm_copy.c \
+					op.c
 
 CPPFILES		=	AppClock.cpp \
 					Camera.cpp \
@@ -84,7 +105,7 @@ export OUTPUT	=	$(CURDIR)/$(TARGET)
 export VPATH	=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir)) \
 					$(foreach dir,$(INCLUDES),$(CURDIR)/$(dir))
 
-export OFILES	=	$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) \
+export OFILES	=	$(CFILES:.c=.o) $(CPPFILES:.cpp=.o) \
 					$(HPPFILES:.hpp=.moc.o)
 
 export INCLUDE	=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir))

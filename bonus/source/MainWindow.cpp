@@ -19,7 +19,7 @@
 #include "MainWindow.hpp"
 #include "PlayerWidget.hpp"
 
-MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
+MainWindow::MainWindow(t_application &app) : QMainWindow(nullptr, Qt::Dialog), m_app(app) {
 	setWindowTitle("Corewar launcher");
 	resize(width, height);
 	
@@ -33,7 +33,7 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	if (format.swapInterval() != 1)
 		qWarning() << "Warning: Unable to enable VSync";
 	
-	m_widget = new GLWidget(this);
+	m_widget = new GLWidget(m_app, this);
 	m_widget->setFormat(format);
 	
 	QWidget *layoutWidget = new QWidget(this);

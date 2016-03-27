@@ -17,6 +17,8 @@
 #include <QMainWindow>
 #include <QMap>
 
+#include "application.h"
+
 #include "MediaPlayer.hpp"
 #include "SideBar.hpp"
 
@@ -26,7 +28,7 @@ class MainWindow : public QMainWindow {
 	Q_OBJECT
 	
 	public:
-		MainWindow();
+		MainWindow(t_application &app);
 		
 		void keyPressEvent(QKeyEvent *event);
 		void keyReleaseEvent(QKeyEvent *event);
@@ -41,6 +43,8 @@ class MainWindow : public QMainWindow {
 		SideBar m_sideBar{&m_mediaPlayer};
 		
 		QMap<int, bool> m_keys;
+		
+		t_application &m_app;
 };
 
 #endif // MAINWINDOW_HPP_

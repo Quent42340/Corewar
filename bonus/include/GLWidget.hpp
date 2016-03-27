@@ -21,21 +21,22 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLWidget>
 
+#include <QAudioBuffer>
 #include <QTimer>
+
+#include "application.h"
 
 #include "AppClock.hpp"
 #include "Camera.hpp"
 
 class CorewarRenderer;
 
-#include <QAudioBuffer>
-
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 	Q_OBJECT
 	
 	public:
-		GLWidget(QWidget *parent = nullptr)
-			: QOpenGLWidget(parent) {}
+		GLWidget(t_application &app, QWidget *parent = nullptr)
+			: QOpenGLWidget(parent), m_app(app) {}
 		
 	public slots:
 		void process();
@@ -59,6 +60,8 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 		
 		AppClock m_clock;
 		QTimer m_timer;
+		
+		t_application &m_app;
 };
 
 #endif // GLWIDGET_HPP_

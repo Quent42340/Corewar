@@ -11,6 +11,10 @@
  *
  * =====================================================================================
  */
+extern "C" {
+#include "run.h"
+}
+
 #include "AppClock.hpp"
 #include "CorewarRenderer.hpp"
 #include "GLWidget.hpp"
@@ -54,6 +58,8 @@ void GLWidget::initializeGL() {
 
 void GLWidget::process() {
 	m_clock.update([&] {
+		tick(&m_app);
+		
 		// m_camera.update();
 		m_camera.updateMovement();
 	});
