@@ -5,7 +5,7 @@
 ** Login   <bazin_q@epitech.net>
 ** 
 ** Started on  Wed Mar 23 12:16:07 2016 Quentin Bazin
-** Last update Sun Mar 27 21:43:59 2016 Jakob Kellendonk
+** Last update Sun Mar 27 22:54:46 2016 Jakob Kellendonk
 */
 
 #include <fcntl.h>
@@ -14,29 +14,6 @@
 #include "application.h"
 #include "my_mem.h"
 #include "read_helper.h"
-
-t_err		set_address(t_application *application, t_program *program,
-			    t_info_list *list)
-{
-  int		i;
-
-  if (list->address == -1)
-    {
-      /* FIXME: WTF SHOULD I DO ? */
-    }
-  i = 0;
-  while (application->programs + i != program)
-    {
-      if (((application->programs[i].processes[0].pc - list->address)
-	   % MEM_SIZE + MEM_SIZE) % MEM_SIZE < program->info.prog_size
-	  || ((list->address - application->programs[i].processes[0].pc)
-	      + MEM_SIZE) % MEM_SIZE
-	  < application->programs[i].info.prog_size)
-	return (print_error(ERROR_OVERLAP));
-      i = i + 1;
-    }
-  return (0);
-}
 
 t_err		read_until(unsigned char *target, int fd,
 			   int size, char *file_name)
@@ -54,7 +31,6 @@ t_err		read_until(unsigned char *target, int fd,
     return (print_error(ERROR_FILE_NOT_ACCESSIBLE, file_name));
   return (0);
 }
-
 
 t_err		put_program_in_vm(t_application *app,
 				  t_program *program,
@@ -75,7 +51,7 @@ t_err		put_program_in_vm(t_application *app,
 			 MEM_SIZE - list->address);
       if (app->st_callback)
 	app->st_callback(app, program, 0, list->address
-			   + program->info.prog_size - MEM_SIZE);
+			 + program->info.prog_size - MEM_SIZE);
     }
   else if (read_until(app->memory + list->address, fd,
 		      program->info.prog_size, list->file_name))
@@ -123,7 +99,8 @@ t_err		program_init(t_program *program, t_application *app,
   program->did_live = 0;
   program->last_live_cycle = 0;
   program->is_alive = 1;
-  if ((error = add_process(program, list))
+  if ((error = set_address(app, program, list))
+      || (error = add_process(program, list))
       || (error = put_program_in_vm(app, program, list, fd)))
     return (error);
   close(fd);

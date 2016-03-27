@@ -46,6 +46,8 @@ typedef struct		s_program
 t_err	add_process(t_program *program, t_info_list *list);
 t_err	program_init(t_program *program, struct s_application *app,
 		     t_info_list *list, int index);
+t_err	set_address(struct s_application *app, t_program *program,
+		    t_info_list *list);
 
 void	message_alive(t_program *program, int player);
 void	message_win(t_program *program, int player);

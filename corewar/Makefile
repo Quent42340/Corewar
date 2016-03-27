@@ -12,7 +12,8 @@ NAME		= corewar
 
 INC_DIRS	= include
 
-SOURCES		= source/core/args.c \
+SOURCES		= source/core/address.c \
+			  source/core/args.c \
 			  source/core/application.c \
 			  source/core/error.c \
 			  source/core/flag_handler.c \

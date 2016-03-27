@@ -56,7 +56,7 @@ unsigned char	*get_args(t_application *application, t_process *process,
 }
 
 void	vm_cpyto(t_application *application, int offset,
-		   unsigned char *buf, int amount)
+		 unsigned char *buf, int amount)
 {
   offset = ((offset % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;
   if (offset + amount > MEM_SIZE)
@@ -69,7 +69,7 @@ void	vm_cpyto(t_application *application, int offset,
 }
 
 void	vm_cpyfrom(t_application *application, int offset,
-		 unsigned char *buf, int amount)
+		   unsigned char *buf, int amount)
 {
   offset = ((offset % MEM_SIZE)+ MEM_SIZE) % MEM_SIZE;
   if (offset + amount > MEM_SIZE)

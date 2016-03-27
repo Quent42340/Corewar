@@ -26,7 +26,7 @@ int		get_cycle_amount(unsigned char *cmd)
       if ((!((cmd[1] >> (6 - 2 * i)) & 3)
 	   || !(op_tab[cmd[0] - 1].type[i]
 		& (((((cmd[1] >> (6 - 2 * i)) & 3) == 1) * T_REG
-		   | (((cmd[1] >> (6 - 2 * i)) & 3) == 2) * T_DIR
+		    | (((cmd[1] >> (6 - 2 * i)) & 3) == 2) * T_DIR
 		    | (((cmd[1] >> (6 - 2 * i)) & 3) == 3) * T_IND)))
 	   || (((cmd[1] >> (6 - 2 * i)) == 1)
 	       && (cmd[offset] > 16 || cmd[offset] < 1))))

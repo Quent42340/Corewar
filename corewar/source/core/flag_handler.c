@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Mon Feb 29 12:51:47 2016 Jakob Kellendonk
-** Last update Sat Mar 26 23:43:33 2016 Jakob Kellendonk
+** Last update Sun Mar 27 23:07:59 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -37,6 +37,40 @@ t_err	set_default_values(t_args *args)
   return (0);
 }
 
+t_err		verify_prog_numbers(t_args *args)
+{
+  t_info_list	*tmpi;
+  t_info_list	*tmpj;
+
+  tmpi = args->program_list;
+  while (tmpi->file_name)
+    {
+      if (tmpi == -1)
+	{
+	  tmpi->live_code = 0;
+	  tmpj = tmpi->next;
+	  while (tmpj->file_name)
+	    {
+	      if (tmpi->live_code == tmpj->live_code)
+		{
+		  tmpj = tmpi->next;
+		  tmpi->live_code = tmpi->live_code;
+		}
+	      else
+		tmpj = tmpj->next;
+	    }
+	}
+      while (tmpj->file_name)
+	{
+	  if (tmpi->live_code == tmpj->live_code)
+	    return (print_error(ERROR_TWO_SAME_LIVE_CODES, tmp->live_code));
+	  tmpj = tmpj->next;
+	}
+      tmpi = tmpi->next;
+    }
+  return (0);
+}
+
 t_err	validate_args_state(t_args *args, t_info_list *last)
 {
   if (args->program_amount < 2 || args->program_amount > 4)
@@ -46,8 +80,7 @@ t_err	validate_args_state(t_args *args, t_info_list *last)
       my_putstr_out("Error: specified program's ", 2);
       if (last->live_code != -1)
 	my_putstr_out("live number ", 2);
-      if (last->live_code != -1
-	  && last->address != -1)
+      if (last->live_code != -1 && last->address != -1)
 	my_putstr_out("and ", 2);
       if (last->address != -1)
 	my_putstr_out("starting address ", 2);
