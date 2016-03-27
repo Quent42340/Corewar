@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Mon Feb 29 12:51:47 2016 Jakob Kellendonk
-** Last update Sun Mar 27 23:07:59 2016 Jakob Kellendonk
+** Last update Sun Mar 27 23:18:50 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
@@ -37,6 +37,24 @@ t_err	set_default_values(t_args *args)
   return (0);
 }
 
+void		verify_prog_numbers2(t_args *args, t_info_list *tmpi)
+{
+  t_info_list	*tmpj;
+
+  tmpi->live_code = 0;
+  tmpj = args->program_list;
+  while (tmpj->file_name)
+    {
+      if (tmpi != tmpj && tmpi->live_code == tmpj->live_code)
+	{
+	  tmpj = tmpi->next;
+	  tmpi->live_code = tmpi->live_code + 1;
+	}
+      else
+	tmpj = tmpj->next;
+    }
+}
+
 t_err		verify_prog_numbers(t_args *args)
 {
   t_info_list	*tmpi;
@@ -45,26 +63,18 @@ t_err		verify_prog_numbers(t_args *args)
   tmpi = args->program_list;
   while (tmpi->file_name)
     {
-      if (tmpi == -1)
+      if (tmpi->live_code == -1)
+	verify_prog_numbers2(args, tmpi);
+      else
 	{
-	  tmpi->live_code = 0;
-	  tmpj = tmpi->next;
+	  tmpj = args->program_list;
 	  while (tmpj->file_name)
 	    {
-	      if (tmpi->live_code == tmpj->live_code)
-		{
-		  tmpj = tmpi->next;
-		  tmpi->live_code = tmpi->live_code;
-		}
-	      else
-		tmpj = tmpj->next;
+	      if (tmpi != tmpj && tmpi->live_code == tmpj->live_code)
+		return (print_error(ERROR_TWO_SAME_LIVE_CODES,
+				    tmpi->live_code));
+	      tmpj = tmpj->next;
 	    }
-	}
-      while (tmpj->file_name)
-	{
-	  if (tmpi->live_code == tmpj->live_code)
-	    return (print_error(ERROR_TWO_SAME_LIVE_CODES, tmp->live_code));
-	  tmpj = tmpj->next;
 	}
       tmpi = tmpi->next;
     }
@@ -87,5 +97,5 @@ t_err	validate_args_state(t_args *args, t_info_list *last)
       my_putstr_out("but didn't specify program's file.\n", 2);
       return (print_error(ERROR_UNKNOWN));
     }
-  return (0);
+  return (verify_prog_numbers(args));
 }
