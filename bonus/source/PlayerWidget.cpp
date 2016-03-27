@@ -14,7 +14,6 @@
 #include <QLabel>
 #include <QGridLayout>
 
-#include "MainWindow.hpp"
 #include "PlayerWidget.hpp"
 
 PlayerWidget::PlayerWidget(int playerID, QWidget *parent) : QGroupBox(parent) {

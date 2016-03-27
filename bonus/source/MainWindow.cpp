@@ -11,10 +11,8 @@
  *
  * =====================================================================================
  */
-#include <QCoreApplication>
-#include <QKeyEvent>
 #include <QHBoxLayout>
-#include <QVBoxLayout>
+#include <QKeyEvent>
 
 #include "GLWidget.hpp"
 #include "Keyboard.hpp"
@@ -38,33 +36,16 @@ MainWindow::MainWindow() : QMainWindow(nullptr, Qt::Dialog) {
 	m_widget = new GLWidget(this);
 	m_widget->setFormat(format);
 	
-	QVBoxLayout *verticalLayout = new QVBoxLayout;
-	for (int i = 0 ; i < 4 ; i++) {
-		m_playerWidgets[i] = new PlayerWidget(i + 1, this);
-		m_playerWidgets[i]->setMinimumSize(width / 5, 0);
-		verticalLayout->addWidget(m_playerWidgets[i]);
-	}
-	
 	QWidget *layoutWidget = new QWidget(this);
 	layoutWidget->resize(width, height);
 	
 	QHBoxLayout *horizontalLayout = new QHBoxLayout(layoutWidget);
 	horizontalLayout->addWidget(m_widget, 1);
-	horizontalLayout->addLayout(verticalLayout);
+	horizontalLayout->addWidget(&m_sideBar);
 	
 	Keyboard::setKeyMap(&m_keys);
 	
-	// ---------------------------------------------------------------------------------------
-	
-	// player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/hello.mp3"));
-	player.setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/resources/audio/song_of_storms.mp3"));
-	
-	probe.setSource(&player);
-	connect(&probe, SIGNAL(audioBufferProbed(QAudioBuffer)), m_widget, SLOT(processAudioBuffer(QAudioBuffer)));
-	
-	player.play();
-	
-	// ---------------------------------------------------------------------------------------
+	connect(&m_mediaPlayer.audioProbe(), SIGNAL(audioBufferProbed(QAudioBuffer)), m_widget, SLOT(processAudioBuffer(QAudioBuffer)));
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {

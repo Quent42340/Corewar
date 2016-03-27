@@ -17,11 +17,10 @@
 #include <QMainWindow>
 #include <QMap>
 
-class GLWidget;
-class PlayerWidget;
+#include "MediaPlayer.hpp"
+#include "SideBar.hpp"
 
-#include <QAudioProbe>
-#include <QMediaPlayer>
+class GLWidget;
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
@@ -34,13 +33,12 @@ class MainWindow : public QMainWindow {
 		
 		static const unsigned int width = 1600;
 		static const unsigned int height = 1000;
-
-QMediaPlayer player;
-QAudioProbe probe;
 		
 	private:
 		GLWidget *m_widget;
-		PlayerWidget *m_playerWidgets[4];
+		SideBar m_sideBar;
+		
+		MediaPlayer m_mediaPlayer;
 		
 		QMap<int, bool> m_keys;
 };

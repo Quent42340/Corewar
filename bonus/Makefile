@@ -1,7 +1,9 @@
 #---------------------------------------------------------------------------------
 # Executable name
 #---------------------------------------------------------------------------------
-TARGET		=  launcher
+TARGET		= 	launcher
+
+QT_LIBS		=	Core Gui Multimedia OpenGL Widgets Network WebKit WebKitWidgets
 
 #---------------------------------------------------------------------------------
 # Compiler executables
@@ -13,11 +15,7 @@ CXX			=	g++
 # Compiler flags
 #---------------------------------------------------------------------------------
 DEFINES		+=	-DQT_NO_DEBUG \
-				-DQT_OPENGL_LIB \
-				-DQT_WIDGETS_LIB \
-				-DQT_GUI_LIB \
-				-DQT_CORE_LIB \
-				-DQT_MULTIMEDIA_LIB
+				$(foreach lib,$(QT_LIBS),-DQT_$(shell echo lib | tr "[:lower:]" "[:upper:]")_LIB)
 
 CFLAGS		=	-g -Wall -Wextra -Wfatal-errors -Wno-variadic-macros -pedantic
 CXXFLAGS	=	$(CFLAGS) -std=c++11 -static-libstdc++ -MD -fPIC $(DEFINES)
@@ -25,7 +23,7 @@ CXXFLAGS	=	$(CFLAGS) -std=c++11 -static-libstdc++ -MD -fPIC $(DEFINES)
 #---------------------------------------------------------------------------------
 # Libraries
 #---------------------------------------------------------------------------------
-LIBS		=	-lQt5Multimedia -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL
+LIBS		=	$(foreach lib,$(QT_LIBS),-lQt5$(lib)) -lGL
 
 #---------------------------------------------------------------------------------
 # Source folders
@@ -41,11 +39,7 @@ INCLUDES	=	include external $(call find_rec,include)
 #---------------------------------------------------------------------------------
 CXXFLAGS	+=	-I/usr/share/qt/mkspecs/linux-g++ \
 				-I/usr/include/qt \
-				-I/usr/include/qt/QtCore \
-				-I/usr/include/qt/QtGui \
-				-I/usr/include/qt/QtMultimedia \
-				-I/usr/include/qt/QtOpenGL \
-				-I/usr/include/qt/QtWidgets
+				$(foreach lib,$(QT_LIBS),-I/usr/include/qt/Qt$(lib))
 
 #---------------------------------------------------------------------------------
 # Additional folders for libraries
@@ -66,8 +60,10 @@ CPPFILES		=	AppClock.cpp \
 					GLWidget.cpp \
 					Keyboard.cpp \
 					MainWindow.cpp \
+					MediaPlayer.cpp \
 					Panel.cpp \
 					PlayerWidget.cpp \
+					SideBar.cpp \
 					main.cpp
 
 HPPFILES		=	AppClock.hpp \
@@ -78,8 +74,10 @@ HPPFILES		=	AppClock.hpp \
 					IntTypes.hpp \
 					Keyboard.hpp \
 					MainWindow.hpp \
+					MediaPlayer.hpp \
 					Panel.hpp \
-					PlayerWidget.hpp
+					PlayerWidget.hpp \
+					SideBar.hpp
 
 export OUTPUT	=	$(CURDIR)/$(TARGET)
 
