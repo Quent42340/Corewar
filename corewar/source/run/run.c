@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Sun Mar 27 23:32:43 2016 Jakob Kellendonk
+** Last update Mon Mar 28 14:46:22 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -32,7 +32,7 @@ int		get_cycle_amount(unsigned char *cmd)
 	       && (cmd[offset] > 16 || cmd[offset] < 1))))
 	return (1);
       offset = offset + ((cmd[1] >> (6 - 2 * i)) == 1)
-	+ ((cmd[1] >> (6 - 2 * i)) == 2) * DIR_SIZE
+	+ ((cmd[1] >> (6 - 2 * i)) == 2) * ((cmd[0] != 10 && cmd[0] != 11) * 2 + 2)
 	+ ((cmd[1] >> (6 - 2 * i)) == 3) * IND_SIZE;
       i = i + 1;
     }
