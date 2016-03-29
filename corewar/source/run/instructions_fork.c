@@ -5,12 +5,13 @@
 ** Login   <huot_b@epitech.net>
 ** 
 ** Started on  Thu Mar 24 17:29:08 2016 Flora Huot
-** Last update Sun Mar 27 21:05:49 2016 Jakob Kellendonk
+** Last update Tue Mar 29 18:23:22 2016 Jakob Kellendonk
 */
 
 #include <stdlib.h>
 #include "application.h"
 #include "my_mem.h"
+#include "run.h"
 
 t_err		new_process(t_process **old, int newpc)
 {
@@ -23,9 +24,9 @@ t_err		new_process(t_process **old, int newpc)
   offset = *old - parent->processes;
   parent->processes = realloc(parent->processes,
 			      sizeof(t_process) * parent->process_amount);
-  *old = offset + parent->processes;
   if (!parent->processes)
     return (print_error(ERROR_MALLOC_FAILED));
+  *old = offset + parent->processes;
   new = parent->processes + parent->process_amount - 1;
   my_memcpy(new, *old, sizeof(t_process));
   new->pc = ((newpc % MEM_SIZE) + MEM_SIZE) % MEM_SIZE;

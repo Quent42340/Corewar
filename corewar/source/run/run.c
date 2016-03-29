@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Mon Mar 28 14:46:22 2016 Jakob Kellendonk
+** Last update Tue Mar 29 19:45:28 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -15,25 +15,25 @@ int		get_cycle_amount(unsigned char *cmd)
 {
   int		i;
   int		offset;
+  int		type;
 
-  offset = 2;
   if (cmd[0] <= 0 || cmd[0] > 16)
     return (1);
+  offset = 2;
   i = 0;
   while ((cmd[0] != 1 && cmd[0] != 9 && cmd[0] != 12 && cmd[0] != 15)
 	 && i < op_tab[cmd[0] - 1].nbr_args)
     {
-      if ((!((cmd[1] >> (6 - 2 * i)) & 3)
-	   || !(op_tab[cmd[0] - 1].type[i]
-		& (((((cmd[1] >> (6 - 2 * i)) & 3) == 1) * T_REG
-		    | (((cmd[1] >> (6 - 2 * i)) & 3) == 2) * T_DIR
-		    | (((cmd[1] >> (6 - 2 * i)) & 3) == 3) * T_IND)))
-	   || (((cmd[1] >> (6 - 2 * i)) == 1)
-	       && (cmd[offset] > 16 || cmd[offset] < 1))))
+      type = (cmd[1] >> (6 - 2 * i)) & 3;
+      if ((!(type) || !(op_tab[cmd[0] - 1].type[i]
+			& ((((type) == 1) * T_REG
+			    | ((type) == 2) * T_DIR
+			    | ((type) == 3) * T_IND)))
+	   || (type == 1 && (cmd[offset] > 16 || cmd[offset] < 1))))
 	return (1);
-      offset = offset + ((cmd[1] >> (6 - 2 * i)) == 1)
-	+ ((cmd[1] >> (6 - 2 * i)) == 2) * ((cmd[0] != 10 && cmd[0] != 11) * 2 + 2)
-	+ ((cmd[1] >> (6 - 2 * i)) == 3) * IND_SIZE;
+      offset = offset + (type == 1) + (type == 2)
+	* ((cmd[0] != 10 && cmd[0] != 11 && cmd[0] != 14) ? 4 : 2)
+	+ (type == 3) * IND_SIZE;
       i = i + 1;
     }
   return (op_tab[cmd[0] - 1].nbr_cycles);
@@ -86,9 +86,9 @@ t_err	remove_dead(t_application *app)
 {
   int	i;
   int	alive;
-  int	last_live;
 
-  last_live = 0;
+  if (app->cycle_to_die <= 0)
+    return (end_game(app));
   alive = 0;
   i = -1;
   while (++i < app->program_amount)
@@ -100,13 +100,10 @@ t_err	remove_dead(t_application *app)
 	app->programs[i].is_alive = 0;
       app->programs[i].did_live = 0;
       alive = alive + app->programs[i].is_alive;
-      if (last_live < app->programs[i].last_live_cycle)
-	last_live = app->programs[i].last_live_cycle;
     }
   i = -1;
-  while (alive <= 1 && ++i < app->program_amount)
-    if (last_live == app->programs[i].last_live_cycle)
-      message_win(&app->programs[i], i);
+  if (alive <= 1)
+    return (end_game(app));
   app->last_limit_hit = app->cycle;
   return (ERROR_UNKNOWN * (alive <= 1));
 }
@@ -117,6 +114,7 @@ t_err	tick(t_application *application)
   int	j;
   t_err	err;
 
+  printf("cycle : %i, cycle to die : %i\n", application->cycle, application->cycle_to_die);
   if (application->cycle - application->last_limit_hit
       >= application->cycle_to_die && (err = remove_dead(application)))
     return (err);
