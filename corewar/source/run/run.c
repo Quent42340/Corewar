@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 13:00:44 2016 Jakob Kellendonk
-** Last update Tue Mar 29 19:45:28 2016 Jakob Kellendonk
+** Last update Tue Mar 29 19:47:01 2016 Jakob Kellendonk
 */
 
 #include "run.h"
@@ -114,7 +114,6 @@ t_err	tick(t_application *application)
   int	j;
   t_err	err;
 
-  printf("cycle : %i, cycle to die : %i\n", application->cycle, application->cycle_to_die);
   if (application->cycle - application->last_limit_hit
       >= application->cycle_to_die && (err = remove_dead(application)))
     return (err);

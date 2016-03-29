@@ -5,7 +5,7 @@
 ** Login   <kellen_j@epitech.net>
 ** 
 ** Started on  Thu Mar 24 18:19:59 2016 Jakob Kellendonk
-** Last update Tue Mar 29 18:41:41 2016 Jakob Kellendonk
+** Last update Tue Mar 29 19:46:43 2016 Jakob Kellendonk
 */
 
 # include "application.h"
@@ -16,7 +16,6 @@ unsigned char	*set_args(t_application *application, t_process *process,
 {
   if (format == 1)
     {
-      my_printf("writing to registre %i\n", buffs[1][0] - 1);
       my_memcpy(process->registre[buffs[1][0] - 1], buffs[0], REG_SIZE);
       return (buffs[1] + 1);
     }
