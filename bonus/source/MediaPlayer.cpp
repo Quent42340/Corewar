@@ -87,7 +87,7 @@ void MediaPlayer::loadFinished(bool ok) {
 	} else {
 		m_currentMusic = "";
 		
-		qCritical() << "Error: Failed to load webpage";
+		// qCritical() << "Error: Failed to load webpage";
 	}
 }
 
